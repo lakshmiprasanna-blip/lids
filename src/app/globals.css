@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  /* Brand Colors */
+  --color-primary:      #00B5AD;
+  --color-primary-light:#E6F9F8;
+  --color-primary-dark: #008C85;
+  --color-accent:       #E8452C;
+  --color-accent-hover: #C93820;
+
+  /* Text */
+  --color-text-dark:    #1A1A2E;
+  --color-text-body:    #3D3D3D;
+  --color-text-muted:   #6B7280;
+
+}
+
+* {
+  box-sizing: border-box;
+  
+}
+
+body {
+  font-family: var(--font-inter); 
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+    color: var(--color-text-dark);
+    letter-spacing: 0;
+    font-weight: 600;
+    line-height: 1.2;
+  letter-spacing: 0;
+}
+
+h3 { font-size: 3rem; }   /* 48px — as specified */
+h4{
+  font-size: 20px;
+}
+a {
+    color: #9E2016;
+    text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+.container {
+  @apply max-w-7xl mx-auto px-6 w-full;
+}
+/* globals.css */
+
+/* RED SMALL HEADING — GLOBAL */
+.section-label {
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #9E2016;
+}
