@@ -36,13 +36,22 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0;
 }
 
-h3 { font-size: 3rem; }   /* 48px — as specified */
+h3 { font-size: 3rem; }  
+@media (max-width: 768px) {
+  h3 {
+    font-size: 2rem;
+  }
+}
 h4{
   font-size: 20px;
 }
 a {
-    color: #9E2016;
-    text-decoration: none;
+  color: #9E2016;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  color: #9E2016;
 }
 img {
   max-width: 100%;
@@ -51,9 +60,6 @@ img {
 .container {
   @apply max-w-7xl mx-auto px-6 w-full;
 }
-/* globals.css */
-
-/* RED SMALL HEADING — GLOBAL */
 .section-label {
   font-family: Inter, sans-serif;
   font-weight: 600;

@@ -1,63 +1,57 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ShapeDental() {
-  return (
-    <section className="relative w-full overflow-hidden bg-white py-16 md:py-20">
+export default function ShapeDental({ label, title, desc, imageSrc, imageAlt, buttonText, buttonHref, imageLeft = false, mobileTitle, mobileDesc, showMobileCommitment = false  }) {
+  const textBlock = (
+    <div className="flex-1 flex flex-col gap-6">
+      {label && <p className="text-[#9E2016] text-sm font-semibold tracking-widest uppercase">{label}</p>}
+      <h3 className="text-[#1A1A2E] font-semibold leading-tight">{title}</h3>
+      <p className="text-[#3D3D3D] text-base leading-relaxed">{desc}</p>
+      {buttonText && buttonHref && (
+        <Link
+          href={buttonHref}
+          className="self-start text-[#9E2016] text-base font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:text-white transition-all duration-200"
+          style={{ width: "160px", height: "56px", display: "flex", alignItems: "center", justifyContent: "center" }}
+        >
+          {buttonText}
+        </Link>
+      )}
+    </div>
+  );
 
-      {/* Teal blur — top right */}
-      <div
-        className="absolute top-[-375px] left-[1142px] w-[831px] h-[836px] rounded-full pointer-events-none"
-        style={{ backgroundColor: "#A3E0DC8A", filter: "blur(186px)" }}
-      />
-
-      <div className="container flex flex-col md:flex-row items-center gap-12">
-
-        {/* Left — Text */}
-        <div className="flex-1 flex flex-col gap-6">
-          <h3 className="text-[#1A1A2E] font-semibold leading-[100%] tracking-[0%]"
-            style={{ width: "620px", maxWidth: "100%" }}>
-            Shaping the future <br /> of dental excellence
-          </h3>
-          <p className="text-[#3D3D3D] text-base leading-relaxed">
-            At Lenora Institute of Dental Sciences (LIDS), we offer a transformative dental<br/>
-            education that blends academic rigor with hands-on clinical training that provide
-            state-of-the-art infrastructure, cutting-edge research facilities, and a dynamic
-            learning environment. Our programs are designed to mould future dental leaders
-            who are well-equipped to meet the challenges of modern dental practice.
-          </p>
-          <Link
-            href="/about"
-            className="self-start text-[#9E2016] text-base font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:text-white transition-all duration-200"
-            style={{
-              width: "160px",
-              height: "56px",
-              padding: "16px 32px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "10px",
-            }}
-          >
-            Know more
-          </Link>
-        </div>
-
-        {/* Right — Image */}
-        <div className="flex-1 flex justify-end">
-          <div className="relative w-full max-w-[700px] h-[380px] rounded-2xl overflow-hidden">
-            <Image
-              src="/assets/shaping-dental.webp"
-              alt="Students at LIDS"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-
+  const imageBlock = (
+    <div className="flex-1 flex justify-end">
+      <div className="relative w-full max-w-[821px] h-[440px] rounded-2xl overflow-hidden">
+        <Image src={imageSrc} alt={imageAlt} fill className="object-cover" />
       </div>
-    </section>
+    </div>
+  );
+
+  return (
+    <>
+{showMobileCommitment && (
+        <section className="md:hidden w-full py-8 overflow-hidden" style={{ backgroundColor: "#20B2AA" }}>
+        <div className="relative px-6 py-8 flex flex-col gap-6">
+<div className="absolute top-[-30px] bottom-[-30px] left-0 h-full pointer-events-none" style={{
+  width: "50%",
+  backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 2px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 2px, transparent 2px)",
+  backgroundSize: "90px 90px"
+}} />
+          <h3 className="!text-white font-semibold relative z-10" style={{ fontSize: "24px" }}>
+            {mobileTitle || title}
+          </h3>
+          <p className="text-white text-sm leading-relaxed opacity-90 relative z-10">
+            {mobileDesc || desc}
+          </p>
+        </div>
+      </section>
+)}
+      {/* DESKTOP */}
+      <section className="hidden md:block relative w-full bg-white py-8">
+        <div className="container flex flex-row items-center gap-12">
+          {imageLeft ? <>{imageBlock}{textBlock}</> : <>{textBlock}{imageBlock}</>}
+        </div>
+      </section>
+    </>
   );
 }
