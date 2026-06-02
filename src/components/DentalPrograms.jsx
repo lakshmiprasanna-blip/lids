@@ -32,21 +32,24 @@ const [prevActive, setPrevActive] = useState(false);
 const [nextActive, setNextActive] = useState(false);
   return (
     <section className="relative overflow-hidden bg-white py-10">
-      <div className="absolute pointer-events-none z-0 rounded-full" style={{ width: "344px", height: "460px", top: "111px", left: "76px", ...blurStyle }} />
-      <div className="absolute pointer-events-none z-0 rounded-full" style={{ width: "344px", height: "460px", top: "591px", left: "1412px", ...blurStyle }} />
-
+     {/* TOP LEFT BLUR */}
+<div className="absolute pointer-events-none z-0 rounded-full hidden lg:block" style={{ width: "344px", height: "460px", top: "111px", left: "76px", background: "#CFEFED", filter: "blur(60px)", transform: "rotate(-90deg)", }} />
+{/* BOTTOM RIGHT BLUR */}
+<div
+  className="absolute pointer-events-none z-[2] rounded-full hidden lg:block"
+  style={{ width: "344px", height: "460px", bottom: "0px", right: "0px", background: "#CFEFED", filter: "blur(60px)", transform: "rotate(-90deg)",
+  }}
+/>
       <div className="relative z-10 container">
-
         {/* HEADING */}
         <div className="text-center mb-16">
-          <p className="text-[#FCAF16] md:text-[#9E2016] text-sm font-semibold tracking-widest uppercase mb-4">OUR PROGRAMS</p>
+          <p className="text-[#FCAF16] md:text-[#9E2016] text-md font-semibold tracking-widest uppercase mb-4">OUR PROGRAMS</p>
           <h3 className="text-[#1A1A1A] font-semibold hidden md:block">Explore Our Comprehensive Dental Programs</h3>
           <h3 className="text-[#1A1A1A] font-semibold md:hidden" style={{ fontSize: "28px" }}>Explore Our<br />Dental Programs</h3>
           <p className="mt-4 text-[#7A7A7A] text-base max-w-3xl mx-auto">Discover a wide range of medical courses tailored to meet your diverse educational needs.</p>
         </div>
-
         {/* DESKTOP */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="hidden lg:grid lg:grid-cols-3 gap-6">
           {programs.map((item, i) => (
             <div key={i} className="w-full rounded-[24px] overflow-hidden">
               <div className="relative h-[280px] overflow-hidden rounded-t-[24px]">
@@ -67,9 +70,7 @@ const [nextActive, setNextActive] = useState(false);
             </div>
           ))}
         </div>
-
-        {/* MOBILE */}
-        <div className="md:hidden flex flex-col gap-6">
+       <div className="flex flex-col gap-6 lg:hidden">
           <div className="overflow-hidden">
             <div className="flex transition-transform duration-300 ease-in-out" style={{ transform: `translateX(calc(-${current * 88}vw))` }}>
               {programs.map((item, i) => (
@@ -80,7 +81,17 @@ const [nextActive, setNextActive] = useState(false);
                       <span className="text-[#9E2016] text-[13px] font-medium">{item.years}</span>
                     </div>
                   </div>
-                  <div className="rounded-b-[24px] p-6 flex flex-col gap-4 bg-white" style={{ border: "8px solid #E5F3F25C" }}>
+                  <div
+  className="h-[265px] rounded-b-[16px] p-8 flex flex-col justify-between"
+  style={{
+    background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.16) 100%)",
+    borderTop: "1px solid #E5F3F25C",
+    border: "1px solid #A5E7F07A",
+    backdropFilter: "blur(14.5px)",
+    WebkitBackdropFilter: "blur(14.5px)",
+    boxShadow: "inset 0px 2px 12px 0px #FFFFFF40, 0px 6px 6px 0px #EBFDFF33, 0px 13px 13.9px 0px #C9F9FF33",
+  }}
+>
                     <h4 className="text-[#1A1A1A] text-xl font-semibold">{item.title}</h4>
                     <p className="text-[#7A7A7A] text-sm leading-relaxed">{item.desc}</p>
                     <Link href="/programs" className="inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium" style={{ width: "159px", height: "48px", border: "1px solid #FCAF16", color: "#FCAF16" }}>
@@ -132,45 +143,74 @@ export function NewsEvents() {
           </Link>
         </div>
 
-        {/* DESKTOP & TABLET */}
-        <div className="hidden md:block">
-          <div className="relative flex items-center">
-            <button onClick={prev} className={arrowBtn} style={{ width: "64px", height: "64px", position: "absolute", left: "-32px", zIndex: 10 }}>
-              <ArrowLeft size={20} />
-            </button>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1">
-              {visibleEvents.map((item, i) => (
-                <div key={i} className="w-full rounded-[24px] overflow-hidden">
-                  <div className="relative h-[200px] overflow-hidden rounded-t-[24px]">
-                    <Image src={item.image} alt={item.title} fill className="object-cover" />
-                    <div
-                      className="absolute top-[25px] left-[25px] text-xs font-medium rounded-[32px] cursor-pointer transition-all duration-200"
-                      style={{ padding: "8px 16px", background: "#FFFFFF80", border: "1px solid #9E2016", color: "#9E2016", boxShadow: "inset 0px 2px 12px 0px #FFFFFF40" }}
-                      onMouseEnter={e => { e.currentTarget.style.background = "#20B2AA"; e.currentTarget.style.color = "white"; e.currentTarget.style.border = "1px solid #20B2AA"; }}
-                      onMouseLeave={e => { e.currentTarget.style.background = "#FFFFFF80"; e.currentTarget.style.color = "#9E2016"; e.currentTarget.style.border = "1px solid #9E2016"; }}
-                    >
-                      {item.category}
-                    </div>
-                  </div>
-                  <div className="rounded-b-[24px] p-6 flex flex-col justify-between bg-white h-[220px]" style={cardStyle}>
-                    <p className="text-[#7A7A7A] text-xs">{item.type} • {item.date}</p>
-                    <h4 className="text-[#1A1A1A] text-lg font-semibold">{item.title}</h4>
-                    <p className="text-[#7A7A7A] text-sm leading-relaxed line-clamp-2">{item.desc}</p>
-                    <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-sm font-medium hover:underline mt-2">
-                      Know more <ArrowRight size={14} />
-                    </Link>
-                  </div>
-                </div>
-              ))}
+        {/* DESKTOP ONLY*/}
+<div className="hidden lg:block">
+  <div className="relative flex items-center">
+    <button onClick={prev} className={arrowBtn} style={{ width: "64px", height: "64px", position: "absolute", left: "-32px", zIndex: 10 }}>
+      <ArrowLeft size={20} />
+    </button>
+    <div className="grid lg:grid-cols-3 gap-6 flex-1">
+      {visibleEvents.map((item, i) => (
+        <div key={i} className="w-full rounded-[24px] overflow-hidden">
+          <div className="relative h-[200px] overflow-hidden rounded-t-[24px]">
+            <Image src={item.image} alt={item.title} fill className="object-cover" />
+            <div
+              className="absolute top-[25px] left-[25px] text-xs font-medium rounded-[32px] cursor-pointer transition-all duration-200"
+              style={{ padding: "8px 16px", background: "#FFFFFF80", border: "1px solid #9E2016", color: "#9E2016" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "#20B2AA"; e.currentTarget.style.color = "white"; e.currentTarget.style.border = "1px solid #20B2AA"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "#FFFFFF80"; e.currentTarget.style.color = "#9E2016"; e.currentTarget.style.border = "1px solid #9E2016"; }}
+            >
+              {item.category}
             </div>
-
-            <button onClick={next} className={arrowBtn} style={{ width: "64px", height: "64px", position: "absolute", right: "-32px", zIndex: 10 }}>
-              <ArrowRight size={20} />
-            </button>
+          </div>
+          <div className="rounded-b-[24px] p-6 flex flex-col justify-between bg-white h-[220px]" style={cardStyle}>
+            <p className="text-[#7A7A7A] text-xs">{item.type} • {item.date}</p>
+            <h4 className="text-[#1A1A1A] text-lg font-semibold">{item.title}</h4>
+            <p className="text-[#7A7A7A] text-sm leading-relaxed line-clamp-2">{item.desc}</p>
+            <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-sm font-medium hover:underline mt-2">
+              Know more <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
-        <div className="md:hidden flex flex-col items-center gap-6">
+      ))}
+    </div>
+    <button onClick={next} className={arrowBtn} style={{ width: "64px", height: "64px", position: "absolute", right: "-32px", zIndex: 10 }}>
+      <ArrowRight size={20} />
+    </button>
+  </div>
+</div>
+
+{/* MOBILE & TABLET — below lg */}
+<div className="lg:hidden flex flex-col items-center gap-6">
+  <div className="w-full rounded-[24px] overflow-hidden">
+    <div className="relative h-[200px] overflow-hidden rounded-t-[24px]">
+      <Image src={events[current].image} alt={events[current].title} fill className="object-cover" />
+      <div
+        className="absolute top-[25px] left-[25px] text-xs font-medium rounded-[32px] cursor-pointer"
+        style={{ padding: "8px 16px", background: "#FFFFFF80", border: "1px solid #9E2016", color: "#9E2016" }}
+      >
+        {events[current].category}
+      </div>
+    </div>
+    <div className="rounded-b-[24px] p-6 flex flex-col gap-3 bg-white" style={cardStyle}>
+      <p className="text-[#7A7A7A] text-xs">{events[current].type} • {events[current].date}</p>
+      <h4 className="text-[#1A1A1A] text-lg font-semibold">{events[current].title}</h4>
+      <p className="text-[#7A7A7A] text-sm leading-relaxed">{events[current].desc}</p>
+      <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-sm font-medium hover:underline">
+        Know more <ArrowRight size={14} />
+      </Link>
+    </div>
+  </div>
+  <div className="flex items-center gap-4">
+    <button onClick={prevMobile} className={arrowBtnTeal} style={{ width: "48px", height: "48px" }}>
+      <ArrowLeft size={20} />
+    </button>
+    <button onClick={nextMobile} className={arrowBtnTeal} style={{ width: "48px", height: "48px" }}>
+      <ArrowRight size={20} />
+    </button>
+  </div>
+</div>
+        {/* <div className="md:hidden flex flex-col items-center gap-6">
           <div className="w-full rounded-[24px] overflow-hidden">
             <div className="relative h-[200px] overflow-hidden rounded-t-[24px]">
               <Image src={events[current].image} alt={events[current].title} fill className="object-cover" />
@@ -198,7 +238,7 @@ export function NewsEvents() {
               <ArrowRight size={20} />
             </button>
           </div>
-        </div>
+        </div> */}
 
       </div>
     </section>

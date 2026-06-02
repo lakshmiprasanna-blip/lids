@@ -84,10 +84,36 @@ export default function OurCampus() {
     <section
       className="relative w-full py-20"
       style={{
-        background: "linear-gradient(160deg, #DFF6F2 0%, #F5FFFE 40%, #DFF6F2 100%)",
+        background: "white",
         overflow: "hidden",
       }}
     >
+       <div
+    className="absolute pointer-events-none rounded-full"
+    style={{
+      width: "344px",
+      height: "460px",
+      top: "80px",
+      left: "0px",
+      background: "#CFEFED",
+      filter: "blur(60px)",
+      transform: "rotate(-90deg)",
+      zIndex: 0,
+    }}
+  />
+  <div
+    className="absolute pointer-events-none rounded-full"
+    style={{
+      width: "344px",
+      height: "460px",
+      bottom: "0px",
+      right: "0px",
+      background: "#CFEFED",
+      filter: "blur(60px)",
+      transform: "rotate(-90deg)",
+      zIndex: 0,
+    }}
+  />
       {/* Heading */}
       <div className="text-center mb-10 px-6">
         <p className="text-[#9E2016] text-md font-semibold tracking-widest uppercase mb-3">

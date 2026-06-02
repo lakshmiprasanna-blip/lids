@@ -58,55 +58,78 @@ export default function Home() {
       <DentalPrograms />
       <section className="relative w-full overflow-hidden bg-white py-20">
   <div className="container">
-
-    {/* HEADING */}
     <div className="mb-16">
-      <p className="text-[#FCAF16] md:text-[#9E2016] text-md font-semibold tracking-widest uppercase mb-4 md:text-center">Why choose LIDS</p>
-      <h3 className="text-[#1A1A1A] font-semibold hidden md:block text-center">Excellence in Dental Education and <br /> Patient-Centered Care</h3>
-      <h3 className="text-[#1A1A1A] font-semibold md:hidden">We Are Always Open<br />for Health Services</h3>
+      <p className="text-[#FCAF16] lg:text-[#9E2016] text-md font-semibold tracking-widest uppercase mb-4 lg:text-center">Why choose LIDS</p>
+      <h3 className="text-[#1A1A1A] font-semibold hidden lg:block text-center">Excellence in Dental Education and <br /> Patient-Centered Care</h3>
+      <h3 className="text-[#1A1A1A] font-semibold lg:hidden">We Are Always Open<br />for Health Services</h3>
     </div>
+
+    {/* MOBILE — below md */}
     <div className="md:hidden flex flex-col gap-6">
       <div className="relative w-full h-[260px] rounded-2xl overflow-hidden">
-  <Image src="/assets/whychoose-mob.webp" alt="Why Choose LIDS" fill className="object-cover" />
-</div>
-  <div className="overflow-x-auto scrollbar-hide -mx-6 px-6">
-    <div className="flex gap-4" style={{ width: "max-content" }}>
+        <Image src="/assets/whychoose-mob.webp" alt="Why Choose LIDS" fill className="object-cover" />
+      </div>
+      <div className="overflow-x-auto scrollbar-hide -mx-6 px-6">
+        <div className="flex gap-4" style={{ width: "max-content" }}>
+          {[...left, ...right].map((item, i) => (
+            <div key={i} className="flex flex-col gap-3 p-6 rounded-2xl shrink-0" style={{ width: "327px", border: "1px solid #E5F3F2" }}>
+              <Image src={item.icon} alt={item.title} width={48} height={48} />
+              <h4 className="text-[#1A1A1A] font-semibold">{item.title}</h4>
+              <p className="text-[#7A7A7A] text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* TABLET — md to lg */}
+    <div className="hidden md:grid lg:hidden grid-cols-2 gap-6">
       {[...left, ...right].map((item, i) => (
-        <div key={i} className="flex flex-col gap-3 p-6 rounded-2xl shrink-0" style={{ width: "327px", border: "1px solid #E5F3F2" }}>
-          <Image src={item.icon} alt={item.title} width={48} height={48} />
-          <h4 className="text-[#1A1A1A] font-semibold">{item.title}</h4>
-          <p className="text-[#7A7A7A] text-sm leading-relaxed">{item.desc}</p>
+        <div key={i} className="flex items-start gap-4 p-6 rounded-2xl" style={{ border: "1px solid #E5F3F2" }}>
+          <div className="shrink-0 w-[56px] h-[56px] rounded-full flex items-center justify-center" style={{ background: "#E8F8F7" }}>
+            <Image src={item.icon} alt={item.title} width={32} height={32} />
+          </div>
+          <div>
+            <h4 className="text-[#1A1A1A] text-base font-semibold mb-2">{item.title}</h4>
+            <p className="text-[#7A7A7A] text-sm leading-relaxed">{item.desc}</p>
+          </div>
         </div>
       ))}
     </div>
-  </div>
-</div>
-    {/* DESKTOP */}
-    <div className="hidden md:flex items-center justify-between gap-8">
+
+    {/* DESKTOP — lg and above */}
+    <div className="hidden lg:flex items-center justify-between gap-8">
       <FeatureList items={left} />
       <div className="relative flex items-center justify-center shrink-0 w-[420px] h-[520px]">
         <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(ellipse at center, #CFEFED 0%, transparent 70%)" }} />
-        <div className="relative z-10 w-[400px] h-[700px]">
+        <div className="relative z-10 w-[480px] h-[357px]">
           <Image src="/assets/tooth.gif" alt="Tooth" fill className="object-contain opacity-40" />
         </div>
       </div>
       <FeatureList items={right} />
     </div>
+
   </div>
 </section>
 <OurCampus />
-      <section className="relative w-full overflow-hidden bg-white py-20">
-        <div
-          className="absolute pointer-events-none rounded-full"
-          style={{
-            width: "344px", height: "460px",
-            top: "-147px", left: "183px",
-            background: "#CFEFED",
-            filter: "blur(186px)",
-            transform: "rotate(-90deg)",
-          }}
-        />
-
+      <section className="relative w-full overflow-hidden py-20"> {/*removed overflow-hidden*/}
+<div
+  className="absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", top: "-147px", left: "183px", background: "#CFEFED", filter: "blur(150px)", transform: "rotate(-90deg)", zIndex: 0,
+  }}
+/>
+  <div
+    className="absolute pointer-events-none rounded-full"
+    style={{
+      width: "344px",
+      height: "460px",
+      bottom: "-200px",
+      left: "0px",
+      background: "#CFEFED",
+      filter: "blur(186px)",
+      transform: "rotate(-90deg)",
+      zIndex: 0,
+    }}
+  />
         <div className="relative z-10 container">
           <div className="text-center mb-16">
             <p className="text-[#9E2016] text-md font-semibold tracking-widest uppercase mb-4">FACILITIES OVERVIEW</p>
@@ -145,8 +168,6 @@ export default function Home() {
     </p>
   </div>
 </div>
-
-  {/* DESKTOP */}
   <div className="hidden md:flex items-center">
     <div className="flex flex-col gap-6 pl-[max(2rem,calc((100vw-1280px)/2+2rem))] w-[47%] shrink-0">
       <p className="text-[#9E2016] text-md font-semibold tracking-widest uppercase">OUR COMMITMENT</p>
@@ -170,13 +191,11 @@ export default function Home() {
         ))}
       </ul>
     </div>
-    <div className="relative flex-1 h-[675px]">
+    <div className="relative flex-1 h-[692px]">
       <Image src="/assets/research-excellence.webp" alt="Research Excellence" fill className="object-cover object-right" />
     </div>
   </div>
-
 </section>
-{/* QUOTE BANNER */}
 <section className="w-full bg-white flex items-center justify-center h-[540px]">
   <div className="max-w-6xl w-full px-6">
     <p className="text-center font-semibold text-[#333333] text-[40px] leading-[1.3]">

@@ -156,17 +156,9 @@ export default function AboutPage() {
     className="object-cover"
     style={{ filter: "blur(0px)", transform: "scale(1.05)", zIndex: 0 }}
   />
-
-  {/* OVERLAY */}
   <div
     className="absolute inset-0"
-    style={{
-      background: "linear-gradient(90deg, rgba(32,178,170,0.85) 0%, rgba(16,123,113,0.85) 100%)",
-      zIndex: 1,
-    }}
-  />
-
-  {/* CONTENT */}
+    style={{background: "linear-gradient(90deg, rgba(32,178,170,0.85) 0%, rgba(16,123,113,0.85) 100%)", zIndex: 1, }}/>
   <div className="relative text-center flex flex-col items-center gap-6 px-6 max-w-4xl" style={{ zIndex: 2 }}>
     <h3 className="font-semibold" style={{ color: "white" }}>
       Design Your Dental Legacy at LIDS

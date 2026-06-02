@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function ShapeDental({ label, title, desc, imageSrc, imageAlt, buttonText, buttonHref, imageLeft = false, mobileTitle, mobileDesc, showMobileCommitment = false  }) {
   const textBlock = (
-    <div className="flex-1 flex flex-col gap-6">
+    <div className="flex-1 flex flex-col gap-6 py-20">
       {label && <p className="text-[#9E2016] text-sm font-semibold tracking-widest uppercase">{label}</p>}
       <h3 className="text-[#1A1A2E] font-semibold leading-tight">{title}</h3>
       <p className="text-[#3D3D3D] text-base leading-relaxed">{desc}</p>
@@ -47,11 +47,27 @@ export default function ShapeDental({ label, title, desc, imageSrc, imageAlt, bu
       </section>
 )}
       {/* DESKTOP */}
-      <section className="hidden md:block relative w-full bg-white py-8">
-        <div className="container flex flex-row items-center gap-12">
-          {imageLeft ? <>{imageBlock}{textBlock}</> : <>{textBlock}{imageBlock}</>}
-        </div>
-      </section>
+      <section className="hidden md:block relative w-full bg-white py-8 overflow-hidden">
+
+  {/* TOP RIGHT BLUR CIRCLE */}
+  <div
+    className="absolute pointer-events-none rounded-full"
+    style={{
+      width: "831px",
+      height: "836px",
+      top: "-475px",
+      right: "-200px",
+      background: "rgba(163, 224, 220, 0.54)",
+      filter: "blur(186px)",
+      zIndex: 0,
+    }}
+  />
+
+  <div className="container flex flex-row items-center gap-12 relative z-10">
+    {imageLeft ? <>{imageBlock}{textBlock}</> : <>{textBlock}{imageBlock}</>}
+  </div>
+
+</section>
     </>
   );
 }

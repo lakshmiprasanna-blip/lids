@@ -51,21 +51,21 @@ export default function Banner() {
     ))}
   </div>
 </div>
-      <div className="hidden md:flex items-center w-full md:h-[120px]" style={{ backgroundColor: "#20B2AACC" }}>
-        <div className="container flex items-center justify-between w-full">
-          {stats.map((stat, index) => (
-            <div key={stat.label} className="flex items-center">
-              <div className="flex flex-col items-center gap-1 text-center px-4 md:px-8">
-                <span className="text-white text-4xl font-bold leading-none">{stat.number}</span>
-                <span className="text-white text-sm opacity-90 whitespace-nowrap">{stat.label}</span>
-              </div>
-              {index < stats.length - 1 && (
-                <div className="shrink-0" style={{ width: "1px", height: "30px", backgroundColor: "#E6E6E6" }} />
-              )}
-            </div>
-          ))}
+     <div className="hidden md:flex items-center w-full h-[100px] overflow-hidden" style={{ backgroundColor: "#20B2AACC" }}>
+  <div className="container flex items-center justify-between w-full">
+    {stats.map((stat, index) => (
+      <div key={stat.label} className="flex items-center">
+        <div className="flex flex-col items-center gap-1 text-center px-1 md:px-3 xl:px-8">
+          <span className="text-white text-xl md:text-2xl xl:text-4xl font-bold leading-none">{stat.number}</span>
+          <span className="text-white text-[10px] md:text-xs xl:text-sm opacity-90 whitespace-nowrap">{stat.label}</span>
         </div>
+        {index < stats.length - 1 && (
+          <div className="shrink-0" style={{ width: "1px", height: "30px", backgroundColor: "#E6E6E6" }} />
+        )}
       </div>
+    ))}
+  </div>
+</div>
 
     </section>
   );
