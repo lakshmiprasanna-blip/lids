@@ -1,3 +1,6 @@
+"use client";
+import { useState } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import CTABanner from "@/components/CTABanner";
@@ -7,9 +10,7 @@ import ShapeDental from "@/components/ShapeDental";
 const mvvCards = [
   { 
     icon: "/assets/about-mission.svg", 
-    mobileImage: "/assets/about-mission-mob.webp", 
     title: "Our Mission", 
-    mobileDesc: "To empower students by combining strong theoretical knowledge with meaningful practical training. We provide extensive hands-on learning and regular access to patient care so students gain sufficient clinical experience and become well-rounded professionals. ",
     desc: "To empower the next generation of dental professionals by bridging the gap between classroom theory and real-world practice." 
   },
   { 
@@ -20,7 +21,6 @@ const mvvCards = [
   { 
     icon: "/assets/about-mission.svg", 
     title: "Our Vision", 
-    mobileDesc: "To create a positive impact on society through quality dental education, community service, and oral health awareness. We aim to be recognised for academic excellence, research, and responsible practice, while nurturing future dental professionals.",
     desc: "To transform society through exceptional dental education, dedicated community service, and proactive oral health advocacy." 
   },
 ];
@@ -40,32 +40,36 @@ const doctors = [
 ];
 
 export default function AboutPage() {
+  const [docPage, setDocPage] = useState(0);
   return (
     <main>
-      <CTABanner />
-      <section className="bg-white py-20 md:py-20">
-        <div className="container">
-          <div className="relative w-full md:max-w-5xl md:mx-auto h-[280px] md:h-[477px] rounded-2xl overflow-hidden mb-6 md:mb-8"
-  style={{ boxShadow: "inset 0 0 0 4px rgba(255, 255, 255, 0.5)" }}>
-  <Image src="/assets/lids-building.webp" alt="LIDS Building" fill className="object-cover" />
-</div>
-          <h3 className="md:hidden text-[#1A1A1A] font-semibold text-3xl mb-4">About LIDS</h3>
-          <div className="hidden md:block text-center mb-6">
-            <p className="text-[#9E2016] text-xl font-semibold tracking-widest uppercase mb-4">
-              Lenora Institute of Dental Sciences (LIDS)
-            </p>
-            <h3 className="text-[#1A1A1A] font-semibold">Shaping the Future of Oral Healthcare</h3>
-          </div>
-          <p className="text-[#7A7A7A] text-sm leading-relaxed w-full md:w-[935px] md:mx-auto md:text-center">
-            Situated in Rajahmundry, Andhra Pradesh, LIDS is more than a dental institution — 
-            it's a vibrant hub for innovation, academic excellence, and patient-centric care. 
-            As a premier institution under the KLR Group, we empower the next generation of 
-            dental leaders through a dynamic blend of high-tech research, hands-on clinical 
-            training, and passionate mentorship. Whether you are a future student or looking 
-            for cutting-edge dentistry, LIDS is where expertise meets compassion.
-          </p>
-        </div>
-      </section>
+      <CTABanner
+       label="About us"
+        title="A Legacy of Excellence in Education and Social Responsibility"
+        mobileImage="/assets/about-mob.webp" />
+      <section className="relative bg-white py-10 md:py-20">
+   
+  <div className="relative z-10 container">
+    <div className="relative w-full md:max-w-5xl md:mx-auto h-[280px] md:h-[477px] rounded-2xl overflow-hidden mb-6 md:mb-8"
+      style={{ boxShadow: "inset 0 0 0 4px rgba(255, 255, 255, 0.5)" }}>
+      <Image src="/assets/lids-building.webp" alt="LIDS Building" loading="lazy" fill className="object-cover" />
+      <div className="absolute inset-0 rounded-2xl border-5 border-white/40 pointer-events-none" />
+    </div>
+    {/* <h3 className="md:hidden text-[#1A1A1A] font-semibold text-3xl mb-4">About LIDS</h3> */}
+    <div className=" text-center mb-6">
+      <p className="text-[#9E2016] text-xl font-semibold uppercase mb-4">Lenora Institute of Dental Sciences (LIDS)</p>
+      <h3 className="text-[#1A1A1A] font-semibold">Shaping the Future of Oral Healthcare</h3>
+    </div>
+    <p className="text-[#7A7A7A] text-md leading-relaxed w-full md:max-w-[90%] lg:w-[1050px] md:mx-auto md:text-center">
+      Situated in Rajahmundry, Andhra Pradesh, LIDS is more than a dental institution — 
+      it's a vibrant hub for innovation, academic excellence, and patient-centric care. 
+      As a premier institution under the KLR Group, we empower the next generation of 
+      dental leaders through a dynamic blend of high-tech research, hands-on clinical 
+      training, and passionate mentorship. Whether you are a future student or looking 
+      for cutting-edge dentistry, LIDS is where expertise meets compassion.
+    </p>
+  </div>
+</section>
 
       <CardGrid cards={mvvCards} cols={3} />
       <ShapeDental
@@ -74,7 +78,48 @@ export default function AboutPage() {
   desc="At LIDS, we believe dental education must go beyond knowledge shaping professionals with skill, ethics, and a deep sense of responsibility. Every student learns not just to treat, but to serve. Through real patient exposure and guided clinical practice, learning extends far beyond the classroom, building both competence and compassion."
   imageSrc="/assets/philosophy.webp"
   imageAlt="Our Philosophy"
+   showBlur = {false}
 />
+{/* FOUNDER MESSAGE */}
+<section className="w-full py-8 bg-[#35908D]">
+  <div className="container">
+    {/* MOBILE */}
+<div className="md:hidden flex flex-col gap-6 rounded-[24px] p-6" style={{
+      border: "1px solid #20B2AA30",
+      boxShadow: "0px 2px 12px 0px #FFFFFF40 inset, 0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #E5F3F208, 0px 13px 8px 0px #9EFFEE05, 0px 22px 9px 0px #9EFFEE03, 0px 35px 10px 0px #C9F9FF00"
+    }}>
+      <div className="relative w-full overflow-hidden rounded-2xl" style={{ height: "280px" }}>
+        <Image src="/assets/founder.webp" alt="Dr. Katireddy Lakshma Reddy" fill className="object-cover" />
+      </div>
+      <p className="!text-[#9E2016] text-xl font-semibold uppercase opacity-80">MESSAGE</p>
+      <h3 className="!text-white font-semibold" style={{ fontSize: "32px" }}>A Message from Our Founder</h3>
+      <p className="text-white text-md leading-relaxed opacity-90 italic">For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.</p>
+      <p className="text-white text-md leading-relaxed opacity-90 italic">KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth.</p>
+      <div>
+        <p className="text-white font-semibold text-sm">Dr. Katireddy Lakshma Reddy</p>
+        <p className="text-sm" style={{ color: "#A5E7F0" }}>Founder & Chairman, KLR group</p>
+      </div>
+    </div>
+    {/* DESKTOP */}
+<div className="hidden md:flex items-center gap-6 lg:gap-10 rounded-[24px] p-6 lg:p-[40px]"
+  style={{ border: "1px solid rgba(32, 178, 170, 0.19)", boxShadow: "0px 2px 12px 0px rgba(255,255,255,0.25) inset" }}>
+  <div className="relative shrink-0 w-[280px] lg:w-[460px] max-w-full h-[380px] lg:h-[521px] rounded-[12px] overflow-hidden">
+  <Image src="/assets/founder.webp" alt="Dr. Katireddy Lakshma Reddy" fill className="object-cover"/>
+</div>
+  <div className="flex flex-col gap-4 lg:gap-6 flex-1 min-w-0">
+    <p className="text-[#9E2016] text-[18px] font-semibold tracking-widest uppercase opacity-80">MESSAGE</p>
+   <h3 className="!text-white font-semibold text-lg lg:text-3xl whitespace-nowrap md:whitespace-normal xl:whitespace-nowrap">A Message from Our Founder</h3>
+    <p className="text-white lg:text-[18px] leading-relaxed opacity-90 italic">For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.</p>
+    <p className="text-white lg:text-[18px] leading-relaxed opacity-90 italic">Dr. KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth.</p>
+    <div>
+      <p className="text-white font-semibold lg:text-[18px]">Dr. Katireddy Lakshma Reddy</p>
+      <p className=" text-md" style={{ color: "#A5E7F0" }}>Founder & Chairman, KLR group</p>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
       <CardGrid title="Our Core Values" cards={coreValues} cols={2} minHeight={280} />
 <ShapeDental
   label="LEGACY"
@@ -85,67 +130,54 @@ export default function AboutPage() {
   buttonText="Visit our Website"
   buttonHref="https://klr.edu.in"
   imageLeft={false}
+ 
 />
-{/* FOUNDER MESSAGE */}
-<section className="w-full py-8 bg-white md:bg-[#35908D]">
-  <div className="container">
 
-    {/* MOBILE */}
-    <div className="md:hidden flex flex-col items-center gap-6 text-center">
-      <div className="overflow-hidden" style={{ width: "327px", height: "264px", borderRadius: "240px" }}>
-        <Image src="/assets/founder.webp" alt="Dr. Katireddy Lakshma Reddy" width={327} height={264} className="object-cover w-full h-full" />
-      </div>
-      <p className="text-[#FCAF16] text-sm font-semibold tracking-widest uppercase">Founder</p>
-      <h3 className="!text-[#232323] font-semibold" style={{ fontSize: "24px" }}>A Message from Our Founder</h3>
-      <p className="text-[#9A9A9A] text-sm leading-relaxed">
-        At Lenora Institute of Dental Sciences, we have always believed in providing the best educational opportunities for our students. Our mission is simple – to offer a comprehensive, research-driven, and patient-focused dental education that will prepare students for the challenges and opportunities of tomorrow. I invite you to explore our programs, faculty, and campus. Our dedicated team is here to support your journey to dental excellence.
-      </p>
-      <button className="border border-[#FCAF16] text-[#FCAF16] rounded-[65px] px-8 py-3 text-sm font-medium">Read More</button>
-    </div>
-
-    {/* DESKTOP */}
-    <div className="hidden md:flex items-center gap-10 rounded-[24px] p-[40px]"
-      style={{ border: "1px solid rgba(32, 178, 170, 0.19)", boxShadow: "0px 2px 12px 0px rgba(255,255,255,0.25) inset" }}>
-      <div className="shrink-0 w-[460px] max-w-full h-[521px] rounded-[12px] overflow-hidden">
-        <Image src="/assets/founder.webp" alt="Dr. Katireddy Lakshma Reddy" width={460} height={521} className="object-cover w-full h-full" />
-      </div>
-      <div className="flex flex-col gap-6 flex-1">
-        <p className="text-white text-sm font-semibold tracking-widest uppercase opacity-80">MESSAGE</p>
-        <h3 className="!text-white font-semibold whitespace-nowrap">A Message from Our Founder</h3>
-        <p className="text-white text-sm leading-relaxed opacity-90">For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.</p>
-        <p className="text-white text-sm leading-relaxed opacity-90">Dr. KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth.</p>
-        <div>
-          <p className="text-white font-semibold text-sm">Dr. Katireddy Lakshma Reddy</p>
-          <p className="text-sm" style={{ color: "#A5E7F0" }}>Founder & Chairman, KLR group</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
 <section className="bg-white py-24">
   <div className="container">
     <div className="text-center mb-12">
-      <p className="text-[#9E2016] text-sm font-semibold tracking-widest uppercase mb-4">OUR CORE TEAM</p>
+      <p className="text-[#9E2016] text-sm font-semibold uppercase mb-4">OUR CORE TEAM</p>
       <h3 className="text-[#1A1A1A] font-semibold">Meet Our Professional Doctors</h3>
     </div>
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+    {/* Desktop */}
+    <div className="hidden md:grid grid-cols-4 gap-6">
       {doctors.map((doc, i) => (
         <div key={i} className="flex flex-col items-center gap-3">
-  <div className="w-[340px] max-w-full h-[440px] rounded-[16px] overflow-hidden" style={{ border: "4px solid rgba(229, 243, 242, 0.63)" }}>
-  <Image 
-    src={doc.image} 
-    alt={doc.name} 
-    width={340} 
-    height={440} 
-    className="object-cover w-full h-full scale-125 translate-y-[-5%]"
-  />
+          <div className="w-[340px] max-w-full h-[440px] rounded-[16px] overflow-hidden relative">
+  <Image src={doc.image} alt={doc.name} width={340} height={440} className="object-cover w-full h-full scale-125 translate-y-[-5%]" />
+  <div className="absolute inset-0 rounded-[16px] border-4 border-white/40 pointer-events-none" />
 </div>
-  <p className="text-[#1A1A1A] font-semibold text-sm">{doc.name}</p>
-  <p className="text-[#7A7A7A] text-sm">{doc.role}</p>
-</div>
+          <p className="text-[#1A1A1A] font-semibold text-[24px]">{doc.name}</p>
+          <p className="text-[#7A7A7A] text-xl">{doc.role}</p>
+        </div>
       ))}
     </div>
+
+    {/* Mobile */}
+    <div className="md:hidden flex flex-col items-center gap-6">
+      <div className="w-full rounded-[16px] overflow-hidden relative" style={{ height: "380px"}}>
+  <Image src={doctors[docPage].image} alt={doctors[docPage].name} width={400} height={380} className="object-cover w-full h-full scale-125 translate-y-[-5%]" />
+  <div className="absolute inset-0 rounded-[16px] border-4 border-white/40 pointer-events-none" />
+</div>
+     <p className="text-[#1A1A1A] font-semibold text-[24px] -mb-2">{doctors[docPage].name}</p>
+      <p className="text-[#7A7A7A] text-xl -mb-1">{doctors[docPage].role}</p>
+
+      <div className="flex items-center justify-center gap-8">
+        <button type="button" onClick={() => setDocPage((p) => (p === 0 ? doctors.length - 1 : p - 1))} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200">
+          <ArrowLeft size={18} />
+        </button>
+        <div className="flex items-center gap-2">
+          {doctors.map((_, i) => (
+            <button key={i} type="button" onClick={() => setDocPage(i)} className="rounded-full transition-all duration-300" style={{ width: i === docPage ? "20px" : "8px", height: "8px", background: i === docPage ? "#9E2016" : "#D9D9D9" }} />
+          ))}
+        </div>
+        <button type="button" onClick={() => setDocPage((p) => (p === doctors.length - 1 ? 0 : p + 1))} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200">
+          <ArrowRight size={18} />
+        </button>
+      </div>
+    </div>
+
   </div>
 </section>
 <section className="relative w-full h-[604px] overflow-hidden flex items-center justify-center">

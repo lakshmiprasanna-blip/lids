@@ -1,71 +1,100 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 const stats = [
-  { number: "355+",      label: "Dental Unit Chairs" },
-  { number: "18+",       label: "Academic Experience" },
-  { number: "1,00,000+", label: "Patients per annum" },
-  { number: "1700+",     label: "Research Publications" },
-  { number: "98+",       label: "Yearly Surgeries" },
+  { number: "355+",      label: "Dental Unit Chairs",     target: 355,    suffix: "+" },
+  { number: "18+",       label: "Academic Experience",     target: 18,     suffix: "+" },
+  { number: "1,00,000+", label: "Patients per annum",      target: 100000, suffix: "+" },
+  { number: "1700+",     label: "Research Publications",   target: 1700,   suffix: "+" },
+  { number: "98+",       label: "Yearly Surgeries",        target: 98,     suffix: "+" },
 ];
+
+function formatIndianNumber(num) {
+  return num.toLocaleString("en-IN");
+}
 
 export default function Banner() {
   const [current, setCurrent] = useState(0);
+  const [counts, setCounts] = useState(stats.map(() => 0));
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const timer = setInterval(() => setCurrent((prev) => (prev + 1) % stats.length), 2000);
     return () => clearInterval(timer);
-  }, []);  return (
-    <section className="relative w-full">
+  }, []);
 
-      {/* MOBILE */}
-      <div className="md:hidden relative w-full h-[580px] overflow-hidden">
-        <Image src="/assets/banner-mob.webp" alt="LIDS Banner" fill priority className="object-cover" style={{ objectPosition: "center 40%" }} />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(360deg, #107B71 7.97%, rgba(4, 146, 144, 0.82) 36.52%, rgba(165, 231, 240, 0) 58.91%, rgba(255, 255, 255, 0) 78.52%)" }} />
-        <div className="absolute bottom-8 left-0 right-0 px-6 flex flex-col gap-3">
-          <p className="text-[#FFF0D2] text-sm font-medium">Welcome to LIDS</p>
-          <h3 className="!text-[#FAFBFD] font-bold" style={{ fontSize: "32px", lineHeight: "1.2" }}>A Place to Study Dentistry with Real Clinical Exposure</h3>
-          <p className="text-white text-sm leading-relaxed opacity-90">Join LIDS and experience hands-on learning, cutting-edge technology, and a dynamic curriculum that prepares you for success in the world of dentistry</p>
-        </div>
-      </div>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
 
-      {/* DESKTOP */}
-      <div className="hidden md:block relative w-full h-[500px] lg:h-[600px] overflow-hidden">
+          const duration = 3000;
+          const startTime = performance.now();
+
+          const animate = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+
+            setCounts(stats.map((stat) => Math.floor(stat.target * eased)));
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              setCounts(stats.map((stat) => stat.target));
+            }
+          };
+
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
+  return (
+    <section ref={sectionRef} className="relative w-full">
+
+      <div className="relative w-full h-[500px] lg:h-[600px] overflow-hidden">
         <Image src="/assets/lids-banner.webp" alt="LIDS Banner" fill priority className="object-cover" style={{ objectPosition: "center 40%" }} />
       </div>
 
-     {/* MOBILE STATS */}
-<div className="md:hidden w-full overflow-x-auto scrollbar-hide" style={{ backgroundColor: "#E6E6E6" }}>
-  <div className="flex" style={{ width: `${stats.length * 100}vw` }}>
-    {stats.map((stat, i) => (
-      <div key={i} className="flex items-center gap-6 px-6 py-6" style={{ width: "100vw" }}>
-        <span className="font-bold leading-none" style={{ fontSize: "46px", color: "#107B71" }}>
-          {stat.number}
-        </span>
-        <span className="font-medium" style={{ fontSize: "18px", color: "#656C7B" }}>
-          {stat.label}
-        </span>
-        <div className="shrink-0 h-10 ml-auto" style={{ width: "1px", backgroundColor: "#AAAAAA" }} />
-      </div>
-    ))}
-  </div>
-</div>
-     <div className="hidden md:flex items-center w-full h-[100px] overflow-hidden" style={{ backgroundColor: "#20B2AACC" }}>
-  <div className="container flex items-center justify-between w-full">
-    {stats.map((stat, index) => (
-      <div key={stat.label} className="flex items-center">
-        <div className="flex flex-col items-center gap-1 text-center px-1 md:px-3 xl:px-8">
-          <span className="text-white text-xl md:text-2xl xl:text-4xl font-bold leading-none">{stat.number}</span>
-          <span className="text-white text-[10px] md:text-xs xl:text-sm opacity-90 whitespace-nowrap">{stat.label}</span>
+      <div className="w-full h-[100px] overflow-hidden" style={{ backgroundColor: "#20B2AACC" }}>
+
+        {/* Mobile: single stat auto-cycling */}
+        <div className="flex md:hidden h-full items-center justify-center flex-col gap-1 text-center">
+          <span className="text-white text-4xl font-bold leading-none transition-all duration-500">
+            {stats[current].number}
+          </span>
+          <span className="text-white text-md opacity-90 whitespace-nowrap">
+            {stats[current].label}
+          </span>
         </div>
-        {index < stats.length - 1 && (
-          <div className="shrink-0" style={{ width: "1px", height: "30px", backgroundColor: "#E6E6E6" }} />
-        )}
+
+        {/* Desktop: all stats in a row */}
+        <div className="hidden md:flex container items-center justify-between w-full h-full">
+          {stats.map((stat, index) => (
+            <div key={stat.label} className="flex items-center">
+              <div className="flex flex-col items-center gap-2 text-center px-1 md:px-3 xl:px-8">
+                <span className="text-white text-2xl xl:text-4xl font-bold leading-none">
+                  {formatIndianNumber(counts[index])}{stat.suffix}
+                </span>
+                <span className="text-white text-xs xl:text-sm opacity-90 whitespace-nowrap">{stat.label}</span>
+              </div>
+              {index < stats.length - 1 && (
+                <div className="shrink-0" style={{ width: "1px", height: "30px", backgroundColor: "#E6E6E6" }} />
+              )}
+            </div>
+          ))}
+        </div>
+
       </div>
-    ))}
-  </div>
-</div>
 
     </section>
   );

@@ -70,3 +70,6 @@ img {
   text-transform: uppercase;
   color: #9E2016;
 }
+.section-py {
+  @apply py-14;
+}

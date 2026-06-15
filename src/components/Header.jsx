@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About us", href: "/about" },
-  { label: "Academics", href: "/academics" },
+  { label: "Academics", href: "/courses" },
   { label: "Admissions", href: "/admissions" },
   { label: "Facilities", href: "/facilities" },
   { label: "Research", href: "/research" },
@@ -20,7 +20,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+   <header className="shadow-sm sticky top-0 z-50" style={{ background: "#FFFFFFD6", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
       <div className="container h-25 flex items-center justify-between relative">
         <Link href="/" className="flex-shrink-0 absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0">
           <Image src="/assets/lids-logo.svg" alt="LIDS Logo" width={99} height={100} priority className="object-contain" />
@@ -45,7 +45,7 @@ export default function Header() {
         <Link
           href="/contact"
           style={{ backgroundColor: "#9E2016", borderRadius: "65px", border: "1px solid #9E2016", fontFamily: "'Inter', sans-serif", fontSize: "16px", fontWeight: 500, color: "#ffffff", whiteSpace: "nowrap", flexShrink: 0 }}
-          className="hidden lg:flex items-center justify-center transition-opacity duration-200 hover:opacity-90 px-4 xl:px-8 py-3"
+          className="hidden lg:flex items-center cursor-pointer justify-center transition-opacity duration-200 hover:opacity-90 px-4 xl:px-8 py-3"
         >
           Get in Touch
         </Link>

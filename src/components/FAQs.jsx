@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const faqs = [
+const defaultFaqs = [
   { question: "What facilities are available for students at LIDS?", answer: "LIDS provides state-of-the-art facilities including modern dental labs, digital radiography, CBCT scanners, a well-stocked library, sports facilities, hostel accommodation, cafeteria, and 24/7 surveillance." },
   { question: "What facilities are available for students at LIDS?", answer: "LIDS provides state-of-the-art facilities including modern dental labs, digital radiography, CBCT scanners, a well-stocked library, sports facilities, hostel accommodation, cafeteria, and 24/7 surveillance." },
   { question: "Does LIDS provide hostel facilities for students?", answer: "Yes, LIDS provides separate hostel facilities for male and female students with all basic amenities including Wi-Fi, mess, and 24/7 security." },
@@ -10,7 +10,7 @@ const faqs = [
   { question: "What career opportunities are available after completing BDS?", answer: "BDS graduates from LIDS have gone on to work in hospitals, private practices, research institutions, and public health organizations across India and abroad." },
 ];
 
-export default function FAQs() {
+export default function FAQs({ columns = 1, faqs = defaultFaqs }) {
   const [open, setOpen] = useState(null);
 
   return (
@@ -26,12 +26,12 @@ export default function FAQs() {
 
         {/* HEADING */}
         <div className="text-center mb-12">
-          <p className="text-[#9E2016] text-xs font-semibold tracking-widest uppercase mb-4">FAQs</p>
+          <p className="text-[#9E2016] text-md font-semibold tracking-widest uppercase mb-4">FAQs</p>
           <h3 className="text-[#1A1A1A] font-semibold">Frequently Asked Questions</h3>
         </div>
 
         {/* FAQ LIST */}
-        <div className="flex flex-col gap-4 max-w-[937px] mx-auto">
+        <div className={`grid gap-4 max-w-[937px] mx-auto ${columns === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
           {faqs.map((faq, i) => (
             <div
               key={i}
