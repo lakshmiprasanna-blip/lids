@@ -223,7 +223,7 @@ export default function Home() {
   className="relative w-full bg-cover bg-center h-[80vh] md:h-screen py-20"
   style={{
     backgroundImage: "url('/assets/transform-banner.webp')",
-    // backgroundAttachment: "fixed",
+    backgroundAttachment: "fixed",
   }}
 >
   
