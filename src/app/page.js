@@ -190,8 +190,8 @@ export default function Home() {
       ))}
     </ul>
     <div className="relative w-full mb-0 h-[420px] md:h-[600px]">
-      <div className="absolute" style={{ width: "320px", height: "320px", top: "0%", right: "-10%", background: "#CFEFED", filter: "blur(80px)", borderRadius: "50%", zIndex: 0 }} />
-      <Image src="/assets/research-excellence.webp" alt="Research Excellence" fill className="object-cover" style={{ zIndex: 1, objectPosition: "65% bottom" }} />
+      <div className="absolute pointer-events-none" style={{ width: "320px", height: "320px", top: "0%", right: "-10%", background: "#CFEFED", filter: "blur(80px)", borderRadius: "50%", zIndex: 0 }} />
+      <Image src="/assets/research-excellence.webp" alt="Research Excellence" fill className="object-cover pointer-events-none" style={{ zIndex: 1, objectPosition: "65% bottom" }} />
     </div>
   </div>
 
@@ -215,7 +215,7 @@ export default function Home() {
       </ul>
     </div>
     <div className="relative flex-1 h-[692px]">
-      <Image src="/assets/research-excellence.webp" alt="Research Excellence" fill className="object-cover object-right" />
+      <Image src="/assets/research-excellence.webp" alt="Research Excellence" fill className="object-cover pointer-events-none object-right" />
     </div>
   </div>
 </section>
@@ -223,10 +223,11 @@ export default function Home() {
   className="relative w-full bg-cover bg-center h-[80vh] md:h-screen py-20"
   style={{
     backgroundImage: "url('/assets/transform-banner.webp')",
-    backgroundAttachment: "fixed",
+    // backgroundAttachment: "fixed",
   }}
 >
-  <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(158, 213, 211, 0.85) 0%, rgba(16,123,113,0.85) 100%)", zIndex: 1 }} />
+  
+  <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(90deg, rgba(158, 213, 211, 0.85) 0%, rgba(16,123,113,0.85) 100%)", zIndex: 1 }} />
   <div className="relative z-10 w-full h-full flex items-center justify-center px-6">
     <p className="max-w-6xl text-center text-white font-semibold leading-snug text-xl md:text-[40px]">
       "Transform your passion for dentistry into expertise at LIDS – where innovation, education, and patient care come together to shape the future of dental healthcare."

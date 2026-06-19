@@ -56,8 +56,8 @@ const items = [
     desc: "Our BDS and MDS programs are designed to create dental professionals who excel in clinical practice, research, and community service. Through rigorous academic training, hands-on clinical experience, and mentorship from world-class faculty.",
     href: "/courses",
   },
-  { type: "image", src: "/assets/academic-lab.webp", alt: "Academics" },
-  { type: "image", src: "/assets/academic-students.webp", alt: "Students" },
+  { type: "image", src: "/assets/joinlids-1.webp", alt: "Academics" },
+  { type: "image", src: "/assets/joinlids-2.webp", alt: "Students" },
   {
     type: "text",
     title: "Research Opportunities",
@@ -73,6 +73,10 @@ const tealCell = {
   WebkitBackdropFilter: "blur(13.3px)",
   boxShadow: "inset 0px 6px 6px 0px #EBFDFF33, inset 0px 13px 8px 0px #C9F9FF33, inset 0px 22px 9px 0px #E8FCFF33",
 };
+const mobilePairs = [
+  { title: items[0].title, desc: items[0].desc, href: items[0].href, src: items[1].src, alt: items[1].alt },
+  { title: items[3].title, desc: items[3].desc, href: items[3].href, src: items[2].src, alt: items[2].alt },
+];
 export default function ContactPage() {
     const [mobilePage, setMobilePage] = useState(0);
   
@@ -89,12 +93,10 @@ labelClassName="!text-[56px] font-['Plus_Jakarta_Sans']"
   imageStyle={{ zIndex: 0, objectPosition: "center center" }}
 />
 
- <section className="relative bg-white section-py overflow-hidden">
-      {/* blur orb */}
+   <section className="relative bg-white section-py overflow-hidden">
       <div className="absolute pointer-events-none rounded-full" style={{ width: "800px", height: "800px", top: "-200px", right: "-300px", background: "rgba(207,239,237,0.4)", filter: "blur(120px)", zIndex: 0 }} />
 
       <div className="relative z-10 container">
-        {/* Heading */}
         <div className="text-center mb-12">
           <p className="text-[#9E2016] text-sm font-semibold uppercase mb-4">JOIN LIDS</p>
           <h3 className="text-[#1A1A1A] font-semibold">Welcome to the <br /> World of Dental Excellence at LIDS!</h3>
@@ -103,22 +105,38 @@ labelClassName="!text-[56px] font-['Plus_Jakarta_Sans']"
           </p>
         </div>
 
-        {/* 2x2 Grid */}
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden">
-  {items.map((item, i) =>
-    item.type === "text" ? (
-      <div key={i} className="flex flex-col justify-center gap-5 p-8" style={{ ...tealCell, minHeight: "420px" }}>
-        <h4 className="!text-white font-semibold !text-[32px]">{item.title}</h4>
-        <p className="text-white/90 text-sm leading-relaxed">{item.desc}</p>
-        <Link href={item.href} className="self-start bg-white text-[#1A1A1A] text-sm font-medium rounded-full px-6 py-2.5 hover:bg-gray-100 transition-all">Know more</Link>
-      </div>
-    ) : (
-      <div key={i} className="relative overflow-hidden" style={{ minHeight: "420px" }}>
-        <Image src={item.src} alt={item.alt} fill className="object-cover" />
-      </div>
-    )
-  )}
-</div>
+        {/* MOBILE */}
+        <div className="md:hidden flex flex-col rounded-2xl overflow-hidden">
+          {mobilePairs.map((pair, i) => (
+            <div key={i}>
+              <div className="relative w-full" style={{ height: "260px" }}>
+                <Image src={pair.src} alt={pair.alt} fill className="object-cover" />
+              </div>
+              <div className="flex flex-col gap-4 p-6" style={tealCell}>
+                <h4 className="text-white font-semibold text-2xl">{pair.title}</h4>
+                <p className="text-white/90 text-sm leading-relaxed">{pair.desc}</p>
+                <Link href={pair.href} className="self-start bg-white text-[#1A1A1A] text-sm font-medium rounded-full px-6 py-2.5">Know more</Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* DESKTOP */}
+        <div className="hidden md:grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden">
+          {items.map((item, i) =>
+            item.type === "text" ? (
+              <div key={i} className="flex flex-col justify-center gap-5 p-8" style={{ ...tealCell, minHeight: "420px" }}>
+                <h4 className="!text-white font-semibold" style={{ fontSize: "32px" }}>{item.title}</h4>
+                <p className="text-white/90 text-sm leading-relaxed">{item.desc}</p>
+                <Link href={item.href} className="self-start bg-white text-[#1A1A1A] text-sm font-medium rounded-full px-6 py-2.5 hover:bg-gray-100 transition-all">Know more</Link>
+              </div>
+            ) : (
+              <div key={i} className="relative overflow-hidden" style={{ minHeight: "420px" }}>
+                <Image src={item.src} alt={item.alt} fill className="object-cover" />
+              </div>
+            )
+          )}
+        </div>
       </div>
     </section>
 <DentalPrograms programs={dentalPrograms} />
@@ -131,7 +149,7 @@ labelClassName="!text-[56px] font-['Plus_Jakarta_Sans']"
             </p>
             <h3 className="text-[#1A1A1A] font-semibold">A Holistic and Mentorship-Led Learning Approach</h3>
           </div>
-          <p className="text-[#7A7A7A] text-sm leading-relaxed w-full md:w-[935px] mb-10 md:mx-auto md:text-center">
+          <p className="text-[#333333] text-xl leading-relaxed w-full max-w-7xl mb-10 md:mx-auto md:text-center">
           At LIDS, our educational approach centers on developing well-rounded dental professionals. We integrate academic learning with hands-on clinical experience to ensure our students gain the practical skills required to excel in real-world dental practices.
           </p>
            <div className="relative w-full md:max-w-6xl md:mx-auto h-[280px] md:h-[500px] rounded-2xl overflow-hidden mb-16 md:mb-8"
@@ -147,7 +165,7 @@ labelClassName="!text-[56px] font-['Plus_Jakarta_Sans']"
      <div className="text-center mb-16">
        <p className="text-[#9E2016] text-md font-semibold uppercase mb-4 text-left md:text-center">Facilities Overview</p>
        <h3 className="text-[#1A1A1A] font-semibold text-left md:text-center">Experience World-Class Facilities at LIDS</h3>
-       <p className="mt-4 text-[#7A7A7A] text-base max-w-2xl mx-auto text-left md:text-center">
+       <p className="mt-4 text-[#656C7B] text-xl max-w-7xl mx-auto text-left md:text-center">
          At LIDS, we believe that true excellence grows in a balanced environment. Our vibrant campus goes beyond the classroom, offering a dynamic range of extracurricular activities and modern amenities designed for your holistic development.
        </p>
      </div>

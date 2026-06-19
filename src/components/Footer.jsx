@@ -45,7 +45,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h5 className="font-semibold mb-4 text-[24px]" style={{ color: "#8E0019" }}>Important Links</h5>
+            <h5 className="font-semibold mb-4 text-[24px] whitespace-nowrap" style={{ color: "#8E0019" }}>Important Links</h5>
             <div className="flex flex-col gap-3">
               {importantLinks.map((item) => <Link key={item} href="#" className="text-xl !text-[#000000] hover:text-[#8E0019]">{item}</Link>)}
             </div>

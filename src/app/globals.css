@@ -73,3 +73,8 @@ img {
 .section-py {
   @apply py-14;
 }
+@media (max-width: 1024px) {
+  * {
+    background-attachment: scroll !important;
+  }
+}

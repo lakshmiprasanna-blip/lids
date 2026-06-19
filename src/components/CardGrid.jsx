@@ -9,7 +9,7 @@ const cardStyle = {
   backdropFilter: "blur(13.3px)",
 };
 
-export default function CardGrid({ title, cards, cols = 3, minHeight = 352, iconSize = 48, titleColor = "#1A1A1A", mobileClassName = "", desktopClassName = "" }) {
+export default function CardGrid({ title, cards, cols = 3, minHeight = 352, iconSize = 48, titleColor = "#1A1A1A", mobileClassName = "", desktopClassName = "",titleNoWrap = false }) {
   return (
     <section className="bg-white py-0 md:py-15">
       <div className="container">
@@ -21,7 +21,7 @@ export default function CardGrid({ title, cards, cols = 3, minHeight = 352, icon
             {cards.map((card, i) => (
               <div key={i} style={cardStyle}>
                 {card.icon && <Image src={card.icon} alt={card.title} width={iconSize} height={iconSize} className="mb-6" />}
-                <h4 className="font-semibold mb-3 text-2xl" style={{ color: titleColor }}>{card.title}</h4>
+                <h4 className={`font-semibold mb-3 ${titleNoWrap ? "whitespace-nowrap" : ""}`} style={{ fontSize: "24px", color: titleColor }}>{card.title}</h4>
                 <p className="text-[#7A7A7A] text-sm leading-relaxed">{card.desc}</p>
               </div>
             ))}
