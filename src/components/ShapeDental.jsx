@@ -49,9 +49,8 @@ export default function ShapeDental({
               {mobileLabel || label}
             </p>
           )}
-          <h3 className="text-[#1A1A2E] text-2xl font-semibold leading-tight">
-            {mobileTitle || title}
-          </h3>
+          
+         <h3 className="text-[#1A1A2E] text-2xl font-semibold leading-tight" dangerouslySetInnerHTML={{ __html: mobileTitle || title }} />
           <p className="text-[#3D3D3D] text-sm leading-relaxed">
             {mobileDesc || desc}
           </p>

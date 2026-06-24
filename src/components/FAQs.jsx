@@ -11,7 +11,7 @@ const defaultFaqs = [
 
 const faqItemStyle = {
   background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.16) 100%)",
-  boxShadow: "inset 0px 2px 12px 0px #FFFFFF40, 0px 6px 6px 0px #EBFDFF33, 0px 1px 3px 0px #FDFFFF08, 0px 13px 8px 0px #F0FDFF08, 0px 22px 9px 0px #E4FFFA1F, 0px 35px 10px 0px #EFFDFF33",
+  boxShadow: "0px 1px 3px 0px #1A1A1A00, 0px 6px 6px 0px #1A1A1A00, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, inset 0px -264px 12px 0px #FFFFFF40",
 };
 
 const FaqList = ({ faqs, columns, open, setOpen }) => (

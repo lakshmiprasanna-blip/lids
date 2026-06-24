@@ -30,7 +30,7 @@ export default function DentalLegacyCTA({
         style={{ zIndex: 2 }}
       >
         <h3 className="font-semibold !text-white">{title}</h3>
-        <p className="text-base leading-relaxed max-w-2xl !text-white" style={{ opacity: 0.9 }}>
+        <p className="text-[18px] leading-relaxed max-w-2xl !text-white" style={{ opacity: 0.9 }}>
           {description}
         </p>
         <Link

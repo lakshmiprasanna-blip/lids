@@ -91,7 +91,7 @@ desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative d
       </div>
       {[...left, ...right].map((item, i) => (
         <div key={i} className="flex flex-col gap-3">
-          <Image src={item.icon} alt={item.title} width={72} height={72} />
+          <Image src={item.icon} alt={item.title} width={92} height={92} />
           <h4 className="text-[#1A1A1A] text-base font-semibold">{item.title}</h4>
           <p className="text-[#7A7A7A] text-sm leading-relaxed">{item.desc}</p>
         </div>
@@ -170,12 +170,27 @@ desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative d
           <div className="grid grid-cols-2 gap-y-10 gap-x-4">
             {facilities.slice(mobilePage * 4, mobilePage * 4 + 4).map((item, i) => (
               <div key={i} className="flex flex-col items-center gap-4 cursor-pointer">
-                <div className="relative w-[99px] h-[99px] rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-  <div className="relative w-[100px] h-[100px]">
-    <Image src={item.icon} alt={item.label} fill className="object-contain transition-opacity duration-300 group-hover:opacity-0" />
-    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundColor: "#009A7C", WebkitMaskImage: `url(${item.icon})`, maskImage: `url(${item.icon})`, WebkitMaskSize: "contain", maskSize: "contain", WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat", WebkitMaskPosition: "center", maskPosition: "center" }} />
-  </div>
-</div>
+                <div className="relative flex items-center justify-center w-[100px] h-[100px] transition-all duration-300 group-hover:scale-110">
+        {/* Glass circle */}
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: "rgba(158, 255, 238, 0.12)",
+            boxShadow:
+              "0px 15.4964px 6.33945px rgba(26,26,26,0.01), 0px 9.157px 5.635px rgba(26,26,26,0.02), 0px 4.226px 4.226px rgba(26,26,26,0.03), 0px 0.704px 2.113px rgba(26,26,26,0.04), inset 0px 1.409px 8.453px rgba(255,255,255,0.25)",
+              border: "0.7px solid #A5E7F0",
+          }}
+        />
+        {/* Icon — centered, 40×40 */}
+        <div className="relative w-[40px] h-[40px]">
+          <Image
+            src={item.icon}
+            alt={item.label}
+            fill
+            className="object-cover transition-all duration-300 group-hover:[filter:brightness(0.6)_saturate(1.5)]"
+          />
+        </div>
+      </div>
                 <span className="text-[#20B2AA] text-sm font-medium text-center">{item.label}</span>
               </div>
             ))}
