@@ -20,8 +20,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-   <header className="shadow-sm sticky top-0 z-50" style={{ background: "#FFFFFFD6", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
-      <div className="container h-25 flex items-center justify-between relative">
+<header className="sticky top-0 z-50" style={{ background: "#FFFFFFD6", borderBottom: "1px solid #E6E6E6", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}>    <div className="container h-25 flex items-center justify-between relative">
         <Link href="/" className="flex-shrink-0 absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0">
           <Image src="/assets/lids-logo.svg" alt="LIDS Logo" width={99} height={100} priority className="object-contain" />
         </Link>
@@ -32,7 +31,7 @@ export default function Header() {
               <Link
                 key={link.label}
                 href={link.href}
-                style={{ fontFamily: "Inter", fontSize: "15px", fontWeight: 500, lineHeight: "100%", color: isActive ? "#9E2016" : "#3D3D3D" }}
+                style={{ fontFamily: "Inter", fontSize: "16px", fontWeight: 500, lineHeight: "100%", color: isActive ? "#9E2016" : "#3D3D3D" }}
                 className="transition-colors duration-200 hover:text-[#9E2016] whitespace-nowrap"
               >
                 {link.label}

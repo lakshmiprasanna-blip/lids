@@ -25,9 +25,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable}`}>
       <body>
+        {/* <div className="overflow-x-hidden w-full"> */}
+         <div style={{ overflowX: "clip" }}>
         <Header/>
         {children}
         <Footer/>
+        {/* </div> */}
+        </div>
       </body>
     </html>
   );

@@ -65,7 +65,14 @@ export default function Banner() {
         <Image src="/assets/lids-banner.webp" alt="LIDS Banner" fill priority className="object-cover" style={{ objectPosition: "center 40%" }} />
       </div>
 
-      <div className="w-full h-[100px] overflow-hidden" style={{ backgroundColor: "#20B2AACC" }}>
+<div
+  className="w-full h-[160px] overflow-hidden"
+  style={{
+    backgroundColor: "rgba(32, 178, 170, 0.8)", // semi-transparent
+    backdropFilter: "blur(9.6px)",
+    WebkitBackdropFilter: "blur(9.6px)",
+  }}
+>
 
         {/* Mobile: single stat auto-cycling */}
         <div className="flex md:hidden h-full items-center justify-center flex-col gap-1 text-center">
@@ -82,10 +89,10 @@ export default function Banner() {
           {stats.map((stat, index) => (
             <div key={stat.label} className="flex items-center">
               <div className="flex flex-col items-center gap-2 text-center px-1 md:px-3 xl:px-8">
-                <span className="text-white text-2xl xl:text-4xl font-bold leading-none">
+                <span className="text-white text-[40px] xl:text-[40px] font-bold leading-none">
                   {formatIndianNumber(counts[index])}{stat.suffix}
                 </span>
-                <span className="text-white text-xs xl:text-sm opacity-90 whitespace-nowrap">{stat.label}</span>
+                <span className="text-white text-md xl:text-md opacity-90 whitespace-nowrap">{stat.label}</span>
               </div>
               {index < stats.length - 1 && (
                 <div className="shrink-0" style={{ width: "1px", height: "30px", backgroundColor: "#E6E6E6" }} />

@@ -36,7 +36,7 @@ export default function FacilitiesPage() {
 
         <div className="relative z-10 container">
           <div className="text-center mb-16">
-            <p className="text-[#9E2016] text-sm font-semibold tracking-widest uppercase mb-4">FACILITIES</p>
+            <p className="text-[#9E2016] text-sm font-semibold uppercase mb-4">FACILITIES</p>
             <h3 className="text-[#1A1A1A] font-semibold">Welcome to the <br /> World of Dental Excellence at LIDS!</h3>
             <p className="mt-4 text-[#333333] text-xl max-w-6xl mx-auto">
               Lenora Institute of Dental Sciences (LIDS) is dedicated to providing high-quality dental education through a balanced approach of academic learning, clinical exposure, and research. With state-of-the-art infrastructure and experienced faculty, we equip our students to be leaders in the field of dentistry.

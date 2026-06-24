@@ -45,7 +45,7 @@ export default function CTABanner({
           className={`relative flex flex-col px-6 w-full max-w-7xl mx-auto gap-2 ${isLeft ? "items-start" : "items-center text-center"}`}
           style={{ zIndex: 2 }}
         >
-         <p className={`!text-white font-semibold tracking-widest mb-1 font-[var(--font-sans)] ${labelClassName || "!text-base"}`}>{label}</p>
+         <p className={`!text-white font-semibold mb-1 font-[var(--font-sans)] ${labelClassName || "!text-[18px]"}`}>{label}</p>
 <h3 className={`font-semibold !text-white font-[Inter,sans-serif] ${titleClassName || ""}`} style={{ width: titleWidth }}>
   {title}
 </h3>

@@ -55,12 +55,11 @@ export default function AboutPage() {
       <Image src="/assets/lids-building.webp" alt="LIDS Building" loading="lazy" fill className="object-cover" />
       <div className="absolute inset-0 rounded-2xl border-5 border-white/40 pointer-events-none" />
     </div>
-    {/* <h3 className="md:hidden text-[#1A1A1A] font-semibold text-3xl mb-4">About LIDS</h3> */}
     <div className=" text-center mb-6">
-      <p className="text-[#9E2016] text-xl font-semibold uppercase mb-4">Lenora Institute of Dental Sciences (LIDS)</p>
+      <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">Lenora Institute of Dental Sciences (LIDS)</p>
       <h3 className="text-[#1A1A1A] font-semibold">Shaping the Future of Oral Healthcare</h3>
     </div>
-    <p className="text-[#7A7A7A] text-md leading-relaxed w-full md:max-w-[90%] lg:w-[1050px] md:mx-auto md:text-center">
+    <p className="text-[#656C7B] text-[18px] leading-relaxed w-full md:max-w-[100%] lg:w-[1180px] md:mx-auto md:text-center">
       Situated in Rajahmundry, Andhra Pradesh, LIDS is more than a dental institution — 
       it's a vibrant hub for innovation, academic excellence, and patient-centric care. 
       As a premier institution under the KLR Group, we empower the next generation of 
@@ -71,7 +70,7 @@ export default function AboutPage() {
   </div>
 </section>
 
-      <CardGrid cards={mvvCards} cols={3} />
+      <CardGrid cards={mvvCards} cols={3} showBlob={true}/>
       <ShapeDental
   label="APPROACH"
   title="Our Philosophy"
@@ -84,7 +83,7 @@ export default function AboutPage() {
 <section className="w-full py-8 bg-[#35908D]">
   <div className="container">
     {/* MOBILE */}
-<div className="md:hidden flex flex-col gap-6 rounded-[24px] p-6" style={{
+<div className="md:hidden flex flex-col gap-6 rounded-[24px] py-6" style={{
       border: "1px solid #20B2AA30",
       boxShadow: "0px 2px 12px 0px #FFFFFF40 inset, 0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #E5F3F208, 0px 13px 8px 0px #9EFFEE05, 0px 22px 9px 0px #9EFFEE03, 0px 35px 10px 0px #C9F9FF00"
     }}>
@@ -104,39 +103,43 @@ export default function AboutPage() {
 <div className="hidden md:flex items-center gap-6 lg:gap-10 rounded-[24px] p-6 lg:p-[40px]"
   style={{ border: "1px solid rgba(32, 178, 170, 0.19)", boxShadow: "0px 2px 12px 0px rgba(255,255,255,0.25) inset" }}>
   <div className="relative shrink-0 w-[280px] lg:w-[460px] max-w-full h-[380px] lg:h-[521px] rounded-[12px] overflow-hidden">
-  <Image src="/assets/founder.webp" alt="Dr. Katireddy Lakshma Reddy" fill className="object-cover"/>
-</div>
-  <div className="flex flex-col gap-4 lg:gap-6 flex-1 min-w-0">
-    <p className="text-[#9E2016] text-[18px] font-semibold tracking-widest uppercase opacity-80">MESSAGE</p>
-   <h3 className="!text-white font-semibold text-lg lg:text-3xl whitespace-nowrap md:whitespace-normal xl:whitespace-nowrap">A Message from Our Founder</h3>
+    <Image src="/assets/founder.webp" alt="Dr. Katireddy Lakshma Reddy" fill className="object-cover"/>
+  </div>
+  <div className="flex flex-col gap-4 lg:gap-6 flex-1 min-w-0 lg:pt-[46px] lg:pb-[6px]">
+    <p className="text-[#9E2016] text-[18px] font-semibold uppercase opacity-80">MESSAGE</p>
+    <h3 className="!text-white font-semibold text-lg lg:text-3xl whitespace-nowrap md:whitespace-normal xl:whitespace-nowrap">A Message from Our Founder</h3>
     <p className="text-white lg:text-[18px] leading-relaxed opacity-90 italic">For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.</p>
     <p className="text-white lg:text-[18px] leading-relaxed opacity-90 italic">Dr. KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth.</p>
     <div>
       <p className="text-white font-semibold lg:text-[18px]">Dr. Katireddy Lakshma Reddy</p>
-      <p className=" text-md" style={{ color: "#A5E7F0" }}>Founder & Chairman, KLR group</p>
+      <p className="text-md" style={{ color: "#A5E7F0" }}>Founder & Chairman, KLR group</p>
     </div>
   </div>
 </div>
 
   </div>
 </section>
-      <CardGrid title="Our Core Values" cards={coreValues} cols={2} minHeight={280} />
-<ShapeDental
+<CardGrid title="Our Core Values" cards={coreValues} cols={2} minHeight={280} titleFontSize="24px" showBlob={true} blobs={[ { width: "368.38px", height: "470px", top: "-90px", right: 0, background: "rgba(207, 239, 237, 0.63)", filter: "blur(93px)", transform: "rotate(-91.53deg)", zIndex: 0 }, { width: "199px", height: "254px", top: "659px", left: "34px", background: "#CFEFED", filter: "blur(70px)", borderRadius: "50%", zIndex: 10 }, ]}
+/><ShapeDental
   label="LEGACY"
   title="KLR Group of Institutions"
-  desc="KLR Group of Institutions, founded under The Boon Education, Environment, and Rural Development Society, has been dedicated to transforming lives through education for over 25 years..."
+  desc="KLR Group of Institutions, founded under The Boon Education, Environment, and Rural Development Society, has been dedicated to transforming lives through education for over 25 years. With a mission to provide academic, technical, medical, and professional education, we focus on empowering rural students by equipping them with the skills and knowledge needed to succeed in a rapidly evolving world. Our founder, Dr. K. Lakshma Reddy, envisioned a society where education is a powerful tool for social and economic progress, particularly in underserved rural areas."
   imageSrc="/assets/instituition.webp"
   imageAlt="KLR Group"
   buttonText="Visit our Website"
   buttonHref="https://klr.edu.in"
   imageLeft={false}
- 
+  showBlur={false}
 />
 
-<section className="bg-white py-24">
-  <div className="container">
+<section className="relative bg-white py-24">
+   <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute rounded-full hidden xl:block" style={{ width: "368.38px", height: "470px", top: "-99px", left: "-126px", background: "#CFEFED", filter: "blur(93px)", transform: "rotate(90.53deg)", zIndex: 0 }} />
+  </div>
+
+  <div className="container relative z">
     <div className="text-center mb-12">
-      <p className="text-[#9E2016] text-sm font-semibold uppercase mb-4">OUR CORE TEAM</p>
+      <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">OUR CORE TEAM</p>
       <h3 className="text-[#1A1A1A] font-semibold">Meet Our Professional Doctors</h3>
     </div>
 
@@ -149,7 +152,7 @@ export default function AboutPage() {
   <div className="absolute inset-0 rounded-[16px] border-4 border-white/40 pointer-events-none" />
 </div>
           <p className="text-[#1A1A1A] font-semibold text-[24px]">{doc.name}</p>
-          <p className="text-[#7A7A7A] text-xl">{doc.role}</p>
+          <p className="text-[#7A7A7A] text-[18px]">{doc.role}</p>
         </div>
       ))}
     </div>
@@ -190,12 +193,12 @@ export default function AboutPage() {
   />
   <div
     className="absolute inset-0"
-    style={{background: "linear-gradient(90deg, rgba(32,178,170,0.85) 0%, rgba(16,123,113,0.85) 100%)", zIndex: 1, }}/>
+    style={{background: "linear-gradient(90deg, rgba(32, 178, 170, 0.8) 0%, rgba(16, 123, 113, 0.8) 100%)", zIndex: 1, }}/>
   <div className="relative text-center flex flex-col items-center gap-6 px-6 max-w-4xl" style={{ zIndex: 2 }}>
     <h3 className="font-semibold" style={{ color: "white" }}>
       Design Your Dental Legacy at LIDS
     </h3>
-    <p className="text-base leading-relaxed max-w-2xl" style={{ color: "white", opacity: 0.9 }}>
+    <p className="text-[18px] leading-relaxed max-w-2xl" style={{ color: "white", opacity: 0.9 }}>
       Whether you are pursuing a BDS or MDS, you will cultivate clinical mastery and
       professional independence in a tech-forward environment. Master the art of
       dentistry at your own pace, supported by experts dedicated to your success.

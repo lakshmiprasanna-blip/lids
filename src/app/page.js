@@ -11,24 +11,24 @@ import FAQs from "@/components/FAQs";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 const left = [
-  { icon: "/assets/infrastructure.svg", title: "State-of-the-Art Infrastructure", desc: "Master with advanced tools such as digital radiography, CBCT & intraoral scanners, 3D technology, microsurgical endodontics and surgical units etc." },
-  { icon: "/assets/care.svg", title: "Compassionate & Expert Care", desc: "Benefit from a holistic learning environment that combines rigorous medical standards with a genuine commitment to public service." },
+  { icon: "/assets/infrastructure.png", title: "State-of-the-Art Infrastructure", desc: "Master with advanced tools such as digital radiography, CBCT & intraoral scanners, 3D technology, microsurgical endodontics and surgical units etc." },
+  { icon: "/assets/care.png", title: "Compassionate & Expert Care", desc: "Benefit from a holistic learning environment that combines rigorous medical standards with a genuine commitment to public service." },
 ];
 const right = [
-  { icon: "/assets/clinical.svg", title: "Strong Clinical Exposure", desc: "Gain hands-on experience through a high volume of diverse patient interactions, with an average monthly turnout of 15,000+ patients." },
-  { icon: "/assets/faculty.svg", title: "Experienced Faculty", desc: "Receive personalized mentorship designed to bridge the gap between classroom theory and real-world clinical practice." },
+  { icon: "/assets/clinical.png", title: "Strong Clinical Exposure", desc: "Gain hands-on experience through a high volume of diverse patient interactions, with an average monthly turnout of 15,000+ patients." },
+  { icon: "/assets/faculty.png", title: "Experienced Faculty", desc: "Receive personalized mentorship designed to bridge the gap between classroom theory and real-world clinical practice." },
 ];
 const facilities = [
-  { icon: "/svg/mobiledental.svg",     label: "Mobile Dental Clinic" },
-  { icon: "/svg/campus.svg",     label: "Our Campus" },
-        { icon: "/svg/sports.svg", label: "Co curricular Activities" },
-        { icon: "/svg/facilities.svg",   label: "Research Facilities" },
-        { icon: "/svg/library.svg",    label: "Our Library" },
-        { icon: "/svg/medical.svg",   label: "Medical Hospital" },
-        { icon: "/svg/diagnostic.svg", label: "Diagnostic Center" },
-        { icon: "/svg/mobiledental.svg",     label: "Mobile Dental Clinic" },
-        { icon: "/svg/workshop.svg",  label: "Workshops" },
-        { icon: "/svg/pharma.svg",   label: "Pharmacy Store" },
+  { icon: "/svg/clinical.svg",     label: "Mobile Dental Clinic" },
+  { icon: "/svg/camp.svg",     label: "Our Campus" },
+        { icon: "/svg/lib.svg",   label: "Our Library" },
+        { icon: "/svg/sport.svg",    label: "Our Library" },
+        { icon: "/svg/research.svg",   label: "Medical Hospital" },
+        { icon: "/svg/cafe.svg",   label: "Medical Hospital" },
+        { icon: "/svg/hostell.svg",   label: "Pharmacy Store" },
+        { icon: "/svg/transport.svg",   label: "Pharmacy Store" },
+        { icon: "/svg/camp.svg", label: "Diagnostic Center" },
+        { icon: "/svg/cctv.svg", label: "Diagnostic Center" },
 ];
 const dentalPrograms = [
   { title: "Bachelor of Dental Surgery (BDS)", years: "5 years", image: "/assets/BDS.webp", desc: "Start your professional journey with our comprehensive BDS program, where foundational science meets advanced clinical practice." },
@@ -41,7 +41,14 @@ const FeatureList = ({ items }) => (
   <div className="flex flex-col gap-12 flex-1 min-w-0">
     {items.map((item, i) => (
       <div key={i} className="flex items-start gap-4">
-        <Image src={item.icon} alt={item.title} width={90} height={90} className="shrink-0 mt-1" />
+       <Image 
+  src={item.icon} 
+  alt={item.title} 
+  width={120} 
+  height={120}
+  className="shrink-0"
+  style={{ width: "120px", height: "120px" }}
+/>
         <div className="min-w-0">
           <h4 className="text-[#1A1A1A] text-base font-semibold mb-2 whitespace-nowrap">{item.title}</h4>
           <p className="text-[#7A7A7A] text-sm leading-relaxed">{item.desc}</p>
@@ -56,16 +63,14 @@ export default function Home() {
   return (
     <main>
       <Banner />
-      <ShapeDental
-  title="Shaping the future of dental excellence"
-  desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative dental education that blends academic rigor with hands-on clinical training that provide state-of-the-art infrastructure, cutting-edge research facilities, and a dynamic learning environment. Our programs are designed to mould future dental leaders who are well-equipped to meet the challenges of modern dental practice."
-  label="LENORA INSTITUTE OF DENTAL SCIENCES"
+     <ShapeDental
+  title="Shaping the future<br/>of dental excellence"
+desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative dental education that blends academic rigor with hands-on clinical training that provide state-of-the-art infrastructure, cutting-edge research facilities, and a dynamic learning environment. Our programs are designed to mould future dental leaders who are well-equipped to meet the challenges of modern dental practice."  label="LENORA INSTITUTE OF DENTAL SCIENCES"
   mobileLabel="About us"
   imageSrc="/assets/shaping-dental.webp"
   imageAlt="Students at LIDS"
   buttonText="Know more"
   buttonHref="/about"
-  showMobileCommitment={true}
 />
       <DentalPrograms programs={dentalPrograms} />
      <section className="relative w-full overflow-hidden bg-white section-py">
@@ -73,7 +78,7 @@ export default function Home() {
 
     {/* HEADING */}
     <div className="mb-10 md:mb-16">
-      <p className="text-[#9E2016] text-md font-semibold uppercase mb-4 lg:text-center">Why choose LIDS</p>
+      <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4 lg:text-center">Why choose LIDS</p>
       <h3 className="text-[#1A1A1A] font-semibold lg:text-center">Excellence in Dental Education and <br /> Patient-Centered Care</h3>
     </div>
 
@@ -108,48 +113,69 @@ export default function Home() {
   </div>
 </section>
 <OurCampus />
-      <section className="relative w-full overflow-hidden py-25">
-  <div className="absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", left: "183px", background: "#CFEFED", filter: "blur(150px)", transform: "rotate(-90deg)", zIndex: 0 }} />
-  <div className="relative z-10 container">
-    <div className="text-center mb-16">
-      <p className="text-[#9E2016] text-md font-semibold uppercase mb-4 text-left md:text-center">Facilities Overview</p>
+<section className="relative w-full py-25">
+  <div className="relative container">
+    <div className="absolute inset-0 pointer-events-none overflow-visible">
+      <div className="absolute rounded-full hidden xl:block" style={{ width: "344px", height: "460px", top: "-200px", left: 0, background: "#CFEFED", filter: "blur(60px)", transform: "rotate(-90deg)", zIndex: 0 }} />
+    </div>
+    <div className="absolute hidden xl:block pointer-events-none" style={{ width: "279px", height: "347px", bottom: "-133px", left: "-90px", background: "#CFEFED", filter: "blur(70px)", borderRadius: "50%", zIndex: 10 }} />
+    <div className="relative z-10 text-center mb-16">
+      <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4 text-left md:text-center">Facilities Overview</p>
       <h3 className="text-[#1A1A1A] font-semibold text-left md:text-center">Experience World-Class Facilities at LIDS</h3>
-      <p className="mt-4 text-[#7A7A7A] text-base max-w-2xl mx-auto text-left md:text-center">
+      <p className="mt-4 text-[#7A7A7A] text-[18px] max-w-3xl mx-auto text-left md:text-center">
         At LIDS, we believe that true excellence grows in a balanced environment. Our vibrant campus goes beyond the classroom, offering a dynamic range of extracurricular activities and modern amenities designed for your holistic development.
       </p>
     </div>
-
-    {/* Desktop */}
-    <div className="hidden md:grid grid-cols-5 gap-y-12 gap-x-6 max-w-[1080px] mx-auto">
-      {facilities.map((item, i) => (
-        <div key={i} className="group flex flex-col items-center gap-4 cursor-pointer">
-          <div className="relative w-[99px] h-[99px] rounded-full flex items-center justify-center border transition-colors duration-300" style={{ background: "#9EFFEE1F", borderColor: "#a1dbd8", boxShadow: "0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 2px 12px 0px #FFFFFF40 inset" }}>
-            <div className="relative w-[40px] h-[40px]">
-              <Image src={item.icon} alt={item.label} fill className="object-contain transition-opacity duration-300 group-hover:opacity-0" />
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundColor: "#009A7C", WebkitMaskImage: `url(${item.icon})`, maskImage: `url(${item.icon})`, WebkitMaskSize: "contain", maskSize: "contain", WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat", WebkitMaskPosition: "center", maskPosition: "center" }} />
-            </div>
-          </div>
-          <span className="text-[#20B2AA] group-hover:text-[#107B71] transition-colors duration-300 text-sm font-medium text-center">{item.label}</span>
-       
+    <div className="relative z-10 hidden md:grid grid-cols-5 gap-y-12 gap-x-6 max-w-[1080px] mx-auto">
+  {facilities.map((item, i) => (
+    <div key={i} className="group flex flex-col items-center gap-4 cursor-pointer">
+      
+      {/* Icon with glass circle background */}
+      <div className="relative flex items-center justify-center w-[100px] h-[100px] transition-all duration-300 group-hover:scale-110">
+        {/* Glass circle */}
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: "rgba(158, 255, 238, 0.12)",
+            boxShadow:
+              "0px 15.4964px 6.33945px rgba(26,26,26,0.01), 0px 9.157px 5.635px rgba(26,26,26,0.02), 0px 4.226px 4.226px rgba(26,26,26,0.03), 0px 0.704px 2.113px rgba(26,26,26,0.04), inset 0px 1.409px 8.453px rgba(255,255,255,0.25)",
+              border: "0.7px solid #A5E7F0",
+          }}
+        />
+        {/* Icon — centered, 40×40 */}
+        <div className="relative w-[40px] h-[40px]">
+          <Image
+            src={item.icon}
+            alt={item.label}
+            fill
+            className="object-cover transition-all duration-300 group-hover:[filter:brightness(0.6)_saturate(1.5)]"
+          />
         </div>
-        
-      ))}                    
+      </div>
+
+      <span className="text-[#20B2AA] group-hover:text-[#107B71] transition-colors duration-300 text-md font-medium text-center">
+        {item.label}
+      </span>
     </div>
-<div className="hidden xl:flex justify-center mt-10 cursor-pointer"><ExploreBtn /></div>
+  ))}
+</div>
+    <div className="relative z-10 hidden xl:flex justify-center mt-10 cursor-pointer"><ExploreBtn /></div>
+
     {/* Mobile */}
     {(() => {
       const total = Math.ceil(facilities.length / 4);
       const btnClass = "shrink-0 w-12 h-12 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200";
       return (
-        <div className="md:hidden">
+        <div className="relative z-10 md:hidden">
           <div className="grid grid-cols-2 gap-y-10 gap-x-4">
             {facilities.slice(mobilePage * 4, mobilePage * 4 + 4).map((item, i) => (
               <div key={i} className="flex flex-col items-center gap-4 cursor-pointer">
-                <div className="relative w-[99px] h-[99px] rounded-full flex items-center justify-center border" style={{ background: "#9EFFEE1F", borderColor: "#a1dbd8", boxShadow: "0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 2px 12px 0px #FFFFFF40 inset" }}>
-                  <div className="relative w-[40px] h-[40px]">
-                    <Image src={item.icon} alt={item.label} fill className="object-contain" />
-                  </div>
-                </div>
+                <div className="relative w-[99px] h-[99px] rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+  <div className="relative w-[100px] h-[100px]">
+    <Image src={item.icon} alt={item.label} fill className="object-contain transition-opacity duration-300 group-hover:opacity-0" />
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundColor: "#009A7C", WebkitMaskImage: `url(${item.icon})`, maskImage: `url(${item.icon})`, WebkitMaskSize: "contain", maskSize: "contain", WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat", WebkitMaskPosition: "center", maskPosition: "center" }} />
+  </div>
+</div>
                 <span className="text-[#20B2AA] text-sm font-medium text-center">{item.label}</span>
               </div>
             ))}
@@ -170,11 +196,21 @@ export default function Home() {
   </div>
 </section>
 <section className="relative w-full overflow-hidden bg-white">
-  <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "950px", height: "627px", top: "147px", right: "-100px", background: "#CFEFED", filter: "blur(186px)" }} />
-
+ <div className="absolute inset-0 pointer-events-none overflow-visible">
+<div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ 
+  width: "950px", 
+  height: "500px", 
+  top: "215px", 
+  right: "-200px",
+  background: "#CFEFED", 
+  filter: "blur(100px)",
+  mixBlendMode: "multiply",
+  zIndex: 0
+}} />
+</div>
   {/* MOBILE + TABLET + 1024px → up to 1280px */}
   <div className="xl:hidden flex flex-col px-5 gap-6">
-    <p className="text-[#9E2016] text-md font-semibold uppercase">OUR COMMITMENT</p>
+    <p className="text-[#9E2016] text-[18px] font-semibold uppercase">OUR COMMITMENT</p>
     <h3 className="text-[#1A1A1A] font-semibold">To Research Excellence of Oral Healthcare</h3>
     <ul className="flex flex-col gap-5 text-md">
       {[
@@ -225,11 +261,10 @@ export default function Home() {
     backgroundImage: "url('/assets/transform-banner.webp')",
     backgroundAttachment: "fixed",
   }}
->
-  
-  <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(90deg, rgba(158, 213, 211, 0.85) 0%, rgba(16,123,113,0.85) 100%)", zIndex: 1 }} />
+> 
+ <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(90deg, #37A89E66 0%, #37A89EFF 100%)", zIndex: 1 }} />
   <div className="relative z-10 w-full h-full flex items-center justify-center px-6">
-    <p className="max-w-6xl text-center text-white font-semibold leading-snug text-xl md:text-[40px]">
+    <p className="max-w-6xl text-center !text-white font-semibold leading-snug text-xl md:!text-[40px] !font-inter">
       "Transform your passion for dentistry into expertise at LIDS – where innovation, education, and patient care come together to shape the future of dental healthcare."
     </p>
   </div>

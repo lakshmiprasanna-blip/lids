@@ -21,7 +21,12 @@
   box-sizing: border-box;
   
 }
-
+/* html, body {
+  overflow-x: hidden;
+} */
+ html, body {
+  overflow-x: clip;
+}
 body {
   font-family: var(--font-inter); 
   font-weight: 400;
@@ -45,6 +50,7 @@ h3 { font-size: 3rem; }
 h4{
   font-size: 20px;
 }
+
 a {
   color: #9E2016;
   text-decoration: none;
@@ -77,4 +83,11 @@ img {
   * {
     background-attachment: scroll !important;
   }
+}
+.card-title {
+  color: #1A1A1A;
+  transition: color 0.3s;
+}
+.group:hover .card-title {
+  color: #9E2016;
 }

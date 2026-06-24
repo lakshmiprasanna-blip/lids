@@ -14,8 +14,8 @@ const events = [
 ];
 
 const blurStyle = { background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" };
-const cardStyle = { border: "1px solid #E5F3F25C", backdropFilter: "blur(14.5px)", boxShadow: "inset 0px 2px 12px 0px #FFFFFF40, 0px 6px 6px 0px #EBFDFF33, 0px 13px 13.9px 0px #C9F9FF33" };
-const cardGlow = { boxShadow: "inset 0 0 40px 10px rgba(207, 239, 237, 0.6)" };
+const cardStyle = { border: "1px solid #E5F3F25C", backdropFilter: "blur(14.5px)", boxShadow: " 0px 6px 6px 0px #EBFDFF33, 0px 13px 13.9px 0px #C9F9FF33" };
+const cardGlow = { boxShadow: "inset 0 0 40px 10px rgba(207, 239, 237, 0.9)" };
 const arrowBtn = "shrink-0 flex items-center justify-center rounded-full bg-white border border-[#9E2016] hover:bg-[#9E2016] hover:text-white transition-all duration-200 text-[#9E2016]";
 const imgWrap = "relative overflow-hidden";
 const imgClass = "object-cover transition-transform duration-500 group-hover:scale-110";
@@ -37,16 +37,16 @@ export default function DentalPrograms({
   const next = () => setCurrent((c) => (c + 1 >= programs.length ? 0 : c + 1));
 
   return (
-    <section className="relative overflow-hidden bg-white section-py">
+    <section className="relative bg-white section-py">
       <div className="absolute pointer-events-none z-0 rounded-full hidden lg:block" style={{ width: "344px", height: "460px", top: "111px", left: "76px", background: "#CFEFED", filter: "blur(60px)", transform: "rotate(-90deg)" }} />
       <div className="absolute pointer-events-none z-[2] rounded-full hidden lg:block" style={{ width: "344px", height: "460px", bottom: "0px", right: "0px", background: "#CFEFED", filter: "blur(60px)", transform: "rotate(-90deg)" }} />
       <div className="relative z-10 container">
         {showHeading && (
           <div className="text-center mb-16 space-y-4">
-            <p className="text-[#9E2016] text-md font-semibold uppercase mb-4 text-left md:text-center">{label}</p>
+            <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4 text-left md:text-center">{label}</p>
             <h3 className="text-[#1A1A1A] font-semibold hidden md:block text-center">{title}</h3>
             <h3 className="text-[#1A1A1A] font-semibold md:hidden text-left" style={{ fontSize: "28px" }}>{mobileTitle}</h3>
-            <p className="mt-4 text-[#7A7A7A] text-base max-w-3xl mx-auto text-left md:text-center">{subtitle}</p>
+            <p className="mt-4 text-[#7A7A7A] text-[18px] max-w-7xl mx-auto text-left md:text-center">{subtitle}</p>
           </div>
         )}
 
@@ -60,14 +60,14 @@ export default function DentalPrograms({
                   <span className="text-[#9E2016] text-[13px] font-medium">{item.years}</span>
                 </div>
               </div>
-              <div className={`${contentClass} h-[265px] rounded-b-[24px] p-6 flex flex-col justify-between`} style={{ border: "8px solid #E5F3F25C" }}>
+              <div className={`${contentClass} h-[280px] rounded-b-[24px] p-6 flex flex-col justify-between`} style={{ border: "10px solid #E5F3F25C" }}>
                 <div className="flex flex-col gap-3">
-                  <h4 className="text-[#1A1A1A] text-lg font-semibold">{item.title}</h4>
-                  <p className="text-[#7A7A7A] text-sm leading-relaxed">{item.desc}</p>
+                  <h4 className="card-title text-lg font-semibold">{item.title}</h4>
+                  <p className="text-[#7A7A7A] text-md  leading-relaxed">{item.desc}</p>
                 </div>
-                <Link href={item.href || linkHref} className="inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium border border-[#9E2016] text-[#9E2016] hover:bg-[#9E2016] hover:!text-white transition-all duration-300" style={{ width: "159px", height: "48px" }}>
-                  {linkText} <ArrowRight size={16} />
-                </Link>
+                 <Link href={item.href || linkHref} className="inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium border transition-all duration-300 group-hover:bg-[#9E2016] group-hover:!text-white group-hover:border-[#9E2016]" style={{ width: "159px", height: "48px", borderColor: "#9E2016", color: "#9E2016" }}>
+          {linkText} <ArrowRight size={16} />
+        </Link>
               </div>
             </div>
           ))}
@@ -144,16 +144,16 @@ export function NewsEvents() {
   const next = () => setCurrent((c) => (c + 3 >= events.length ? 0 : c + 1));
 
   return (
-    <section className="relative overflow-hidden bg-white py-8">
+    <section className="relative bg-white section-py">
       <div className="absolute pointer-events-none z-0 rounded-full" style={{ width: "344px", height: "460px", top: "111px", left: "76px", ...blurStyle }} />
       <div className="absolute pointer-events-none z-0 rounded-full" style={{ width: "344px", height: "460px", top: "591px", left: "1412px", ...blurStyle }} />
       <div className="relative z-10 container">
         <div className="flex items-center justify-between mb-16">
           <div>
-            <p className="text-[#9E2016] text-md font-semibold uppercase mb-4">NEWS & EVENTS</p>
+            <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">NEWS & EVENTS</p>
             <h3 className="text-[#1A1A1A] font-semibold">Upcoming Events & Campus News</h3>
           </div>
-          <Link href="/events" className="hidden lg:flex text-[#9E2016] text-sm font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link>
+          <Link href="/events" className="hidden lg:flex text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link>
         </div>
 
         <div className="hidden lg:block">
@@ -162,15 +162,15 @@ export function NewsEvents() {
             <div className="grid lg:grid-cols-3 gap-6 flex-1">
               {events.slice(current, current + 3).map((item, i) => (
                 <div key={i} className="group w-full rounded-[24px] overflow-hidden bg-white" style={cardGlow}>
-                  <div className={`${imgWrap} h-[200px] rounded-t-[24px]`}>
+                  <div className={`${imgWrap} h-[260px] rounded-t-[24px]`}>
                     <Image src={item.image} alt={item.title} fill className={imgClass} />
                     <div className="absolute top-[25px] left-[25px] text-xs font-medium rounded-[32px] cursor-pointer transition-all duration-200" style={{ padding: "8px 16px", background: "#FFFFFF80", border: "1px solid #9E2016", color: "#9E2016" }} onMouseEnter={e => { e.currentTarget.style.background = "#20B2AA"; e.currentTarget.style.color = "white"; e.currentTarget.style.border = "1px solid #20B2AA"; }} onMouseLeave={e => { e.currentTarget.style.background = "#FFFFFF80"; e.currentTarget.style.color = "#9E2016"; e.currentTarget.style.border = "1px solid #9E2016"; }}>{item.category}</div>
                   </div>
-                  <div className={`${contentClass} rounded-b-[24px] p-6 flex flex-col justify-between h-[220px]`} style={cardStyle}>
-                    <p className="text-[#7A7A7A] text-xs">{item.type} • {item.date}</p>
-                    <h2 className="text-[#1A1A1A] text-lg font-semibold">{item.title}</h2>
-                    <p className="text-[#7A7A7A] text-sm leading-relaxed line-clamp-2">{item.desc}</p>
-                    <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-sm font-medium hover:underline mt-2">Know more <ArrowRight size={14} /></Link>
+                  <div className={`${contentClass} rounded-b-[24px] p-6 flex flex-col justify-between h-[260px]`} style={cardStyle}>
+                    <p className="text-[#7A7A7A] text-md">{item.type} • {item.date}</p>
+                    <h2 className="text-[#1A1A1A] text-[20px] font-semibold">{item.title}</h2>
+                    <p className="text-[#9A9A9A] text-md leading-relaxed ">{item.desc}</p>
+                    <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-md font-medium hover:underline mt-2">Know more <ArrowRight size={14} /></Link>
                   </div>
                 </div>
               ))}
@@ -189,12 +189,12 @@ export function NewsEvents() {
               <p className="text-[#7A7A7A] text-xs">{events[current].type} • {events[current].date}</p>
               <h4 className="text-[#1A1A1A] text-lg font-semibold">{events[current].title}</h4>
               <p className="text-[#7A7A7A] text-sm leading-relaxed line-clamp-2">{events[current].desc}</p>
-              <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-sm font-medium hover:underline">Know more <ArrowRight size={14} /></Link>
+              <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-md font-medium hover:underline">Know more <ArrowRight size={14} /></Link>
             </div>
           </div>
           <div className="flex items-center justify-between gap-3">
             <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowLeft size={20} /></button>
-            <Link href="/events" className="text-[#9E2016] text-sm font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 flex items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link>
+            <Link href="/events" className="text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 flex items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link>
             <button onClick={next} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowRight size={20} /></button>
           </div>
         </div>

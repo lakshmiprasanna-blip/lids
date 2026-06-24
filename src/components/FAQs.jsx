@@ -20,14 +20,14 @@ const FaqList = ({ faqs, columns, open, setOpen }) => (
       <div key={i} className="rounded-[24px] p-[2px] cursor-pointer" style={{ border: "1px solid #A5E7F080" }} onClick={() => setOpen(open === i ? null : i)}>
         <div className="rounded-[16px] px-6 py-6" style={faqItemStyle}>
           <div className="flex items-center justify-between gap-4">
-            <p className="text-[#1A1A1A] text-base font-medium">{faq.question}</p>
+            <p className="text-[#1A1A1A] text-[24px] font-medium">{faq.question}</p>
             <span className="shrink-0">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="transition-transform duration-300" style={{ transform: open === i ? "rotate(180deg)" : "rotate(0deg)" }}>
                 <path d="M5 7.5L10 12.5L15 7.5" stroke="#107B71" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
           </div>
-          {open === i && <p className="mt-4 text-[#7A7A7A] text-sm leading-relaxed border-t border-[#A5E7F080] pt-4">{faq.answer}</p>}
+          {open === i && <p className="mt-4 text-[#7A7A7A] text-[18px] leading-relaxed">{faq.answer}</p>}
         </div>
       </div>
     ))}
@@ -38,7 +38,7 @@ export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, im
   const [open, setOpen] = useState(null);
 
   return (
-    <section className="relative w-full overflow-hidden bg-white py-20">
+    <section className="relative w-full bg-white py-20">
       <div className="absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", top: "-147px", left: "183px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" }} />
       <div className="absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", top: "400px", right: "100px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" }} />
 
@@ -46,7 +46,7 @@ export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, im
         {image ? (
           <>
             <div className="lg:hidden flex flex-col gap-6">
-              <p className="text-[#9E2016] text-md font-semibold tracking-widest uppercase">FAQs</p>
+              <p className="text-[#9E2016] text-md font-semibold uppercase">FAQs</p>
               <h3 className="text-[#1A1A1A] font-semibold">Frequently Asked Questions</h3>
               <div className="relative w-full h-[260px] rounded-2xl overflow-hidden">
                 <Image src={image} alt={imageAlt} fill className="object-cover object-center" />
@@ -55,7 +55,7 @@ export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, im
             </div>
             <div className="hidden lg:flex flex-row gap-12 items-start">
               <div className="flex-none" style={{ width: "700px" }}>
-                <p className="text-[#9E2016] text-md font-semibold tracking-widest uppercase mb-4">FAQs</p>
+                <p className="text-[#9E2016] text-md font-semibold uppercase mb-4">FAQs</p>
                 <h3 className="text-[#1A1A1A] font-semibold mb-10">Frequently Asked Questions</h3>
                 <FaqList faqs={faqs} columns={columns} open={open} setOpen={setOpen} />
               </div>
@@ -69,7 +69,7 @@ export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, im
         ) : (
           <>
             <div className="text-center mb-12">
-              <p className="text-[#9E2016] text-md font-semibold tracking-widest uppercase mb-4">FAQs</p>
+              <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">FAQs</p>
               <h3 className="text-[#1A1A1A] font-semibold">Frequently Asked Questions</h3>
             </div>
             <div className="max-w-[937px] mx-auto">

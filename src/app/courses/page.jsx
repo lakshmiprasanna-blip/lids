@@ -7,6 +7,7 @@ const tabs = ["All Courses", "Under Graduate (U.G)", "Post Graduate (P.G)", "PG 
 
 const dentalPrograms = [
   {
+    slug: "bds",
     title: "Bachelor of Dental Surgery (BDS)",
     years: "5 years",
     image: "/assets/BDS.webp",
