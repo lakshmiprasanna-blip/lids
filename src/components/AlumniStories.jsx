@@ -71,7 +71,7 @@ export default function AlumniStories() {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center gap-6">
+        {/* <div className="flex items-center justify-center gap-6">
           <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}>
             <ArrowLeft size={20} />
           </button>
@@ -83,7 +83,7 @@ export default function AlumniStories() {
           <button onClick={next} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}>
             <ArrowRight size={20} />
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* DESKTOP MARQUEE */}
@@ -110,11 +110,11 @@ export default function AlumniStories() {
         </div>
       </div>
 
-      <div className="flex justify-center mt-12">
-        <Link href="/alumni" className="text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 flex items-center justify-center" style={{ width: "144px", height: "52px" }}>
-          View all
-        </Link>
-      </div>
+    <div className="md:hidden flex items-center justify-center gap-10 p-5">
+            <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowLeft size={20} /></button>
+            <Link href="/events" className="text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 flex items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link>
+            <button onClick={next} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowRight size={20} /></button>
+          </div>
 
       <style>{`@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }`}</style>
     </section>

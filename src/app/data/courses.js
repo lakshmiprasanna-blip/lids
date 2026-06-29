@@ -102,7 +102,23 @@ export const courses = {
     "/assets/gallery4.webp",
     "/assets/gallery5.webp",
     "/assets/gallery6.webp",
+    "/assets/gallery4.webp",
+    "/assets/gallery5.webp",
+    "/assets/gallery6.webp",
+    "/assets/gallery1.webp",
+    "/assets/gallery2.webp",
+    "/assets/newsevent1.webp",
   ],
+},
+{
+  title: "Frequently Asked Questions",
+  faqs: [
+   { question: "What facilities are available for students at LIDS?", answer: "LIDS provides state-of-the-art facilities including modern dental labs, digital radiography, CBCT scanners, a well-stocked library, sports facilities, hostel accommodation, cafeteria, and 24/7 surveillance." },
+  { question: "Does LIDS provide hostel facilities for students?", answer: "Yes, LIDS provides separate hostel facilities for male and female students with all basic amenities including Wi-Fi, mess, and 24/7 security." },
+  { question: "Does LIDS offer postgraduate dental programs?", answer: "Yes, LIDS offers MDS programs in various specializations and PG Diploma programs designed for dental professionals seeking advanced expertise." },
+  { question: "What career opportunities are available after completing BDS?", answer: "BDS graduates from LIDS have gone on to work in hospitals, private practices, research institutions, and public health organizations across India and abroad." },
+
+  ]
 },
     ],
     sidebarLinks: [

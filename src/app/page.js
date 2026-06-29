@@ -97,18 +97,17 @@ desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative d
         </div>
       ))}
     </div>
-
     {/* DESKTOP 1280px+ */}
-    <div className="hidden xl:flex items-center justify-between gap-4">
-      <FeatureList items={left} />
-      <div className="relative flex items-center justify-center shrink-0 w-[420px] h-[420px]">
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, #abdedb 0%, #CFEFED40 50%, transparent 85%)" }} />
-        <div className="relative z-10 w-[480px] h-[357px]">
-          <Image src="/assets/tooth.gif" alt="Tooth" fill className="object-contain opacity-30" />
-        </div>
-      </div>
-      <FeatureList items={right} />
+   <div className="hidden xl:flex items-center justify-center">
+  <FeatureList items={left} />
+  <div className="relative flex items-center justify-center shrink-0" style={{ width: "520px", height: "380px", margin: "0 -80px", zIndex: 0 }}>
+    <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(ellipse at center, #ddefee 0%, #CFEFED60 50%, transparent 70%)", transform: "scale(1.4)" }} />
+    <div className="relative z-10 w-full h-full" style={{ mixBlendMode: "overlay" }}>
+      <Image src="/assets/tooth.gif" alt="Tooth" fill className="object-contain" />
     </div>
+  </div>
+  <FeatureList items={right} />
+</div>
 
   </div>
 </section>
@@ -122,45 +121,28 @@ desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative d
     <div className="relative z-10 text-center mb-16">
       <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4 text-left md:text-center">Facilities Overview</p>
       <h3 className="text-[#1A1A1A] font-semibold text-left md:text-center">Experience World-Class Facilities at LIDS</h3>
-      <p className="mt-4 text-[#7A7A7A] text-[18px] max-w-3xl mx-auto text-left md:text-center">
+      <p className="mt-4 text-[#9A9A9A] text-[18px] max-w-3xl mx-auto text-left md:text-center">
         At LIDS, we believe that true excellence grows in a balanced environment. Our vibrant campus goes beyond the classroom, offering a dynamic range of extracurricular activities and modern amenities designed for your holistic development.
       </p>
     </div>
     <div className="relative z-10 hidden md:grid grid-cols-5 gap-y-12 gap-x-6 max-w-[1080px] mx-auto">
   {facilities.map((item, i) => (
     <div key={i} className="group flex flex-col items-center gap-4 cursor-pointer">
-      
-      {/* Icon with glass circle background */}
-      <div className="relative flex items-center justify-center w-[100px] h-[100px] transition-all duration-300 group-hover:scale-110">
-        {/* Glass circle */}
-        <div
-          className="absolute inset-0 rounded-full"
-          style={{
-            background: "rgba(158, 255, 238, 0.12)",
-            boxShadow:
-              "0px 15.4964px 6.33945px rgba(26,26,26,0.01), 0px 9.157px 5.635px rgba(26,26,26,0.02), 0px 4.226px 4.226px rgba(26,26,26,0.03), 0px 0.704px 2.113px rgba(26,26,26,0.04), inset 0px 1.409px 8.453px rgba(255,255,255,0.25)",
-              border: "0.7px solid #A5E7F0",
-          }}
-        />
-        {/* Icon — centered, 40×40 */}
-        <div className="relative w-[40px] h-[40px]">
-          <Image
-            src={item.icon}
-            alt={item.label}
-            fill
-            className="object-cover transition-all duration-300 group-hover:[filter:brightness(0.6)_saturate(1.5)]"
-          />
-        </div>
-      </div>
-
-      <span className="text-[#20B2AA] group-hover:text-[#107B71] transition-colors duration-300 text-md font-medium text-center">
-        {item.label}
-      </span>
+            <div className="relative flex items-center justify-center w-[100px] h-[100px] transition-all duration-300 group-hover:scale-110">
+  {/* Outer circle */}
+  <div className="absolute inset-0 rounded-full" style={{ background: "rgba(158, 255, 238, 0.12)", boxShadow: "0px 15.4964px 6.33945px rgba(26,26,26,0.01), 0px 9.157px 5.635px rgba(26,26,26,0.02), 0px 4.226px 4.226px rgba(26,26,26,0.03), 0px 0.704px 2.113px rgba(26,26,26,0.04), inset 0px 1.409px 8.453px rgba(255,255,255,0.25)", border: "0.7px solid #A5E7F0" }} />
+  {/* Inner circle */}
+  <div className="absolute inset-0 rounded-full" style={{ background: "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 100%)", boxShadow: "0px 6px 6px 0px #EBFDFF33, 0px 13px 8px 0px #C9F9FF33, 0px 22px 9px 0px #E8FCFF33", backdropFilter: "blur(0px)" }} />
+  {/* Icon */}
+  <div className="relative w-[40px] h-[40px]">
+    <Image src={item.icon} alt={item.label} fill className="object-cover transition-all duration-300 group-hover:[filter:brightness(0.6)_saturate(1.5)]" />
+  </div>
+</div>
+      <span className="text-[#20B2AA] group-hover:text-[#107B71] transition-colors duration-300 text-md font-medium text-center">{item.label}</span>
     </div>
   ))}
 </div>
     <div className="relative z-10 hidden xl:flex justify-center mt-10 cursor-pointer"><ExploreBtn /></div>
-
     {/* Mobile */}
     {(() => {
       const total = Math.ceil(facilities.length / 4);
@@ -170,63 +152,39 @@ desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative d
           <div className="grid grid-cols-2 gap-y-10 gap-x-4">
             {facilities.slice(mobilePage * 4, mobilePage * 4 + 4).map((item, i) => (
               <div key={i} className="flex flex-col items-center gap-4 cursor-pointer">
-                <div className="relative flex items-center justify-center w-[100px] h-[100px] transition-all duration-300 group-hover:scale-110">
-        {/* Glass circle */}
-        <div
-          className="absolute inset-0 rounded-full"
-          style={{
-            background: "rgba(158, 255, 238, 0.12)",
-            boxShadow:
-              "0px 15.4964px 6.33945px rgba(26,26,26,0.01), 0px 9.157px 5.635px rgba(26,26,26,0.02), 0px 4.226px 4.226px rgba(26,26,26,0.03), 0px 0.704px 2.113px rgba(26,26,26,0.04), inset 0px 1.409px 8.453px rgba(255,255,255,0.25)",
-              border: "0.7px solid #A5E7F0",
-          }}
-        />
+                <div className="relative flex items-center justify-center w-[70px] h-[70px] transition-all duration-300 group-hover:scale-110">
+        <div className="absolute inset-0 rounded-full" style={{ background: "rgba(158, 255, 238, 0.12)", boxShadow: "0px 15.4964px 6.33945px rgba(26,26,26,0.01), 0px 9.157px 5.635px rgba(26,26,26,0.02), 0px 4.226px 4.226px rgba(26,26,26,0.03), 0px 0.704px 2.113px rgba(26,26,26,0.04), inset 0px 1.409px 8.453px rgba(255,255,255,0.25)", border: "0.7px solid #A5E7F0", }}/>
         {/* Icon — centered, 40×40 */}
-        <div className="relative w-[40px] h-[40px]">
-          <Image
-            src={item.icon}
-            alt={item.label}
-            fill
-            className="object-cover transition-all duration-300 group-hover:[filter:brightness(0.6)_saturate(1.5)]"
-          />
+        <div className="relative w-[28px] h-[28px]">
+          <Image src={item.icon} alt={item.label} fill className="object-cover transition-all duration-300 group-hover:[filter:brightness(0.6)_saturate(1.5)]"/>
         </div>
       </div>
-                <span className="text-[#20B2AA] text-sm font-medium text-center">{item.label}</span>
+      <span className="text-[#20B2AA] text-sm font-medium text-center">{item.label}</span>
               </div>
             ))}
           </div>
-          <div className="flex items-center justify-center gap-8 mt-10">
-            <button type="button" className={btnClass} onClick={() => setMobilePage((p) => (p === 0 ? total - 1 : p - 1))}><ArrowLeft size={20} /></button>
-            <div className="flex items-center gap-2">
-              {Array.from({ length: total }).map((_, i) => (
-                <button key={i} type="button" onClick={() => setMobilePage(i)} className="rounded-full transition-all duration-300" style={{ width: i === mobilePage ? "20px" : "8px", height: "8px", background: i === mobilePage ? "#9E2016" : "#D9D9D9" }} />
-              ))}
-            </div>
-            <button type="button" className={btnClass} onClick={() => setMobilePage((p) => (p === total - 1 ? 0 : p + 1))}><ArrowRight size={20} /></button>
-          </div>
+          <div className="flex items-center justify-center gap-12 mt-10">
+  <button type="button" className={btnClass} onClick={() => setMobilePage((p) => (p === 0 ? total - 1 : p - 1))}><ArrowLeft size={20} /></button>
+  <div className="flex items-center gap-2">
+    {Array.from({ length: total }).map((_, i) => (
+      <button key={i} type="button" onClick={() => setMobilePage(i)} className="rounded-full transition-all duration-300" style={{ width: i === mobilePage ? "6px" : "4px", height: i === mobilePage ? "6px" : "4px", background: i === mobilePage ? "#9E2016" : "#9E201666" }} />
+    ))}
+  </div>
+  <button type="button" className={btnClass} onClick={() => setMobilePage((p) => (p === total - 1 ? 0 : p + 1))}><ArrowRight size={20} /></button>
+</div>
         </div>
       );
     })()}
-
   </div>
 </section>
 <section className="relative w-full overflow-hidden bg-white">
  <div className="absolute inset-0 pointer-events-none overflow-visible">
-<div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ 
-  width: "950px", 
-  height: "500px", 
-  top: "215px", 
-  right: "-200px",
-  background: "#CFEFED", 
-  filter: "blur(100px)",
-  mixBlendMode: "multiply",
-  zIndex: 0
-}} />
+<div className="absolute pointer-events-none rounded-full hidden xl:block" style={{  width: "950px",  height: "500px",  top: "215px",  right: "-200px", background: "#CFEFED",  filter: "blur(100px)", mixBlendMode: "multiply", zIndex: 0}} />
 </div>
   {/* MOBILE + TABLET + 1024px → up to 1280px */}
-  <div className="xl:hidden flex flex-col px-5 gap-6">
-    <p className="text-[#9E2016] text-[18px] font-semibold uppercase">OUR COMMITMENT</p>
-    <h3 className="text-[#1A1A1A] font-semibold">To Research Excellence of Oral Healthcare</h3>
+  <div className="xl:hidden flex flex-col px-5 gap-6 ">
+    <p className="text-[#9E2016] text-[18px] font-semibold uppercase text-center md:text-left">OUR COMMITMENT</p>
+    <h3 className="text-[#1A1A1A] font-semibold text-center md:text-left">To Research Excellence of Oral Healthcare</h3>
     <ul className="flex flex-col gap-5 text-md">
       {[
         <>Join a legacy of innovation with over <span className="text-[#8E0019] font-semibold">1,700 + published research papers,</span> contributing high-impact findings to the global dental community.</>,

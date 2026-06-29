@@ -16,7 +16,7 @@ export default function ShapeDental({
   showBlur = true
 }) {
   const textBlock = (
-    <div className="flex-1 flex flex-col gap-6 py-5">
+    <div className="flex-1 flex flex-col gap-5 py-5">
       {label && (
         <p className="text-[#9E2016] text-[18px] font-semibold uppercase">{label}</p>
       )}
@@ -42,6 +42,7 @@ export default function ShapeDental({
       <section className="md:hidden w-full bg-white px-5 py-8">
         <div className="relative w-full h-[220px] rounded-2xl overflow-hidden mb-6">
           <Image src={imageSrc} alt={imageAlt} fill className="object-cover" />
+           <div className="absolute inset-0 rounded-2xl border-5 border-white/40 pointer-events-none" />
         </div>
         <div className="flex flex-col gap-4">
           {(mobileLabel || label) && (
@@ -51,7 +52,7 @@ export default function ShapeDental({
           )}
           
          <h3 className="text-[#1A1A2E] text-2xl font-semibold leading-tight" dangerouslySetInnerHTML={{ __html: mobileTitle || title }} />
-          <p className="text-[#3D3D3D] text-sm leading-relaxed">
+          <p className="text-[#9A9A9A] text-md leading-relaxed">
             {mobileDesc || desc}
           </p>
           {buttonText && buttonHref && (

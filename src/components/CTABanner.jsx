@@ -9,7 +9,8 @@ export default function CTABanner({
   titleClassName,
   labelClassName,
   titleWidth,
-  imageStyle = { filter: "blur(0px)", transform: "scale(1.8)", zIndex: 0, objectPosition: "center 230%" }  // default for all pages
+  imageStyle = { filter: "blur(0px)", transform: "scale(1.8)", zIndex: 0, objectPosition: "center 230%" },
+  mobileImageStyle = { objectFit: "cover", objectPosition: "center 120%", filter: "brightness(1.05)" }
 }) {
   const isLeft = align === "left";
 
@@ -17,13 +18,13 @@ export default function CTABanner({
     <>
       {/* Mobile */}
       <section className="md:hidden relative w-full overflow-hidden" style={{ height: "440px" }}>
-        <img
-          src={mobileImage}
-          alt={title}
-          className="w-full h-full"
-          style={{ objectFit: "cover", objectPosition: "center 120%", filter: "brightness(1.05)" }}
-        />
-      </section>
+  <img
+    src={mobileImage}
+    alt={title}
+    className="w-full h-full"
+    style={mobileImageStyle}
+  />
+</section>
       {/* Desktop */}
       <section className="hidden md:flex relative w-full h-[560px] overflow-hidden items-center justify-center">
         <Image

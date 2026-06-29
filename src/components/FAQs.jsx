@@ -20,22 +20,27 @@ const FaqList = ({ faqs, columns, open, setOpen }) => (
       <div key={i} className="rounded-[24px] p-[2px] cursor-pointer" style={{ border: "1px solid #A5E7F080" }} onClick={() => setOpen(open === i ? null : i)}>
         <div className="rounded-[16px] px-6 py-6" style={faqItemStyle}>
           <div className="flex items-center justify-between gap-4">
-            <p className="text-[#1A1A1A] text-[24px] font-medium">{faq.question}</p>
+            <p className="text-[#1A1A1A] text-md md:text-[24px] font-medium">{faq.question}</p>
             <span className="shrink-0">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="transition-transform duration-300" style={{ transform: open === i ? "rotate(180deg)" : "rotate(0deg)" }}>
                 <path d="M5 7.5L10 12.5L15 7.5" stroke="#107B71" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
           </div>
-          {open === i && <p className="mt-4 text-[#7A7A7A] text-[18px] leading-relaxed">{faq.answer}</p>}
+          {open === i && <p className="mt-4 text-[#7A7A7A] text-md md:text-[18px] leading-relaxed">{faq.answer}</p>}
         </div>
       </div>
     ))}
   </div>
 );
 
-export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, imageAlt = "FAQ Image" }) {
-  const [open, setOpen] = useState(null);
+export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, imageAlt = "FAQ Image", bare = false }) {
+    const [open, setOpen] = useState(null);
+ if (bare) return (
+    <div className="max-w-[700px]">
+      <FaqList faqs={faqs} columns={columns} open={open} setOpen={setOpen} />
+    </div>
+  );
 
   return (
     <section className="relative w-full bg-white py-20">

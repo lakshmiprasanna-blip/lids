@@ -74,7 +74,7 @@ const next = () => setActiveIndex((p) => (p === imgs.length - 1 ? 0 : p + 1));
         </div>
       )}
 
-      <div className="relative z-10 mb-10 px-6 text-left md:text-center">
+      <div className="relative z-10 mb-10 px-6 text-center">
         <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-3">{label}</p>
         <h3 className="text-[#1A1A1A] font-semibold text-3xl md:text-4xl">{title}</h3>
         {subtitle && <p className="mt-4 text-[#7A7A7A] text-base max-w-6xl md:mx-auto">{subtitle}</p>}

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const cardStyle = {
   background: "#FFFFFF",
-  border: "2px solid rgba(229, 243, 242, 0.63)",
+  border: "2px solid #20B2AA66",
   borderRadius: "16px",
   padding: "32px",
    paddingTop: "81px",
@@ -17,9 +17,9 @@ const defaultBlobs = [
   { width: "199px", height: "254px", bottom: "-133px", left: "34px", background: "#CFEFED", filter: "blur(70px)", borderRadius: "50%", zIndex: 10 },
 ];
 
-export default function CardGrid({ title, cards, cols = 3, minHeight = 352, iconSize = 48, titleColor = "#1A1A1A", mobileClassName = "", desktopClassName = "",titleNoWrap = false,titleFontSize = "32px", showBlob = false, blobs = defaultBlobs }) {
+export default function CardGrid({ label, title, cards, cols = 3, minHeight = 352, iconSize = 64, titleColor = "#1A1A1A", mobileClassName = "", desktopClassName = "",titleNoWrap = false,titleFontSize = "24px", showBlob = false, blobs = defaultBlobs, bgColor="white",headingAlign="Left" }) {
   return (
-    <section className="relative bg-white py-8 md:py-15">
+    <section className="relative bg-white py-8 md:py-15" style={{backgroundColor:bgColor}}>
       {showBlob && (
         <div className="absolute inset-0 pointer-events-none">
           {blobs.map((blobStyle, i) => (
@@ -29,8 +29,12 @@ export default function CardGrid({ title, cards, cols = 3, minHeight = 352, icon
       )}
 
       <div className="container relative z-10">
-        {title && <h3 className="text-[#1A1A1A] font-semibold mb-10">{title}</h3>}
-
+        {(label || title) && (
+         <div className={`mb-10 ${headingAlign === "center" ? "text-center" : "text-left"}`}>
+  {label && <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">{label}</p>}
+  {title && <h3 className="text-[#1A1A1A] font-semibold">{title}</h3>}
+</div>
+        )}
         {/* MOBILE */}
         {cols === 3 && (
           <div className={`md:hidden flex flex-col gap-6 ${mobileClassName}`}>
@@ -43,17 +47,20 @@ export default function CardGrid({ title, cards, cols = 3, minHeight = 352, icon
             ))}
           </div>
         )}
-
-        {/* DESKTOP */}
-        <div className={`gap-6 ${desktopClassName} ${cols === 2 ? "grid grid-cols-1 md:grid-cols-2" : "hidden md:grid md:grid-cols-3"}`}>
-          {cards.map((card, i) => (
-            <div key={i} style={{ ...cardStyle, minHeight: `${minHeight}px`, border: "1px solid #20B2AA30" }}>
-              {card.icon && <Image src={card.icon} alt={card.title} width={iconSize} height={iconSize} className="mb-6" />}
-              <h4 className="font-semibold mb-3" style={{fontSize: titleFontSize, color: titleColor }}>{card.title}</h4>
-              <p className="text-[#656C7B] text-md leading-relaxed">{card.desc}</p>
-            </div>
-          ))}
-        </div>
+<div className={`gap-6 ${desktopClassName} ${cols === 2 ? "grid grid-cols-1 md:grid-cols-2" : "hidden md:grid md:grid-cols-3"}`}>
+  {cards.map((card, i) => (
+    <div key={i} className="group" style={{ ...cardStyle, minHeight: `${minHeight}px`, border: "1px solid #20B2AA30" }}>
+ {card.icon && (
+  <div className="relative mb-6 inline-block">
+    <Image src={card.icon} alt={card.title} width={iconSize} height={iconSize} />
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ background: "#9E2016", mixBlendMode: "color" }} />
+  </div>
+)}
+  <h4 className="font-semibold mb-3" style={{ fontSize: titleFontSize, color: titleColor }}>{card.title}</h4>
+  <p className="text-[#656C7B] text-md leading-relaxed">{card.desc}</p>
+</div>
+  ))}
+</div>
       </div>
     </section>
   );

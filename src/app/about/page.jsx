@@ -9,17 +9,17 @@ import ShapeDental from "@/components/ShapeDental";
 
 const mvvCards = [
   { 
-    icon: "/assets/about-mission.svg", 
+    icon: "/svg/about-mission.svg", 
     title: "Our Mission", 
     desc: "To empower the next generation of dental professionals by bridging the gap between classroom theory and real-world practice." 
   },
   { 
-    icon: "/assets/about-mission.svg", 
+    icon: "/svg/about-mission.svg", 
     title: "Our Purpose", 
     desc: "Inspired by the vision of Dr. K. Lakshma Reddy (KLR Garu), our purpose remains clear: to make quality dental care accessible to all, while developing dentists who create meaningful impact in every life they touch." 
   },
   { 
-    icon: "/assets/about-mission.svg", 
+    icon: "/svg/about-mission.svg", 
     title: "Our Vision", 
     desc: "To transform society through exceptional dental education, dedicated community service, and proactive oral health advocacy." 
   },
@@ -83,20 +83,20 @@ export default function AboutPage() {
 <section className="w-full py-8 bg-[#35908D]">
   <div className="container">
     {/* MOBILE */}
-<div className="md:hidden flex flex-col gap-6 rounded-[24px] py-6" style={{
+<div className="md:hidden flex flex-col gap-6 rounded-[24px] p-6" style={{
       border: "1px solid #20B2AA30",
       boxShadow: "0px 2px 12px 0px #FFFFFF40 inset, 0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #E5F3F208, 0px 13px 8px 0px #9EFFEE05, 0px 22px 9px 0px #9EFFEE03, 0px 35px 10px 0px #C9F9FF00"
     }}>
-      <div className="relative w-full overflow-hidden rounded-2xl" style={{ height: "280px" }}>
+      <div className="relative w-full overflow-hidden rounded-2xl" style={{height: "280px" }}>
         <Image src="/assets/founder.webp" alt="Dr. Katireddy Lakshma Reddy" fill className="object-cover" />
       </div>
-      <p className="!text-[#9E2016] text-xl font-semibold uppercase opacity-80">MESSAGE</p>
+      <p className="!text-[#9E2016] text-[18px] font-semibold uppercase opacity-80">MESSAGE</p>
       <h3 className="!text-white font-semibold" style={{ fontSize: "32px" }}>A Message from Our Founder</h3>
-      <p className="text-white text-md leading-relaxed opacity-90 italic">For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.</p>
-      <p className="text-white text-md leading-relaxed opacity-90 italic">KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth.</p>
+      <p className="text-white text-[18px] leading-relaxed opacity-90 italic">For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.</p>
+      <p className="text-white text-[18px] leading-relaxed opacity-90 italic">KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth.</p>
       <div>
-        <p className="text-white font-semibold text-sm">Dr. Katireddy Lakshma Reddy</p>
-        <p className="text-sm" style={{ color: "#A5E7F0" }}>Founder & Chairman, KLR group</p>
+        <p className="text-white font-semibold text-[18px] mb-2">Dr. Katireddy Lakshma Reddy</p>
+        <p className="text-md" style={{ color: "#A5E7F0" }}>Founder & Chairman, KLR group</p>
       </div>
     </div>
     {/* DESKTOP */}
@@ -107,9 +107,9 @@ export default function AboutPage() {
   </div>
   <div className="flex flex-col gap-4 lg:gap-6 flex-1 min-w-0 lg:pt-[46px] lg:pb-[6px]">
     <p className="text-[#9E2016] text-[18px] font-semibold uppercase opacity-80">MESSAGE</p>
-    <h3 className="!text-white font-semibold text-lg lg:text-3xl whitespace-nowrap md:whitespace-normal xl:whitespace-nowrap">A Message from Our Founder</h3>
-    <p className="text-white lg:text-[18px] leading-relaxed opacity-90 italic">For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.</p>
-    <p className="text-white lg:text-[18px] leading-relaxed opacity-90 italic">Dr. KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth.</p>
+    <h3 className="!text-white font-semibold text-lg lg:!text-[40px] whitespace-nowrap md:whitespace-normal xl:whitespace-nowrap">A Message from Our Founder</h3>
+    <p className="text-white lg:text-[16px] leading-relaxed opacity-90 italic">For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.</p>
+    <p className="text-white lg:text-[16px] leading-relaxed opacity-90 italic">Dr. KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth.</p>
     <div>
       <p className="text-white font-semibold lg:text-[18px]">Dr. Katireddy Lakshma Reddy</p>
       <p className="text-md" style={{ color: "#A5E7F0" }}>Founder & Chairman, KLR group</p>
@@ -148,7 +148,7 @@ export default function AboutPage() {
       {doctors.map((doc, i) => (
         <div key={i} className="flex flex-col items-center gap-3">
           <div className="w-[340px] max-w-full h-[440px] rounded-[16px] overflow-hidden relative">
-  <Image src={doc.image} alt={doc.name} width={340} height={440} className="object-cover w-full h-full scale-125 translate-y-[-5%]" />
+  <Image src={doc.image} alt={doc.name} fill className="object-cover" style={{ objectPosition: "center 30%", transform: "scale(1.5)", transformOrigin: "center 100%" }} />
   <div className="absolute inset-0 rounded-[16px] border-4 border-white/40 pointer-events-none" />
 </div>
           <p className="text-[#1A1A1A] font-semibold text-[24px]">{doc.name}</p>
@@ -167,18 +167,18 @@ export default function AboutPage() {
       <p className="text-[#7A7A7A] text-xl -mb-1">{doctors[docPage].role}</p>
 
       <div className="flex items-center justify-center gap-8">
-        <button type="button" onClick={() => setDocPage((p) => (p === 0 ? doctors.length - 1 : p - 1))} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200">
-          <ArrowLeft size={18} />
-        </button>
-        <div className="flex items-center gap-2">
-          {doctors.map((_, i) => (
-            <button key={i} type="button" onClick={() => setDocPage(i)} className="rounded-full transition-all duration-300" style={{ width: i === docPage ? "20px" : "8px", height: "8px", background: i === docPage ? "#9E2016" : "#D9D9D9" }} />
-          ))}
-        </div>
-        <button type="button" onClick={() => setDocPage((p) => (p === doctors.length - 1 ? 0 : p + 1))} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200">
-          <ArrowRight size={18} />
-        </button>
-      </div>
+  <button type="button" onClick={() => setDocPage((p) => (p === 0 ? doctors.length - 1 : p - 1))} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200">
+    <ArrowLeft size={18} />
+  </button>
+  <div className="flex items-center gap-2">
+    {doctors.map((_, i) => (
+      <button key={i} type="button" onClick={() => setDocPage(i)} className="rounded-full transition-all duration-300" style={{ width: i === docPage ? "6px" : "4px", height: i === docPage ? "6px" : "4px", background: i === docPage ? "#9E2016" : "#9E201666" }} />
+    ))}
+  </div>
+  <button type="button" onClick={() => setDocPage((p) => (p === doctors.length - 1 ? 0 : p + 1))} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200">
+    <ArrowRight size={18} />
+  </button>
+</div>
     </div>
 
   </div>
@@ -198,7 +198,7 @@ export default function AboutPage() {
     <h3 className="font-semibold" style={{ color: "white" }}>
       Design Your Dental Legacy at LIDS
     </h3>
-    <p className="text-[18px] leading-relaxed max-w-2xl" style={{ color: "white", opacity: 0.9 }}>
+    <p className="text-md md:text-[18px] leading-relaxed max-w-2xl" style={{ color: "white", opacity: 0.9 }}>
       Whether you are pursuing a BDS or MDS, you will cultivate clinical mastery and
       professional independence in a tech-forward environment. Master the art of
       dentistry at your own pace, supported by experts dedicated to your success.
