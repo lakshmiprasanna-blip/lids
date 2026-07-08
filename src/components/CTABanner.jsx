@@ -47,7 +47,7 @@ export default function CTABanner({
           style={{ zIndex: 2 }}
         >
          <p className={`!text-white font-semibold mb-1 font-[var(--font-sans)] ${labelClassName || "!text-[18px]"}`}>{label}</p>
-<h3 className={`font-semibold !text-white font-[Inter,sans-serif] ${titleClassName || ""}`} style={{ width: titleWidth }}>
+<h3 className={`font-semibold !text-white [font-family:'Inter',sans-serif] ${titleClassName || ""}`} style={{ width: titleWidth }}>
   {title}
 </h3>
         </div>

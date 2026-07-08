@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import CTABanner from "@/components/CTABanner";
-
+import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 const cardStyle = {
   border: "2px solid #E5F3F2A1",
   borderRadius: "16px",
@@ -25,12 +24,20 @@ const facilities = [
 export default function FacilitiesPage() {
   return (
     <main>
-      <CTABanner
+      {/* <CTABanner
         label="Facilities"
         title="A Legacy of Excellence in Education and Social Responsibility"
         mobileImage="/assets/about-mob.webp"
-      />
-
+      /> */}
+<DentalLegacyCTA
+  align="center"
+  title="Facilities"
+  description="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
+  image="/assets/facilities-banner.webp"
+  showButton={false}
+  titleClassName="!text-[40px] md:!text-[56px]"
+  descriptionClassName="max-w-5xl"
+/>
       <section className="relative w-full bg-white section-py overflow-hidden">
         <div className="absolute pointer-events-none rounded-full" style={{ width: "1358px", height: "1819px", top: "792px", left: "730px", background: "rgba(207, 239, 237, 0.25)", filter: "blur(186px)", transform: "rotate(-90deg)", zIndex: 0 }} />
 

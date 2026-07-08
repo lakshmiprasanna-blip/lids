@@ -82,7 +82,7 @@ export default function ContactPage() {
   
   return (
     <main>
- <CTABanner
+ {/* <CTABanner
   label="Our Academics"
   title="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
  titleClassName="!text-[18px] w-[930px] font-[family-name:var(--font-inter)]"
@@ -91,8 +91,16 @@ labelClassName="!text-[56px] font-['Plus_Jakarta_Sans']"
   desktopImage="/assets/contact-banner.webp"
   mobileImage="/assets/about-mob.webp"
   imageStyle={{ zIndex: 0, objectPosition: "center center" }}
+/> */}
+<DentalLegacyCTA
+  align="center"
+  title="Our Academics"
+  description="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
+  image="/assets/academics-banner.webp"
+  showButton={false}
+  titleClassName="!text-[40px] md:!text-[56px]"
+  descriptionClassName="max-w-5xl"
 />
-
    <section className="relative bg-white section-py overflow-hidden">
       <div className="absolute pointer-events-none rounded-full" style={{ width: "800px", height: "800px", top: "-200px", right: "-300px", background: "rgba(207,239,237,0.4)", filter: "blur(120px)", zIndex: 0 }} />
 

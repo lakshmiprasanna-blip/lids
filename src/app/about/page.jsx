@@ -6,6 +6,7 @@ import Link from "next/link";
 import CTABanner from "@/components/CTABanner";
 import CardGrid from "@/components/CardGrid";
 import ShapeDental from "@/components/ShapeDental";
+import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 
 const mvvCards = [
   { 
@@ -183,43 +184,14 @@ export default function AboutPage() {
 
   </div>
 </section>
-<section className="relative w-full h-[604px] overflow-hidden flex items-center justify-center">
-  <Image
-    src="/assets/dentallegacy.webp"
-    alt="CTA Banner"
-    fill
-    className="object-cover"
-    style={{ filter: "blur(0px)", transform: "scale(1.05)", zIndex: 0 }}
-  />
-  <div
-    className="absolute inset-0"
-    style={{background: "linear-gradient(90deg, rgba(32, 178, 170, 0.8) 0%, rgba(16, 123, 113, 0.8) 100%)", zIndex: 1, }}/>
-  <div className="relative text-center flex flex-col items-center gap-6 px-6 max-w-4xl" style={{ zIndex: 2 }}>
-    <h3 className="font-semibold" style={{ color: "white" }}>
-      Design Your Dental Legacy at LIDS
-    </h3>
-    <p className="text-md md:text-[18px] leading-relaxed max-w-2xl" style={{ color: "white", opacity: 0.9 }}>
-      Whether you are pursuing a BDS or MDS, you will cultivate clinical mastery and
-      professional independence in a tech-forward environment. Master the art of
-      dentistry at your own pace, supported by experts dedicated to your success.
-    </p>
-    <Link
-      href="/admissions"
-      className="hover:opacity-90 transition-opacity duration-200 whitespace-nowrap"
-      style={{
-        backgroundColor: "#9E2016",
-        color: "white",
-        fontSize: "14px",
-        fontWeight: 500,
-        padding: "16px 32px",
-        borderRadius: "65px",
-      }}
-    >
-      Apply Now
-    </Link>
-  </div>
-
-</section>
+<DentalLegacyCTA
+  title="Design Your Dental Legacy at LIDS"
+  description="Whether you are pursuing a BDS or MDS, you will cultivate clinical mastery and
+professional independence in a tech-forward environment. Master the art of
+dentistry at your own pace, supported by experts dedicated to your success."
+  buttonText="Apply Now"
+  buttonHref="/admissions"
+/>
     </main>
   );
 }

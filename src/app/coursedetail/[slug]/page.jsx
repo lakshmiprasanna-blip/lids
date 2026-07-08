@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight, ArrowLeft, X, Search, ChevronDown } from "lucide-react";
 import { courses } from "@/app/data/courses";
 import CTABanner from "@/components/CTABanner";
+import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 import FAQs from "@/components/FAQs";
 
 function ImageCarousel({ images, current, setCurrent }) {
@@ -147,8 +148,28 @@ export default function CoursePage({ params }) {
 
   return (
     <main className="bg-white">
-      <CTABanner label="Academics / Courses Offered" title="A Legacy of Excellence in Education and Social Responsibility" mobileImage="/assets/about-mob.webp" />
-
+      {/* <CTABanner label="Academics / Courses Offered" title="A Legacy of Excellence in Education and Social Responsibility" mobileImage="/assets/coursedetail-banner.webp" desktopImage="/assets/coursedetail-banner.webp" /> */}
+ {/* <CTABanner
+  label="Research Publications"
+  title="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
+  mobileImage="/assets/research-banner.webp"
+  desktopImage="/assets/research-banner.webp"
+  labelClassName="!text-[56px] font-medium [font-family:'Plus_Jakarta_Sans',sans-serif]"
+  titleClassName="!text-[18px] !font-[400] [font-family:'Inter',sans-serif]!"
+  titleWidth="58rem"
+  imageStyle={{
+    transform: "scale(1.2)",
+  }}
+/> */}
+<DentalLegacyCTA
+  align="center"
+  title="Academic/Courses Offered/BDS"
+  description="A Legacy of Excellence in Education and  Social Responsibility"
+  image="/assets/coursedetail-banner.webp"
+  showButton={false}
+  titleClassName="!text-[16px] md:!text-[16px] [font-family:'Inter',sans-serif]! font-bold"
+  descriptionClassName="max-w-5xl !text-[32px] md:!text-[48px] [font-family:'Plus_Jakarta_Sans',sans-serif] font-semibold "
+/>
       {/* SEARCH BAR */}
       <div className="w-full py-3 px-4" style={{ background: "#107B71" }}>
         <div className="mx-auto flex items-center justify-center gap-3 flex-wrap" style={{ maxWidth: "1420px", minHeight: "48px" }}>

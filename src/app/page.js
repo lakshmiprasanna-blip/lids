@@ -10,6 +10,8 @@ import AlumniStories from "@/components/AlumniStories";
 import FAQs from "@/components/FAQs";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+
+
 const left = [
   { icon: "/assets/infrastructure.png", title: "State-of-the-Art Infrastructure", desc: "Master with advanced tools such as digital radiography, CBCT & intraoral scanners, 3D technology, microsurgical endodontics and surgical units etc." },
   { icon: "/assets/care.png", title: "Compassionate & Expert Care", desc: "Benefit from a holistic learning environment that combines rigorous medical standards with a genuine commitment to public service." },
@@ -35,7 +37,7 @@ const dentalPrograms = [
   { title: "Master of Dental Surgery (MDS)", years: "3 years", image: "/assets/MDS.webp", desc: "Elevate your expertise with our MDS specialisations, designed for dentists aiming to achieve mastery in complex oral healthcare." },
   { title: "PG Diploma Programs", years: "3 years", image: "/assets/PG.webp", desc: "Fast-track your career growth with our intensive PG Diploma programs, focusing on specialized clinical skills and the latest dental technologies." },
 ];
-const ExploreBtn = () => <button className="px-8 py-3 rounded-full cursor-pointer text-sm font-medium text-[#9E2016] bg-white  hover:bg-[#9E2016] hover:!text-white transition-all duration-300" style={{ border: "1.5px solid #9E2016" }}>Explore More</button>;
+const ExploreBtn = () => <button className="px-8 py-3 rounded-full cursor-pointer text-md font-medium text-[#9E2016] bg-white  hover:bg-[#9E2016] hover:!text-white transition-all duration-300" style={{ border: "1.5px solid #9E2016", boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset", }}>Explore More</button>;
 
 const FeatureList = ({ items }) => (
   <div className="flex flex-col gap-12 flex-1 min-w-0">

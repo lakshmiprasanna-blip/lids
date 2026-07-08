@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import CTABanner from "@/components/CTABanner";
 import DentalPrograms from "@/components/DentalPrograms";
+import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 
 const tabs = ["All Courses", "Under Graduate (U.G)", "Post Graduate (P.G)", "PG Diploma", "Certifications"];
 
@@ -32,10 +32,19 @@ export default function CoursesPage() {
 
   return (
     <main>
-      <CTABanner
+      {/* <CTABanner
         label="Academics / Courses Offered"
         title="A Legacy of Excellence in Education and Social Responsibility"
         mobileImage="/assets/about-mob.webp"
+      /> */}
+      <DentalLegacyCTA
+        align="center"
+        title="Academics / Courses Offered"
+        description="A Legacy of Excellence in Education and Social Responsibility"
+        image="/assets/course-banner.webp"
+        showButton={false}
+        titleClassName="!text-[16px] md:!text-[16px] [font-family:'Inter',sans-serif]! font-bold"
+        descriptionClassName="max-w-5xl !text-[32px] md:!text-[48px] [font-family:'Plus_Jakarta_Sans',sans-serif] font-semibold "
       />
 
       {/* MOBILE TABS — horizontal scroll */}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { useState } from "react";
+import OutlineBtn from "./OutlineBtn";
 
 const events = [
   { category: "Events", type: "Conference", date: "12 September 2025", title: "Annual Dental Conference 2026", desc: "Join us for the Annual Dental Conference 2026 where leading experts in the field of oral health will share the latest trends in dental technology...", image: "/assets/newsevent1.webp" },
@@ -30,7 +31,8 @@ export default function DentalPrograms({
   linkHref = "/programs",
   linkText = "Know more",
   showHeading = true,
-  mobileStack = false, 
+  mobileStack = false,
+  
 }) {
   const [current, setCurrent] = useState(0);
   const prev = () => setCurrent((c) => (c === 0 ? programs.length - 1 : c - 1));
@@ -65,15 +67,13 @@ export default function DentalPrograms({
                   <h4 className="card-title text-lg font-semibold">{item.title}</h4>
                   <p className="text-[#7A7A7A] text-md  leading-relaxed">{item.desc}</p>
                 </div>
-                 <Link href={item.href || linkHref} className="inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium border transition-all duration-300 group-hover:bg-[#9E2016] group-hover:!text-white group-hover:border-[#9E2016]" style={{ width: "159px", height: "48px", borderColor: "#9E2016", color: "#9E2016" }}>
+                 <Link href={item.href || linkHref} className="inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium border transition-all duration-300 group-hover:bg-[#9E2016] group-hover:!text-white group-hover:border-[#9E2016]" style={{ width: "159px", height: "48px", borderColor: "#9E2016", color: "#9E2016", boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset", }}>
           {linkText} <ArrowRight size={16} />
         </Link>
               </div>
             </div>
           ))}
         </div>
-
-        {/* MOBILE STACKED — only when mobileStack=true (courses page) */}
         {mobileStack && (
           <div className="flex flex-col gap-5 lg:hidden">
             {programs.map((item, i) => (
@@ -97,8 +97,6 @@ export default function DentalPrograms({
             ))}
           </div>
         )}
-
-        {/* MOBILE CAROUSEL — unchanged, only when mobileStack=false (default, all other pages) */}
         {!mobileStack && (
           <div className="flex flex-col gap-6 lg:hidden">
             <div className="overflow-hidden">
@@ -138,7 +136,9 @@ export default function DentalPrograms({
   );
 }
 
-export function NewsEvents() {
+export function NewsEvents({
+  buttonText = "View all" ,
+}) {
   const [current, setCurrent] = useState(0);
   const prev = () => setCurrent((c) => (c === 0 ? events.length - 3 : c - 1));
   const next = () => setCurrent((c) => (c + 3 >= events.length ? 0 : c + 1));
@@ -153,7 +153,8 @@ export function NewsEvents() {
             <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">NEWS & EVENTS</p>
             <h3 className="text-[#1A1A1A] font-semibold">Upcoming Events & Campus News</h3>
           </div>
-          <Link href="/events" className="hidden lg:flex text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link>
+          {/* <Link href="/events" className="hidden lg:flex text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link> */}
+     <OutlineBtn href="/facilities" width="144px" height="52px">{buttonText}</OutlineBtn>
         </div>
 
         <div className="hidden lg:block">
@@ -170,8 +171,7 @@ export function NewsEvents() {
                     <p className="text-[#7A7A7A] text-md">{item.type} • {item.date}</p>
                     <h2 className="text-[#1A1A1A] text-[20px] font-semibold">{item.title}</h2>
                     <p className="text-[#9A9A9A] text-md leading-relaxed ">{item.desc}</p>
-                    <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-md font-medium hover:underline mt-2">Know more <ArrowRight size={14} /></Link>
-                  </div>
+                     <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-md font-medium group mt-2"><span className="group-hover:underline">Know more</span><ArrowRight size={14} /></Link>                  </div>
                 </div>
               ))}
             </div>
@@ -194,7 +194,7 @@ export function NewsEvents() {
           </div>
           <div className="flex items-center justify-between gap-3">
             <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowLeft size={20} /></button>
-            <Link href="/events" className="text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 flex items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link>
+            <Link href="/events" className="text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 flex items-center justify-center " style={{ width: "144px", height: "52px", }}>View all</Link>
             <button onClick={next} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowRight size={20} /></button>
           </div>
         </div>

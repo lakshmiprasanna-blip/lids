@@ -5,7 +5,7 @@ const cardStyle = {
   border: "2px solid #20B2AA66",
   borderRadius: "16px",
   padding: "32px",
-   paddingTop: "81px",
+   paddingTop: "50px",
   boxShadow: "inset 0 0 40px 10px rgba(207, 239, 237, 0.6), 0px 6px 6px 0px #EBFDFF33, 0px 13px 8px 0px #C9F9FF33, 0px 22px 9px 0px #E8FCFF33",
   backdropFilter: "blur(13.3px)",
   
@@ -57,7 +57,7 @@ export default function CardGrid({ label, title, cards, cols = 3, minHeight = 35
   </div>
 )}
   <h4 className="font-semibold mb-3" style={{ fontSize: titleFontSize, color: titleColor }}>{card.title}</h4>
-  <p className="text-[#656C7B] text-md leading-relaxed">{card.desc}</p>
+  <p className="text-[#656C7B] text-[18px] leading-relaxed">{card.desc}</p>
 </div>
   ))}
 </div>

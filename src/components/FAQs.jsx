@@ -10,7 +10,7 @@ const defaultFaqs = [
 ];
 
 const faqItemStyle = {
-  background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.16) 100%)",
+  background: "#F6FDFE",
   boxShadow: "0px 1px 3px 0px #1A1A1A00, 0px 6px 6px 0px #1A1A1A00, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, inset 0px -264px 12px 0px #FFFFFF40",
 };
 
@@ -51,7 +51,7 @@ export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, im
         {image ? (
           <>
             <div className="lg:hidden flex flex-col gap-6">
-              <p className="text-[#9E2016] text-md font-semibold uppercase">FAQs</p>
+              <p className="text-[#9E2016] text-[18px] font-semibold uppercase">FAQs</p>
               <h3 className="text-[#1A1A1A] font-semibold">Frequently Asked Questions</h3>
               <div className="relative w-full h-[260px] rounded-2xl overflow-hidden">
                 <Image src={image} alt={imageAlt} fill className="object-cover object-center" />
@@ -60,7 +60,7 @@ export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, im
             </div>
             <div className="hidden lg:flex flex-row gap-12 items-start">
               <div className="flex-none" style={{ width: "700px" }}>
-                <p className="text-[#9E2016] text-md font-semibold uppercase mb-4">FAQs</p>
+                <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">FAQs</p>
                 <h3 className="text-[#1A1A1A] font-semibold mb-10">Frequently Asked Questions</h3>
                 <FaqList faqs={faqs} columns={columns} open={open} setOpen={setOpen} />
               </div>

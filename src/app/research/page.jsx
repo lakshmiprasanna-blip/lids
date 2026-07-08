@@ -17,7 +17,7 @@ const research = [
   { id: 10, title: "Knowledge And Awareness Among Post Graduate Students On Kennedy-applegate Rules For Partially Edentulous Arches ...", status: "Completed - 2025", dept: "PROSTHODONTICS - PG" },
 ];
 const mvvCards = [
-  { 
+  {
     icon: "/svg/ethic.svg", 
     title: "Ethical Research Standards", 
     desc: "All research publications follows strict ethical guidelines approved by our Institutional Ethics Committee (IEC), ensuring patient safety, data privacy, and scientific integrity." 
@@ -58,12 +58,15 @@ export default function ResearchPage() {
 
   return (
     <main className="bg-white min-h-screen">
-        <CTABanner
-                label="Academics / Courses Offered"
-                title="A Legacy of Excellence in Education and Social Responsibility"
-                mobileImage="/assets/about-mob.webp"
-              />
-      {/* Search Bar */}
+<DentalLegacyCTA
+  align="center"
+  title="Research Publications"
+  description="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
+  image="/assets/research-banner.webp"
+  showButton={false}
+  titleClassName="!text-[40px] md:!text-[56px]"
+  descriptionClassName="max-w-5xl"
+/>
       <div className="w-full py-4 px-6" style={{ background: "#107B71" }}>
         <div className="mx-auto flex items-center gap-4 flex-wrap justify-center" style={{ maxWidth: "1000px" }}>
           <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2.5 flex-1 min-w-[280px] max-w-7xl">
@@ -77,45 +80,82 @@ export default function ResearchPage() {
           ))}
         </div>
       </div>
-
-      {/* Table */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E5F3F2" }}>
-          <table className="w-full border-collapse">
-            <thead>
-              <tr style={{ background: "#20B2AA" }}>
-                {["#", "Title/Description", "Status", "Department", "View"].map((h, i) => (
-                  <th key={i} className="text-white font-medium px-5 py-4 text-left text-[15px]" style={{ borderRight: i !== 4 ? "1px solid rgba(255,255,255,0.2)" : "none", textAlign: i >= 2 ? "center" : "left" }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((row, j) => (
-                <tr key={j} style={{ background: j % 2 !== 0 ? "#E9F8F6E3" : "white", borderBottom: "1px solid #E5F3F2" }}>
-                  <td className="px-5 py-4 text-[#3D3D3D] font-medium text-sm" style={{ borderRight: "1px solid #E5F3F2", width: "60px" }}>{row.id}</td>
-                  <td className="px-5 py-4 text-[#232323] text-sm leading-relaxed" style={{ borderRight: "1px solid #E5F3F2" }}>{row.title}</td>
-                  <td className="px-5 py-4 text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}><StatusBadge status={row.status} /></td>
-                  <td className="px-5 py-4 text-[#3D3D3D] text-sm text-center" style={{ borderRight: "1px solid #E5F3F2" }}>{row.dept}</td>
-                  <td className="px-5 py-4 text-center" style={{ width: "100px" }}>
-                    <button className="px-5 py-1.5 rounded-full text-[#20B2AA] text-sm font-medium hover:bg-[#20B2AA] hover:text-white transition-all" style={{ border: "1.5px solid #20B2AA" }}>VIEW</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <div className="relative">
+         <div
+    className="absolute pointer-events-none"
+    style={{
+      width: "1400px",
+      height: "1400px",
+      borderRadius: "50%",
+      background: "#CFEFED",
+      opacity: 0.25,
+      filter: "blur(80px)",
+      top: "0px",
+      right: "-500px",
+      zIndex: 0,
+    }}
+  />
+<div className="max-w-7xl mx-auto px-6 py-12">
+  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E5F3F2" }}>
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse" style={{ minWidth: "800px" }}>
+        <thead>
+          <tr style={{ background: "#20B2AA" }}>
+            {["#", "Title/Description", "Status", "Department", "View"].map((h, i) => (
+              <th
+                key={i}
+                className="text-white font-medium px-5 py-4 text-left text-[15px]"
+                style={{
+                  borderRight: i !== 4 ? "1px solid rgba(255,255,255,0.2)" : "none",
+                  textAlign: i >= 2 ? "center" : "left",
+                }}
+              >
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {filtered.map((row, j) => (
+            <tr key={j} style={{ background: j % 2 !== 0 ? "#E9F8F6E3" : "white", borderBottom: "1px solid #E5F3F2" }}>
+              <td className="px-5 py-4 text-[#3D3D3D] font-medium text-sm" style={{ borderRight: "1px solid #E5F3F2", width: "60px" }}>
+                {row.id}
+              </td>
+              <td className="px-5 py-4 text-[#232323] text-sm leading-relaxed" style={{ borderRight: "1px solid #E5F3F2", minWidth: "260px" }}>
+                {row.title}
+              </td>
+              <td className="px-5 py-4 text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}>
+                <StatusBadge status={row.status} />
+              </td>
+              <td className="px-5 py-4 text-[#3D3D3D] text-sm text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}>
+                {row.dept}
+              </td>
+              <td className="px-5 py-4 text-center" style={{ width: "100px" }}>
+                <button className="px-5 py-1.5 rounded-full text-[#20B2AA] text-sm font-medium hover:bg-[#20B2AA] hover:text-white transition-all" style={{ border: "1.5px solid #20B2AA" }}>
+                  VIEW
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
       <CardGrid cards={mvvCards} cols={3} showBlob={false}  label="RESEARCH POLICY"
   title="Our Research Policy"
   bgColor="#EAF8F7"
   headingAlign="center"/>
 <DentalLegacyCTA
   align="left"
- title={<>Ready to Shape<br />Your Future in Dentistry?</>}
+  title={<>Ready to Shape<br />Your Future in Dentistry?</>}
   description="Embark on a transformative journey with Lenora Institute of Dental Sciences. Whether you're pursuing a BDS (Undergraduate) or MDS (Postgraduate) degree, LIDS provides you with the skills, clinical experience, and mentorship needed to succeed as a dental professional."
   buttonText="Apply Now"
   buttonHref="/academics"
   image="/assets/transparent-banner.webp"
+  imageStyle={{ transform: "scale(1.05)", objectPosition: "center" }}
+  mobileImageStyle={{ transform: "scale(1.0)", objectPosition: "80% 20%" }}
 />
     </main>
   );
