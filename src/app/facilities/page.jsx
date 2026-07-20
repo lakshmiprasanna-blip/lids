@@ -19,6 +19,13 @@ const facilities = [
   { icon: "/svg/mobiledental.svg", label: "Mobile Dental Clinic" },
   { icon: "/svg/workshop.svg",     label: "Workshops" },
   { icon: "/svg/pharma.svg",       label: "Pharmacy Store" },
+  { icon: "/svg/vip-dental.svg",       label: "VIP Clinic" },
+  { icon: "/svg/satellite.svg",       label: "Satellite Clinic" },
+  { icon: "/svg/transport.svg",       label: "Transport" },
+  { icon: "/svg/achieve.svg",       label: "Achievements" },
+  { icon: "/svg/it-digital.svg",       label: "IT & Digital Infrastructure" },
+  { icon: "/svg/hostel-acco.svg",       label: "Hostel Accommodations" },
+  { icon: "/svg/cafeteria.svg",       label: "Cafeteria" },
 ];
 
 export default function FacilitiesPage() {
@@ -29,15 +36,6 @@ export default function FacilitiesPage() {
         title="A Legacy of Excellence in Education and Social Responsibility"
         mobileImage="/assets/about-mob.webp"
       /> */}
-<DentalLegacyCTA
-  align="center"
-  title="Facilities"
-  description="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
-  image="/assets/facilities-banner.webp"
-  showButton={false}
-  titleClassName="!text-[40px] md:!text-[56px]"
-  descriptionClassName="max-w-5xl"
-/>
       <section className="relative w-full bg-white section-py overflow-hidden">
         <div className="absolute pointer-events-none rounded-full" style={{ width: "1358px", height: "1819px", top: "792px", left: "730px", background: "rgba(207, 239, 237, 0.25)", filter: "blur(186px)", transform: "rotate(-90deg)", zIndex: 0 }} />
 
@@ -60,6 +58,14 @@ export default function FacilitiesPage() {
 </div>
         </div>
       </section>
+      <DentalLegacyCTA
+        title="Design Your Dental Legacy at LIDS"
+        description="Whether you are pursuing a BDS or MDS, you will cultivate clinical mastery and
+      professional independence in a tech-forward environment. Master the art of
+      dentistry at your own pace, supported by experts dedicated to your success."
+        buttonText="Apply Now"
+        buttonHref="/admissions"
+      />
     </main>
   );
 }

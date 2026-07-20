@@ -19,10 +19,9 @@ const socialIcons = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-white">
-
+   <footer className="w-full" style={{background: `background: linear-gradient(0deg, #FFFFFF, #FFFFFF),
+linear-gradient(90deg, rgba(32, 178, 170, 0.064) 0%, rgba(16, 123, 113, 0.064) 100%);`}}>
       <div className="container py-16">
-
      {/* DESKTOP */}
 <div className="hidden xl:flex items-start justify-between gap-6 xl:gap-12">
           <Image src="/assets/footer-logo.webp" alt="LIDS Logo" width={463} height={121} quality={100} className="object-contain shrink-0" />
@@ -108,10 +107,10 @@ export default function Footer() {
     </div>
     {/* DESKTOP */}
     <div className="hidden xl:flex items-center justify-between">
-      <p className="text-white text-sm">Copyright © 2026 LIDS. All rights reserved.</p>
+      <p className="text-white text-md">Copyright © 2026 LIDS. All rights reserved.</p>
       <div className="flex items-center gap-6">
-        <Link href="#" className="!text-white text-sm">Terms & Conditions</Link>
-        <Link href="#" className="!text-white text-sm">Cookie Policy</Link>
+        <Link href="#" className="!text-white text-md">Terms & Conditions</Link>
+        <Link href="#" className="!text-white text-md">Cookie Policy</Link>
       </div>
     </div>
   </div>

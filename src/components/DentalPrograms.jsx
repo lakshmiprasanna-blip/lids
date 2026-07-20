@@ -1,10 +1,11 @@
 "use client";
-
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import OutlineBtn from "./OutlineBtn";
+import { getEvents } from "@/lib/getEvents";
 
 const events = [
   { category: "Events", type: "Conference", date: "12 September 2025", title: "Annual Dental Conference 2026", desc: "Join us for the Annual Dental Conference 2026 where leading experts in the field of oral health will share the latest trends in dental technology...", image: "/assets/newsevent1.webp" },
@@ -16,7 +17,7 @@ const events = [
 
 const blurStyle = { background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" };
 const cardStyle = { border: "1px solid #E5F3F25C", backdropFilter: "blur(14.5px)", boxShadow: " 0px 6px 6px 0px #EBFDFF33, 0px 13px 13.9px 0px #C9F9FF33" };
-const cardGlow = { boxShadow: "inset 0 0 40px 10px rgba(207, 239, 237, 0.9)" };
+const cardGlow = { boxShadow: "inset 0 0 10px 10px rgba(198, 228, 226, 0.9)" };
 const arrowBtn = "shrink-0 flex items-center justify-center rounded-full bg-white border border-[#9E2016] hover:bg-[#9E2016] hover:text-white transition-all duration-200 text-[#9E2016]";
 const imgWrap = "relative overflow-hidden";
 const imgClass = "object-cover transition-transform duration-500 group-hover:scale-110";
@@ -31,6 +32,7 @@ export default function DentalPrograms({
   linkHref = "/programs",
   linkText = "Know more",
   showHeading = true,
+  buttonText = "Know More",
   mobileStack = false,
   
 }) {
@@ -42,24 +44,25 @@ export default function DentalPrograms({
     <section className="relative bg-white section-py">
       <div className="absolute pointer-events-none z-0 rounded-full hidden lg:block" style={{ width: "344px", height: "460px", top: "111px", left: "76px", background: "#CFEFED", filter: "blur(60px)", transform: "rotate(-90deg)" }} />
       <div className="absolute pointer-events-none z-[2] rounded-full hidden lg:block" style={{ width: "344px", height: "460px", bottom: "0px", right: "0px", background: "#CFEFED", filter: "blur(60px)", transform: "rotate(-90deg)" }} />
+       <div className="absolute pointer-events-none z-0 rounded-full lg:hidden" style={{ width: "180px", height: "180px", top: "54px", right: "-40px", background: "#CFEFED", filter: "blur(50px)" }} />
+  <div className="absolute pointer-events-none z-0 rounded-full lg:hidden" style={{ width: "171px", height: "229px", bottom: "60px", left: "-40px", background: "#CFEFED", filter: "blur(50px)" }} />
+
       <div className="relative z-10 container">
         {showHeading && (
-          <div className="text-center mb-16 space-y-4">
-            <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4 text-left md:text-center">{label}</p>
+          <div className="text-center mb-10 space-y-4">
+            <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4 text-left md:text-center">{label}</p>
             <h3 className="text-[#1A1A1A] font-semibold hidden md:block text-center">{title}</h3>
             <h3 className="text-[#1A1A1A] font-semibold md:hidden text-left" style={{ fontSize: "28px" }}>{mobileTitle}</h3>
             <p className="mt-4 text-[#7A7A7A] text-[18px] max-w-7xl mx-auto text-left md:text-center">{subtitle}</p>
           </div>
         )}
-
-        {/* DESKTOP — unchanged */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-6">
           {programs.map((item, i) => (
             <div key={i} className="group w-full rounded-[24px] overflow-hidden bg-white" style={cardGlow}>
               <div className={`${imgWrap} h-[280px] rounded-t-[24px]`}>
                 <Image src={item.image} alt={item.title} fill className={imgClass} />
-                <div className="absolute top-5 left-5 bg-[#f5ececba] rounded-full px-3 py-1" style={{ border: "2px solid #9E20165E" }}>
-                  <span className="text-[#9E2016] text-[13px] font-medium">{item.years}</span>
+                <div className="absolute top-5 left-5 bg-[#FFFFFFCC] rounded-full px-4 py-1" style={{ border: "2px solid #9E20165E" }}>
+                  <span className="text-[#9E2016] text-[14px] font-medium">{item.years}</span>
                 </div>
               </div>
               <div className={`${contentClass} h-[280px] rounded-b-[24px] p-6 flex flex-col justify-between`} style={{ border: "10px solid #E5F3F25C" }}>
@@ -67,10 +70,8 @@ export default function DentalPrograms({
                   <h4 className="card-title text-lg font-semibold">{item.title}</h4>
                   <p className="text-[#7A7A7A] text-md  leading-relaxed">{item.desc}</p>
                 </div>
-                 <Link href={item.href || linkHref} className="inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium border transition-all duration-300 group-hover:bg-[#9E2016] group-hover:!text-white group-hover:border-[#9E2016]" style={{ width: "159px", height: "48px", borderColor: "#9E2016", color: "#9E2016", boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset", }}>
-          {linkText} <ArrowRight size={16} />
-        </Link>
-              </div>
+                     <OutlineBtn href="/facilities" width="159px" height="48px" icon={false}>{buttonText}</OutlineBtn>          
+                         </div>
             </div>
           ))}
         </div>
@@ -82,7 +83,7 @@ export default function DentalPrograms({
                   <Image src={item.image} alt={item.title} fill className={imgClass} />
                   {item.years && (
                     <div className="absolute top-5 left-5 bg-white rounded-full px-4 py-1.5" style={{ border: "2px solid #9E20165E" }}>
-                      <span className="text-[#9E2016] text-[13px] font-medium">{item.years}</span>
+                      <span className="text-[#9E2016] text-sm font-medium">{item.years}</span>
                     </div>
                   )}
                 </div>
@@ -106,7 +107,7 @@ export default function DentalPrograms({
                     <div className={`${imgWrap} rounded-t-[24px]`} style={{ height: "240px" }}>
                       <Image src={item.image} alt={item.title} fill className={imgClass} />
                       <div className="absolute top-5 left-5 bg-white rounded-full px-4 py-2" style={{ border: "2px solid #9E20165E" }}>
-                        <span className="text-[#9E2016] text-[13px] font-medium">{item.years}</span>
+                        <span className="text-[#9E2016] text-sm font-medium">{item.years}</span>
                       </div>
                     </div>
                     <div className={`${contentClass} h-[265px] rounded-b-[16px] p-6 flex flex-col justify-between`} style={{ background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.16) 100%)", border: "1px solid #A5E7F07A", backdropFilter: "blur(14.5px)", WebkitBackdropFilter: "blur(14.5px)", boxShadow: "inset 0px 2px 12px 0px #FFFFFF40, 0px 6px 6px 0px #EBFDFF33, 0px 13px 13.9px 0px #C9F9FF33" }}>
@@ -124,7 +125,7 @@ export default function DentalPrograms({
               <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowLeft size={20} /></button>
               <div className="flex items-center gap-2">
                 {programs.map((_, i) => (
-                  <button key={i} type="button" onClick={() => setCurrent(i)} className="rounded-full transition-all duration-300" style={{ width: i === current ? "20px" : "8px", height: "8px", background: i === current ? "#9E2016" : "#D9D9D9" }} />
+                  <button key={i} type="button" onClick={() => setCurrent(i)} className="rounded-full transition-all duration-300" style={{ width: i === current ? "8px" : "8px", height: "8px", background: i === current ? "#9E2016" : "#D9D9D9" }} />
                 ))}
               </div>
               <button onClick={next} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowRight size={20} /></button>
@@ -136,54 +137,74 @@ export default function DentalPrograms({
   );
 }
 
-export function NewsEvents({
-  buttonText = "View all" ,
-}) {
+export function NewsEvents({ events = [], buttonText = "View all" }) {
   const [current, setCurrent] = useState(0);
-  const prev = () => setCurrent((c) => (c === 0 ? events.length - 3 : c - 1));
-  const next = () => setCurrent((c) => (c + 3 >= events.length ? 0 : c + 1));
+  const [itemsPerPage, setItemsPerPage] = useState(3);
 
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      const width = window.innerWidth;
+      if (width >= 1280) setItemsPerPage(3);
+      else if (width >= 1024) setItemsPerPage(2);
+      else setItemsPerPage(1);
+    };
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+    return () => window.removeEventListener("resize", updateItemsPerPage);
+  }, []);
+  const prev = () => setCurrent((c) => (c === 0 ? Math.max(events.length - itemsPerPage, 0) : c - 1));
+  const next = () => setCurrent((c) => (c + itemsPerPage >= events.length ? 0 : c + 1));
+  if (events.length === 0) return null;
   return (
-    <section className="relative bg-white section-py">
-      <div className="absolute pointer-events-none z-0 rounded-full" style={{ width: "344px", height: "460px", top: "111px", left: "76px", ...blurStyle }} />
-      <div className="absolute pointer-events-none z-0 rounded-full" style={{ width: "344px", height: "460px", top: "591px", left: "1412px", ...blurStyle }} />
+    <section className="relative bg-white section-py overflow-x-clip">
+      <div className="absolute pointer-events-none z-0 rounded-full" style={{ width: "344px", height: "460px", top: "111px", left: "76px", ...blurStyle }}/>
+      <div className="absolute pointer-events-none z-0 rounded-full" style={{ width: "344px", height: "460px", top: "591px", left: "1412px", ...blurStyle }}/>
       <div className="relative z-10 container">
         <div className="flex items-center justify-between mb-16">
           <div>
-            <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">NEWS & EVENTS</p>
-            <h3 className="text-[#1A1A1A] font-semibold">Upcoming Events & Campus News</h3>
+            <p className="eyebrow-heading text-[#9E2016] text-center md:text-left font-semibold uppercase mb-4">NEWS & EVENTS</p>
+            <h3 className="text-[#1A1A1A] text-center md:text-left font-semibold">Upcoming Events & Campus News</h3>
           </div>
-          {/* <Link href="/events" className="hidden lg:flex text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link> */}
-     <OutlineBtn href="/facilities" width="144px" height="52px">{buttonText}</OutlineBtn>
+          <div className="hidden md:block">
+            <OutlineBtn href="/facilities" width="159px" height="48px"> {buttonText}</OutlineBtn>
+          </div>
         </div>
-
         <div className="hidden lg:block">
-          <div className="relative flex items-center">
-            <button onClick={prev} className={arrowBtn} style={{ width: "64px", height: "64px", position: "absolute", left: "-32px", zIndex: 10 }}><ArrowLeft size={20} /></button>
-            <div className="grid lg:grid-cols-3 gap-6 flex-1">
-              {events.slice(current, current + 3).map((item, i) => (
-                <div key={i} className="group w-full rounded-[24px] overflow-hidden bg-white" style={cardGlow}>
-                  <div className={`${imgWrap} h-[260px] rounded-t-[24px]`}>
-                    <Image src={item.image} alt={item.title} fill className={imgClass} />
-                    <div className="absolute top-[25px] left-[25px] text-xs font-medium rounded-[32px] cursor-pointer transition-all duration-200" style={{ padding: "8px 16px", background: "#FFFFFF80", border: "1px solid #9E2016", color: "#9E2016" }} onMouseEnter={e => { e.currentTarget.style.background = "#20B2AA"; e.currentTarget.style.color = "white"; e.currentTarget.style.border = "1px solid #20B2AA"; }} onMouseLeave={e => { e.currentTarget.style.background = "#FFFFFF80"; e.currentTarget.style.color = "#9E2016"; e.currentTarget.style.border = "1px solid #9E2016"; }}>{item.category}</div>
+          <div className="relative flex items-center px-2 xl:px-10">
+            <button onClick={prev} className={arrowBtn} style={{ width: "56px", height: "56px", position: "absolute", left: "0", zIndex: 10 }}><ArrowLeft size={20} /></button>
+            <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-5 xl:gap-6 flex-1">
+              {events.slice(current, current + itemsPerPage).map((item, i) => (
+                <div key={item.id ?? i} className="group w-full rounded-[24px] overflow-hidden bg-white" style={cardGlow}>
+                  <div className={`${imgWrap} h-[220px] xl:h-[260px] rounded-t-[24px]`}>
+                    <Image src={item.image} alt={item.title} fill sizes="(max-width: 1024px) 100vw, 33vw" priority={i === 0} className={imgClass} />
+                    <div className="absolute top-[20px] left-[20px] xl:top-[25px] xl:left-[25px] text-xs font-medium rounded-[32px] cursor-pointer transition-all duration-200" style={{ padding: "6px 14px", background: "#FFFFFF80", border: "1px solid #9E2016", color: "#9E2016" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.background = "#20B2AA"; e.currentTarget.style.color = "white"; e.currentTarget.style.border = "1px solid #20B2AA"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.background = "#FFFFFF80"; e.currentTarget.style.color = "#9E2016"; e.currentTarget.style.border = "1px solid #9E2016"; }}>
+                      {item.category}
+                    </div>
                   </div>
-                  <div className={`${contentClass} rounded-b-[24px] p-6 flex flex-col justify-between h-[260px]`} style={cardStyle}>
-                    <p className="text-[#7A7A7A] text-md">{item.type} • {item.date}</p>
-                    <h2 className="text-[#1A1A1A] text-[20px] font-semibold">{item.title}</h2>
-                    <p className="text-[#9A9A9A] text-md leading-relaxed ">{item.desc}</p>
-                     <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-md font-medium group mt-2"><span className="group-hover:underline">Know more</span><ArrowRight size={14} /></Link>                  </div>
+                  <div className={`${contentClass} rounded-b-[24px] p-5 xl:p-6 flex flex-col justify-between gap-2 h-[240px] xl:h-[260px]`} style={cardStyle}>
+                    <p className="text-[#7A7A7A] text-sm xl:text-md">{item.type} • {item.date}</p>
+                    <h2 className="text-[#1A1A1A] text-[17px] xl:text-[20px] font-semibold leading-snug">{item.title}</h2>
+                    <p className="text-[#9A9A9A] text-sm xl:text-md leading-relaxed line-clamp-3">{item.desc}</p>
+                    <Link href="/events" className="inline-flex items-center gap-2 text-[#9E2016] text-sm xl:text-md font-medium group mt-2">
+                      <span className="group-hover:underline">Know more</span>
+                      <ArrowRight size={14} />
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>
-            <button onClick={next} className={arrowBtn} style={{ width: "64px", height: "64px", position: "absolute", right: "-32px", zIndex: 10 }}><ArrowRight size={20} /></button>
+            <button onClick={next} className={arrowBtn} style={{ width: "56px", height: "56px", position: "absolute", right: "0", zIndex: 10 }}><ArrowRight size={20} /></button>
           </div>
         </div>
 
         <div className="lg:hidden flex flex-col gap-6">
           <div className="group w-full rounded-[24px] overflow-hidden bg-white" style={cardGlow}>
             <div className={`${imgWrap} h-[200px] rounded-t-[24px]`}>
-              <Image src={events[current].image} alt={events[current].title} fill className={imgClass} />
-              <div className="absolute top-[25px] left-[25px] text-xs font-medium rounded-[32px]" style={{ padding: "8px 16px", background: "#20B2AA", border: "1px solid #20B2AA", color: "white" }}>{events[current].category}</div>
+              <Image src={events[current].image} alt={events[current].title} fill sizes="100vw" className={imgClass} />
+              <div className="absolute top-[25px] left-[25px] text-xs font-medium rounded-[32px]" style={{ padding: "8px 16px", background: "#20B2AA", border: "1px solid #20B2AA", color: "white" }}> {events[current].category}
+              </div>
             </div>
             <div className={`${contentClass} rounded-b-[24px] p-6 flex flex-col gap-3`} style={cardStyle}>
               <p className="text-[#7A7A7A] text-xs">{events[current].type} • {events[current].date}</p>
@@ -194,7 +215,7 @@ export function NewsEvents({
           </div>
           <div className="flex items-center justify-between gap-3">
             <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowLeft size={20} /></button>
-            <Link href="/events" className="text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 flex items-center justify-center " style={{ width: "144px", height: "52px", }}>View all</Link>
+            <Link href="/events" className="text-[#9E2016] text-md font-medium border border-[#9E2016] rounded-[65px] hover:bg-[#9E2016] hover:!text-white transition-all duration-200 flex items-center justify-center" style={{ width: "144px", height: "52px" }}>View all</Link>
             <button onClick={next} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowRight size={20} /></button>
           </div>
         </div>

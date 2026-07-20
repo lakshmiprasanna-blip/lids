@@ -1,9 +1,8 @@
 "use client";
-import { use, useState, useEffect } from "react";
+import { use, useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ArrowRight, ArrowLeft, X, Search, ChevronDown } from "lucide-react";
 import { courses } from "@/app/data/courses";
-import CTABanner from "@/components/CTABanner";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 import FAQs from "@/components/FAQs";
 
@@ -30,7 +29,7 @@ function HODCard({ hod }) {
           <Image src={hod.image} alt={hod.name || "HOD"} fill className="object-cover object-top" />
         </div>
         <h4 className="!text-white font-semibold text-lg">HOD Message</h4>
-        <p style={{ color: "rgba(255,255,255,0.92)", fontSize: "15px", lineHeight: "1.7" }}>{hod.message}</p>
+        <p style={{ color: "rgba(255,255,255,0.92)", fontSize: "16px", lineHeight: "1.7" }}>{hod.message}</p>
       </div>
 
       {/* Desktop — unchanged */}
@@ -47,10 +46,11 @@ function HODCard({ hod }) {
     </>
   );
 }
+
 function DataTable({ data, withViewBtn }) {
   return (
     <div className="rounded-2xl overflow-x-auto" style={{ border: "1px solid #E5F3F2" }}>
-      <table className="w-full border-collapse text-[15px] min-w-[500px]">
+      <table className="w-full border-collapse text-[16px] min-w-[500px]">
         <thead>
           <tr style={{ background: "#20B2AA" }}>
             {data.headers.map((h, i) => <th key={i} className="text-white font-medium px-4 py-3 text-left whitespace-nowrap" style={{ borderRight: i !== data.headers.length - 1 ? "1px solid #FAFBFD" : "none" }}>{h}</th>)}
@@ -71,21 +71,22 @@ function DataTable({ data, withViewBtn }) {
     </div>
   );
 }
+
 function CardGrid({ items, current, cols = 3, h = "280px" }) {
   return (
     <>
-<div className="md:hidden grid gap-3" style={{ gridTemplateColumns: "1fr" }}>
-  {items.slice(current, current + 1).map((item, i) => (
-    <div key={i} className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E5F3F2" }}>
-      <div className="relative w-full" style={{ height: "240px" }}>
-        <Image src={item.image ?? item} alt={item.name ?? `img ${i}`} fill className="object-cover" />
+      <div className="md:hidden grid gap-3" style={{ gridTemplateColumns: "1fr" }}>
+        {items.slice(current, current + 1).map((item, i) => (
+          <div key={i} className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E5F3F2" }}>
+            <div className="relative w-full" style={{ height: "240px" }}>
+              <Image src={item.image ?? item} alt={item.name ?? `img ${i}`} fill className="object-cover" />
+            </div>
+            {item.name && <div className="px-4 py-3 bg-white"><p className="text-[#1A1A1A] font-semibold text-[16px]">{item.name}</p><p className="text-[#6B6B6B] text-[14px]">{item.dept}</p></div>}
+          </div>
+        ))}
       </div>
-      {item.name && <div className="px-4 py-3 bg-white"><p className="text-[#1A1A1A] font-semibold text-[16px]">{item.name}</p><p className="text-[#6B6B6B] text-[14px]">{item.dept}</p></div>}
-    </div>
-  ))}
-</div>
       {/* Desktop — unchanged */}
-      <div className={`hidden md:grid grid-cols-${cols} gap-3`}>
+      <div className="hidden md:grid gap-3" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
         {items.slice(current, current + cols * (h === "180px" ? 2 : 1)).map((item, i) => (
           <div key={i} className="rounded-2xl overflow-hidden" style={{ border: "1px solid #E5F3F2" }}>
             <div className="relative w-full" style={{ height: h }}>
@@ -119,7 +120,7 @@ function StatsCarousel({ stats }) {
         </div>
       </div>
       {/* Desktop: all stats */}
-      <div className="hidden md:grid" style={{ gridTemplateColumns: `repeat(${stats.length}, 1fr)`, borderRadius: "16px", border: "2px solid #E5F3F2A1", padding: "28px 32px", background: "#FFFFFF", boxShadow: "0px 6px 6px 0px #EBFDFF33, 0px 13px 8px 0px #C9F9FF33", gap: "20px" }}>
+      <div className="hidden md:grid" style={{ gridTemplateColumns: `repeat(${stats.length}, 1fr)`, borderRadius: "16px", border: "2px solid #E5F3F2A1", padding: "28px 32px", background: "#FFFFFF", boxShadow: "inset 0 0 40px 10px rgba(207, 239, 237, 0.9)", gap: "20px" }}>
         {stats.map((stat, i) => (
           <div key={i} className="flex flex-col items-center text-center" style={{ borderRight: i !== stats.length - 1 ? "1px solid #C8EDED" : "none" }}>
             <p className="font-bold text-4xl mb-1" style={{ color: "#107B71" }}>{stat.value}</p>
@@ -134,42 +135,45 @@ function StatsCarousel({ stats }) {
 export default function CoursePage({ params }) {
   const { slug } = use(params);
   const course = courses[slug];
-  const [activeLink, setActiveLink] = useState("Overview");
+
+  // activeLink now stores the target index (-1 = overview / hero block)
+  const [activeLink, setActiveLink] = useState(-1);
   const [activeFilter, setActiveFilter] = useState(true);
   const [indexes, setIndexes] = useState({});
+
+  const overviewRef = useRef(null);
+  const sectionRefs = useRef([]);
 
   const getIdx = (i) => indexes[i] ?? 0;
   const setIdx = (i, val) => setIndexes(p => ({ ...p, [i]: val }));
   const getStep = (s) => s.gallery ? 6 : s.achievements ? 3 : 1;
   const getMax = (s) => (s.gallery?.length ?? s.achievements?.length ?? s.carousel?.length ?? 1) - getStep(s);
+  const getMobileMax = (s) => (s.gallery?.length ?? s.achievements?.length ?? s.carousel?.length ?? 1) - 1;
   const hasArrows = (s) => s.carousel || s.achievements || s.gallery;
+
+  const scrollToTarget = (target) => {
+    setActiveLink(target);
+    const el = target === -1 ? overviewRef.current : sectionRefs.current[target];
+    if (!el) return;
+    const headerOffset = 100; // adjust to match sticky search bar height + spacing
+    const top = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
 
   if (!course) return <div className="container py-20">Course not found.</div>;
 
   return (
     <main className="bg-white">
-      {/* <CTABanner label="Academics / Courses Offered" title="A Legacy of Excellence in Education and Social Responsibility" mobileImage="/assets/coursedetail-banner.webp" desktopImage="/assets/coursedetail-banner.webp" /> */}
- {/* <CTABanner
-  label="Research Publications"
-  title="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
-  mobileImage="/assets/research-banner.webp"
-  desktopImage="/assets/research-banner.webp"
-  labelClassName="!text-[56px] font-medium [font-family:'Plus_Jakarta_Sans',sans-serif]"
-  titleClassName="!text-[18px] !font-[400] [font-family:'Inter',sans-serif]!"
-  titleWidth="58rem"
-  imageStyle={{
-    transform: "scale(1.2)",
-  }}
-/> */}
-<DentalLegacyCTA
-  align="center"
-  title="Academic/Courses Offered/BDS"
-  description="A Legacy of Excellence in Education and  Social Responsibility"
-  image="/assets/coursedetail-banner.webp"
-  showButton={false}
-  titleClassName="!text-[16px] md:!text-[16px] [font-family:'Inter',sans-serif]! font-bold"
-  descriptionClassName="max-w-5xl !text-[32px] md:!text-[48px] [font-family:'Plus_Jakarta_Sans',sans-serif] font-semibold "
-/>
+      <DentalLegacyCTA
+        align="center"
+        title="Academic/Courses Offered/BDS"
+        description="A Legacy of Excellence in Education and Social Responsibility"
+        image="/assets/coursedetail-banner.webp"
+        showButton={false}
+        titleClassName="!text-[16px] md:!text-[16px] [font-family:'Inter',sans-serif]! font-bold"
+        descriptionClassName="max-w-5xl !text-[32px] md:!text-[48px] [font-family:'Plus_Jakarta_Sans',sans-serif] font-semibold "
+      />
+
       {/* SEARCH BAR */}
       <div className="w-full py-3 px-4" style={{ background: "#107B71" }}>
         <div className="mx-auto flex items-center justify-center gap-3 flex-wrap" style={{ maxWidth: "1420px", minHeight: "48px" }}>
@@ -196,57 +200,59 @@ export default function CoursePage({ params }) {
           </div>
           <div className="flex flex-col bg-white" style={{ borderRadius: "0 0 18px 18px" }}>
             {course.sidebarLinks.map((link, i) => (
-              <button key={link} onClick={() => setActiveLink(link)}
-                className={`w-full text-left px-5 py-4 text-[14px] flex items-center justify-between transition-all duration-200 ${i !== course.sidebarLinks.length - 1 ? "border-b border-[#F0F0F0]" : ""} ${activeLink === link ? "text-[#20B2AA] font-medium border-l-4 border-l-[#20B2AA] bg-[#F5FFFE]" : "text-[#6B6B6B] border-l-4 border-l-transparent hover:text-[#20B2AA]"}`}>
-                {link}
-                {activeLink === link && <ArrowRight size={14} className="shrink-0 text-[#20B2AA]" />}
+              <button
+                key={link.label}
+                onClick={() => scrollToTarget(link.target)}
+                className={`w-full text-left px-5 py-4 text-[14px] flex items-center justify-between transition-all duration-200 ${
+                  i !== course.sidebarLinks.length - 1 ? "border-b border-[#F0F0F0]" : ""
+                } ${
+                  activeLink === link.target
+                    ? "text-[#20B2AA] font-medium border-l-4 border-l-[#20B2AA] bg-[#F5FFFE]"
+                    : "text-[#6B6B6B] border-l-4 border-l-transparent hover:text-[#20B2AA]"
+                }`}
+              >
+                {link.label}
+                {activeLink === link.target && <ArrowRight size={14} className="shrink-0 text-[#20B2AA]" />}
               </button>
             ))}
           </div>
         </aside>
 
-        {/* MAIN CONTENT */}
         <div className="flex-1 min-w-0 flex flex-col gap-8">
-
-          {/* Title block */}
-          <div>
+          <div ref={overviewRef}>
             <h2 className="text-[#1A1A1A] font-semibold text-3xl md:text-5xl mb-2">{course.title}</h2>
-            <p className="text-[#333333] font-medium text-[16px] mb-2">{course.tagline}</p>
-            <p className="text-[#656C7B] text-[16px] leading-relaxed mb-5">{course.desc}</p>
+            <p className="text-[#333333] font-medium text-[18px] mb-2">{course.tagline}</p>
+            <p className="text-[#656C7B] text-[18px] leading-relaxed mb-5">{course.desc}</p>
             <div className="relative w-full h-[220px] md:h-[520px] rounded-xl overflow-hidden">
               <Image src={course.image} alt={course.title} fill className="object-cover" />
               <div className="absolute inset-0 rounded-xl border-[5px] border-white/40 pointer-events-none" />
             </div>
           </div>
 
-          {/* Stats */}
           <StatsCarousel stats={course.stats} />
 
-          {/* Sections */}
           {course.sections.map((section, i) => (
-  <div key={i} className="flex flex-col gap-3">
-    
-    {/* Heading — arrows only on desktop */}
-    <div className="flex items-center justify-between gap-4">
-      <h3 className="text-[#1A1A1A] font-semibold flex items-baseline gap-2" style={{ fontSize: "24px" }}>
-        <span>{i + 1}.</span> {section.title}
-      </h3>
-      {hasArrows(section) && (
-        <div className="hidden md:flex gap-2 shrink-0">
-          <button onClick={() => setIdx(i, Math.max(0, getIdx(i) - getStep(section)))} className="w-8 h-8 rounded-full flex items-center justify-center" style={{ border: "1.5px solid #20B2AA", color: "#20B2AA", background: "white" }}><ArrowLeft size={15} /></button>
-          <button onClick={() => setIdx(i, Math.min(getMax(section), getIdx(i) + getStep(section)))} className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "#20B2AA", color: "white" }}><ArrowRight size={16} /></button>
-        </div>
-      )}
-    </div>
+            <div key={i} ref={el => (sectionRefs.current[i] = el)} className="flex flex-col gap-3">
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="text-[#1A1A1A] font-semibold flex items-baseline gap-2" style={{ fontSize: "32px" }}>
+                  <span>{i + 1}.</span> {section.title}
+                </h3>
+                {hasArrows(section) && (
+                  <div className="hidden md:flex gap-2 shrink-0">
+                    <button onClick={() => setIdx(i, Math.max(0, getIdx(i) - getStep(section)))} className="w-8 h-8 rounded-full flex items-center justify-center cursor-pointer" style={{ border: "1.5px solid #20B2AA", color: "#20B2AA", background: "white" }}><ArrowLeft size={15} /></button>
+                    <button onClick={() => setIdx(i, Math.min(getMax(section), getIdx(i) + getStep(section)))} className="w-8 h-8 rounded-full flex items-center justify-center cursor-pointer" style={{ background: "#20B2AA", color: "white" }}><ArrowRight size={16} /></button>
+                  </div>
+                )}
+              </div>
 
-              {section.content && section.content.split("\n").map((p, j) => <p key={j} className="text-[#333333] text-[16px] leading-relaxed">{p}</p>)}
+              {section.content && section.content.split("\n").map((p, j) => <p key={j} className="text-[#333333] text-[18px] leading-relaxed">{p}</p>)}
 
               {section.highlights && (
                 <div>
-                  <p className="text-[#333333] font-semibold text-[16px] mb-2">The program focuses on:</p>
+                  <p className="text-[#333333] font-semibold text-[18px] mb-2">The program focuses on:</p>
                   <ul className="flex flex-col gap-1.5">
                     {section.highlights.map((h, j) => (
-                      <li key={j} className="text-[#656C7B] text-[16px] flex items-center gap-2">
+                      <li key={j} className="text-[#656C7B] text-[18px] flex items-center gap-2">
                         <span className="w-1 h-1 rounded-full bg-[#656C7B] shrink-0" />{h}
                       </li>
                     ))}
@@ -254,20 +260,35 @@ export default function CoursePage({ params }) {
                 </div>
               )}
 
-              {section.table      && <DataTable data={section.table} withViewBtn={false} />}
-              {section.carousel   && <ImageCarousel images={section.carousel} current={getIdx(i)} setCurrent={val => setIdx(i, val)} />}
-              {section.hod        && <HODCard hod={section.hod} />}
-              {section.faculty    && <DataTable data={section.faculty} withViewBtn={false} />}
+              {section.table && <DataTable data={section.table} withViewBtn={false} />}
+              {section.carousel && <ImageCarousel images={section.carousel} current={getIdx(i)} setCurrent={val => setIdx(i, val)} />}
+              {section.hod && <HODCard hod={section.hod} />}
+              {section.faculty && <DataTable data={section.faculty} withViewBtn={false} />}
               {section.achievements && <CardGrid items={section.achievements} current={getIdx(i)} cols={3} h="280px" />}
-              {section.research   && <DataTable data={section.research} withViewBtn={true} />}
-              {section.gallery    && <CardGrid items={section.gallery} current={getIdx(i)} cols={3} h="180px" />}
-              {section.faqs       && <FAQs faqs={section.faqs} bare />}
-             {hasArrows(section) && (
-  <div className="md:hidden flex items-center justify-center gap-3">
-    <button onClick={() => setIdx(i, Math.max(0, getIdx(i) - getStep(section)))} className="w-9 h-9 rounded-full flex items-center justify-center" style={{ border: "1.5px solid #20B2AA", color: "#20B2AA", background: "white" }}><ArrowLeft size={16} /></button>
-    <button onClick={() => setIdx(i, Math.min(getMax(section), getIdx(i) + getStep(section)))} className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: "#20B2AA", color: "white" }}><ArrowRight size={16} /></button>
-  </div>
-)}
+              {section.research && <DataTable data={section.research} withViewBtn={true} />}
+              {section.gallery && <CardGrid items={section.gallery} current={getIdx(i)} cols={3} h="180px" />}
+              {section.faqs && <FAQs faqs={section.faqs} bare />}
+
+              {hasArrows(section) && (
+                <div className="md:hidden flex items-center justify-center gap-3">
+                  <button
+                    onClick={() => setIdx(i, Math.max(0, getIdx(i) - 1))}
+                    disabled={getIdx(i) === 0}
+                    className="w-9 h-9 rounded-full flex items-center justify-center"
+                    style={{ border: "1.5px solid #20B2AA", color: "#20B2AA", background: "white", opacity: getIdx(i) === 0 ? 0.4 : 1 }}
+                  >
+                    <ArrowLeft size={16} />
+                  </button>
+                  <button
+                    onClick={() => setIdx(i, Math.min(getMobileMax(section), getIdx(i) + 1))}
+                    disabled={getIdx(i) >= getMobileMax(section)}
+                    className="w-9 h-9 rounded-full flex items-center justify-center"
+                    style={{ background: "#20B2AA", color: "white", opacity: getIdx(i) >= getMobileMax(section) ? 0.4 : 1 }}
+                  >
+                    <ArrowRight size={16} />
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </div>

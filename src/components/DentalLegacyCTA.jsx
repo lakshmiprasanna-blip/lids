@@ -54,21 +54,7 @@ export default function DentalLegacyCTA({
           {description}
         </p>
         {showButton && (
-          <Link
-            href={buttonHref}
-            className="hover:opacity-90 max-w-2xl transition-opacity duration-200 whitespace-nowrap"
-            style={{
-              backgroundColor: "#9E2016",
-              color: "white",
-              fontSize: "14px",
-              fontWeight: 500,
-              padding: "16px 42px",
-              borderRadius: "65px",
-              boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset",
-            }}
-          >
-            {buttonText}
-          </Link>
+       <Link href={buttonHref} className="max-w-2xl whitespace-nowrap !text-white text-base font-medium px-[42px] py-4 rounded-[65px] shadow-[0px_4px_4px_0px_#0000001A,0px_6px_6px_0px_#1A1A1A08,0px_13px_8px_0px_#1A1A1A05,0px_22px_9px_0px_#1A1A1A03,0px_35px_10px_0px_#1A1A1A00,0px_2px_12px_0px_#FFFFFF40_inset] bg-[#9E2016] hover:opacity-90 transition-opacity duration-200">{buttonText}</Link>
         )}
       </div>
     </section>

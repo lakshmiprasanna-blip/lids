@@ -1,23 +1,21 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-export default function OutlineBtn({ href = "/", children = "View all", width = "160px", height = "48px" }) {
+export default function OutlineBtn({
+  href = "/",
+  children = "View all",
+  width = "160px",
+  height = "56px",
+  icon = false,
+}) {
   return (
     <Link
       href={href}
-      className="inline-flex items-center justify-center hover:bg-[#9E2016] hover:!text-white transition-all duration-200 whitespace-nowrap"
-      style={{
-        width,
-        height,
-        border: "1px solid #9E2016",
-        borderRadius: "65px",
-        color: "#9E2016",
-        fontSize: "16px",
-        fontWeight: 600,
-        gap: "10px",
-         boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset",
-      }}
+      style={{ width, height }}
+      className="inline-flex items-center justify-center gap-[10px] whitespace-nowrap border border-[#9E2016] rounded-[65px] text-[#9E2016] text-base font-semibold shadow-[0px_4px_4px_0px_#0000001A,0px_6px_6px_0px_#1A1A1A08,0px_13px_8px_0px_#1A1A1A05,0px_22px_9px_0px_#1A1A1A03,0px_35px_10px_0px_#1A1A1A00,0px_2px_12px_0px_#FFFFFF40_inset] hover:bg-[#9E2016] hover:!text-white transition-all duration-200"
     >
       {children}
+      {icon && <ArrowRight size={16} />}
     </Link>
   );
 }

@@ -11,6 +11,7 @@ export const courses = {
     ],
     sections: [
       {
+        // index 0
         title: "About the BDS Program",
         content: `The Bachelor of Dental Surgery (BDS) at Lenora Institute of Dental Sciences is a structured undergraduate program that integrates foundational medical sciences with hands-on dental training.\nFrom the first year itself, students are exposed to a blend of theory, pre-clinical laboratory training, and progressive clinical responsibilities.`,
         highlights: [
@@ -22,6 +23,7 @@ export const courses = {
         ],
       },
       {
+        // index 1
         title: "Program Structure",
         content: `The Bachelor of Dental Surgery (BDS) at Lenora Institute of Dental Sciences is a structured undergraduate program that integrates foundational medical sciences with hands-on dental training.\nFrom the first year itself, students are exposed to a blend of theory, pre-clinical laboratory training, and progressive clinical responsibilities.`,
         table: {
@@ -36,6 +38,7 @@ export const courses = {
         },
       },
       {
+        // index 2
         title: "Infrastructure & Facilities",
         content: "Students are trained using modern dental technologies aligned with current industry standards.",
         carousel: [
@@ -45,6 +48,7 @@ export const courses = {
         ],
       },
       {
+        // index 3
         title: "Faculty & Mentorship",
         content: "The BDS program is guided by experienced faculty members who focus on mentorship rather than only lectures.",
         hod: {
@@ -54,82 +58,87 @@ export const courses = {
         },
       },
       {
-  title: "Our Faculty",
-  content: "",
-  faculty: {
-    headers: ["S.no", "Faculty Name", "Key Subjects", "Experience"],
-    rows: [
-      ["01", "Full name", "Anatomy, Physiology, Biochemistry, Dental Anatomy", "Years of experience"],
-      ["02", "Full name", "Pharmacology, Pathology, Microbiology, Dental Materials", "Years of experience"],
-      ["03", "Full name", "Medicine, Surgery, Oral Pathology", "Years of experience"],
-      ["04", "Full name", "All Major Dental Specialties", "Years of experience"],
-      ["05", "Full name", "Multi-department rotations", "Years of experience"],
+        // index 4
+        title: "Our Faculty",
+        content: "",
+        faculty: {
+          headers: ["S.no", "Faculty Name", "Key Subjects", "Experience"],
+          rows: [
+            ["01", "Full name", "Anatomy, Physiology, Biochemistry, Dental Anatomy", "Years of experience"],
+            ["02", "Full name", "Pharmacology, Pathology, Microbiology, Dental Materials", "Years of experience"],
+            ["03", "Full name", "Medicine, Surgery, Oral Pathology", "Years of experience"],
+            ["04", "Full name", "All Major Dental Specialties", "Years of experience"],
+            ["05", "Full name", "Multi-department rotations", "Years of experience"],
+          ],
+        },
+      },
+      {
+        // index 5
+        title: "Student Achievements",
+        content: "",
+        achievements: [
+          { name: "Student name", dept: "Department", image: "/assets/student1.webp" },
+          { name: "Student name", dept: "Department", image: "/assets/student1.webp" },
+          { name: "Student nam", dept: "Department", image: "/assets/student1.webp" },
+          { name: "Student name", dept: "Department", image: "/assets/student1.webp" },
+          { name: "Studet nam", dept: "Department", image: "/assets/student1.webp" },
+        ],
+      },
+      {
+        // index 6
+        title: "Research & Academic Development",
+        content: "With over 1,700+ institutional research publications, students are exposed to a strong academic culture.",
+        research: {
+          headers: ["S.no", "Title", "Publication Year", "Research Paper"],
+          rows: [
+            ["01", "Foundation Sciences", "Anatomy, Physiology, Biochemistry, Dental Anatomy", null],
+            ["02", "Pre-Clinical", "Pharmacology, Pathology, Microbiology, Dental Materials", null],
+            ["01", "Foundation Sciences", "Anatomy, Physiology, Biochemistry, Dental Anatomy", null],
+            ["02", "Pre-Clinical", "Pharmacology, Pathology, Microbiology, Dental Materials", null],
+            ["01", "Foundation Sciences", "Anatomy, Physiology, Biochemistry, Dental Anatomy", null],
+          ],
+        },
+      },
+      {
+        // index 7
+        title: "Our Gallery/ Infrastructure",
+        content: "",
+        gallery: [
+          "/assets/gallery1.webp",
+          "/assets/gallery2.webp",
+          "/assets/newsevent1.webp",
+          "/assets/gallery4.webp",
+          "/assets/gallery5.webp",
+          "/assets/gallery6.webp",
+          "/assets/gallery4.webp",
+          "/assets/gallery5.webp",
+          "/assets/gallery6.webp",
+          "/assets/gallery1.webp",
+          "/assets/gallery2.webp",
+          "/assets/newsevent1.webp",
+        ],
+      },
+      {
+        // index 8
+        title: "Frequently Asked Questions",
+        faqs: [
+          { question: "What facilities are available for students at LIDS?", answer: "LIDS provides state-of-the-art facilities including modern dental labs, digital radiography, CBCT scanners, a well-stocked library, sports facilities, hostel accommodation, cafeteria, and 24/7 surveillance." },
+          { question: "Does LIDS provide hostel facilities for students?", answer: "Yes, LIDS provides separate hostel facilities for male and female students with all basic amenities including Wi-Fi, mess, and 24/7 security." },
+          { question: "Does LIDS offer postgraduate dental programs?", answer: "Yes, LIDS offers MDS programs in various specializations and PG Diploma programs designed for dental professionals seeking advanced expertise." },
+          { question: "What career opportunities are available after completing BDS?", answer: "BDS graduates from LIDS have gone on to work in hospitals, private practices, research institutions, and public health organizations across India and abroad." },
+        ],
+      },
     ],
-  },
-},
-{
-  title: "Student Achievements",
-  content: "",
-  achievements: [
-    { name: "Student name", dept: "Department", image: "/assets/student1.webp" },
-    { name: "Student name", dept: "Department", image: "/assets/student1.webp" },
-    { name: "Student name", dept: "Department", image: "/assets/student1.webp" },
-    { name: "Student name", dept: "Department", image: "/assets/student1.webp" },
-    { name: "Student name", dept: "Department", image: "/assets/student1.webp" },
-  ],
-},
-{
-  title: "Research & Academic Development",
-  content: "With over 1,700+ institutional research publications, students are exposed to a strong academic culture.",
-  research: {
-    headers: ["S.no", "Title", "Publication Year", "Research Paper"],
-    rows: [
-      ["01", "Foundation Sciences", "Anatomy, Physiology, Biochemistry, Dental Anatomy", null],
-      ["02", "Pre-Clinical", "Pharmacology, Pathology, Microbiology, Dental Materials", null],
-      ["01", "Foundation Sciences", "Anatomy, Physiology, Biochemistry, Dental Anatomy", null],
-      ["02", "Pre-Clinical", "Pharmacology, Pathology, Microbiology, Dental Materials", null],
-      ["01", "Foundation Sciences", "Anatomy, Physiology, Biochemistry, Dental Anatomy", null],
-    ],
-  },
-},
-{
-  title: "Our Gallery/ Infrastructure",
-  content: "",
-  gallery: [
-    "/assets/gallery1.webp",
-    "/assets/gallery2.webp",
-    "/assets/newsevent1.webp",
-    "/assets/gallery4.webp",
-    "/assets/gallery5.webp",
-    "/assets/gallery6.webp",
-    "/assets/gallery4.webp",
-    "/assets/gallery5.webp",
-    "/assets/gallery6.webp",
-    "/assets/gallery1.webp",
-    "/assets/gallery2.webp",
-    "/assets/newsevent1.webp",
-  ],
-},
-{
-  title: "Frequently Asked Questions",
-  faqs: [
-   { question: "What facilities are available for students at LIDS?", answer: "LIDS provides state-of-the-art facilities including modern dental labs, digital radiography, CBCT scanners, a well-stocked library, sports facilities, hostel accommodation, cafeteria, and 24/7 surveillance." },
-  { question: "Does LIDS provide hostel facilities for students?", answer: "Yes, LIDS provides separate hostel facilities for male and female students with all basic amenities including Wi-Fi, mess, and 24/7 security." },
-  { question: "Does LIDS offer postgraduate dental programs?", answer: "Yes, LIDS offers MDS programs in various specializations and PG Diploma programs designed for dental professionals seeking advanced expertise." },
-  { question: "What career opportunities are available after completing BDS?", answer: "BDS graduates from LIDS have gone on to work in hospitals, private practices, research institutions, and public health organizations across India and abroad." },
-
-  ]
-},
-    ],
+    // target = index into `sections` above; -1 = hero/overview block at the top of the page
     sidebarLinks: [
-      "Overview",
-      "Program Structure",
-      "Clinical Training & Facilities",
-      "Faculty Directory",
-      "Research & Publications",
-      "Student Achievements",
-      "Infrastructure Gallery",
-      "FAQ's",
+      { label: "Overview", target: -1 },
+      { label: "Program Structure", target: 1 },
+      { label: "Clinical Training & Facilities", target: 2 },
+      { label: "Faculty Directory", target: 3 },
+      { label: "Research & Publications", target: 6 },
+      { label: "Student Achievements", target: 5 },
+      { label: "Infrastructure Gallery", target: 7 },
+      { label: "FAQ's", target: 8 },
     ],
   },
   "mds": {
@@ -144,6 +153,7 @@ export const courses = {
     ],
     sections: [
       {
+        // index 0
         title: "About the MDS Program",
         content: `The MDS program offers advanced training in dental specialisations, combining rigorous academic coursework with intensive clinical exposure and research opportunities.`,
         highlights: [
@@ -155,13 +165,13 @@ export const courses = {
       },
     ],
     sidebarLinks: [
-      "Overview",
-      "Program Structure",
-      "Specialisations",
-      "Faculty Directory",
-      "Research & Publications",
-      "Student Achievements",
-      "FAQ's",
+      { label: "Overview", target: -1 },
+      { label: "Program Structure", target: 0 },
+      { label: "Specialisations", target: 0 },
+      { label: "Faculty Directory", target: 0 },
+      { label: "Research & Publications", target: 0 },
+      { label: "Student Achievements", target: 0 },
+      { label: "FAQ's", target: 0 },
     ],
   },
   "pg-diploma": {
@@ -176,6 +186,7 @@ export const courses = {
     ],
     sections: [
       {
+        // index 0
         title: "About PG Diploma Programs",
         content: `PG Diploma programs at LIDS are designed for working dental professionals who want to gain specialized skills in a shorter, more focused timeframe.`,
         highlights: [
@@ -187,11 +198,11 @@ export const courses = {
       },
     ],
     sidebarLinks: [
-      "Overview",
-      "Program Structure",
-      "Clinical Training",
-      "Faculty Directory",
-      "FAQ's",
+      { label: "Overview", target: -1 },
+      { label: "Program Structure", target: 0 },
+      { label: "Clinical Training", target: 0 },
+      { label: "Faculty Directory", target: 0 },
+      { label: "FAQ's", target: 0 },
     ],
   },
 };

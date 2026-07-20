@@ -9,15 +9,15 @@ export default function CTABanner({
   titleClassName,
   labelClassName,
   titleWidth,
-  imageStyle = { filter: "blur(0px)", transform: "scale(1.8)", zIndex: 0, objectPosition: "center 230%" },
+  imageStyle = { filter: "blur(0px)", transform: "scale(1.8)", zIndex: 0, objectPosition: "center 130%" },
   mobileImageStyle = { objectFit: "cover", objectPosition: "center 120%", filter: "brightness(1.05)" }
 }) {
+  
   const isLeft = align === "left";
 
   return (
     <>
-      {/* Mobile */}
-      <section className="md:hidden relative w-full overflow-hidden" style={{ height: "440px" }}>
+      <section className="md:hidden !py-0 relative w-full overflow-hidden" style={{ height: "440px" }}>
   <img
     src={mobileImage}
     alt={title}
@@ -46,8 +46,8 @@ export default function CTABanner({
           className={`relative flex flex-col px-6 w-full max-w-7xl mx-auto gap-2 ${isLeft ? "items-start" : "items-center text-center"}`}
           style={{ zIndex: 2 }}
         >
-         <p className={`!text-white font-semibold mb-1 font-[var(--font-sans)] ${labelClassName || "!text-[18px]"}`}>{label}</p>
-<h3 className={`font-semibold !text-white [font-family:'Inter',sans-serif] ${titleClassName || ""}`} style={{ width: titleWidth }}>
+         <p className={`!text-white font-semibold mb-1 font-[var(--font-sans)] ${labelClassName || "!text-[16px]"}`}>{label}</p>
+<h3 className={`!text-[56px] font-semibold !text-white [font-family:'Inter',sans-serif] ${titleClassName || ""}`} style={{ width: titleWidth }}>
   {title}
 </h3>
         </div>

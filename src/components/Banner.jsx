@@ -59,50 +59,32 @@ export default function Banner() {
   }, [hasAnimated]);
 
   return (
-    <section ref={sectionRef} className="relative w-full">
-
-      <div className="relative w-full h-[500px] lg:h-[600px] overflow-hidden">
-        <Image src="/assets/lids-banner.webp" alt="LIDS Banner" fill priority className="object-cover" style={{ objectPosition: "center 40%" }} />
+    <section ref={sectionRef} className="relative w-full !py-0">
+     <div className="relative w-full h-[500px] md:h-[560px] lg:h-[620px] xl:h-[680px] 2xl:h-[640px] overflow-hidden">
+    <Image src="/assets/lids-banner.webp" alt="LIDS Banner" fill priority className="object-cover" style={{ objectPosition: "center 100%" }}/>
+    </div>
+    <div className="w-full h-[160px] overflow-hidden" style={{backgroundColor: "rgba(32, 178, 170, 0.8)",  backdropFilter: "blur(9.6px)", WebkitBackdropFilter: "blur(9.6px)", }}>
+     <div className="flex lg:hidden h-full items-center justify-center flex-col gap-1 text-center">
+  <span className="text-white text-4xl font-bold leading-none transition-all duration-500">{stats[current].number}
+  </span>
+  <span className="text-white text-md opacity-90 whitespace-nowrap"> {stats[current].label} </span>
       </div>
-
-<div
-  className="w-full h-[160px] overflow-hidden"
-  style={{
-    backgroundColor: "rgba(32, 178, 170, 0.8)", // semi-transparent
-    backdropFilter: "blur(9.6px)",
-    WebkitBackdropFilter: "blur(9.6px)",
-  }}
->
-
-        {/* Mobile: single stat auto-cycling */}
-        <div className="flex md:hidden h-full items-center justify-center flex-col gap-1 text-center">
-          <span className="text-white text-4xl font-bold leading-none transition-all duration-500">
-            {stats[current].number}
-          </span>
-          <span className="text-white text-md opacity-90 whitespace-nowrap">
-            {stats[current].label}
-          </span>
-        </div>
-
-        {/* Desktop: all stats in a row */}
-        <div className="hidden md:flex container items-center justify-between w-full h-full">
-          {stats.map((stat, index) => (
-            <div key={stat.label} className="flex items-center">
-              <div className="flex flex-col items-center gap-2 text-center px-1 md:px-3 xl:px-8">
-                <span className="text-white text-[40px] xl:text-[40px] font-bold leading-none">
-                  {formatIndianNumber(counts[index])}{stat.suffix}
-                </span>
-                <span className="text-white text-md xl:text-md opacity-90 whitespace-nowrap">{stat.label}</span>
-              </div>
-              {index < stats.length - 1 && (
-                <div className="shrink-0" style={{ width: "1px", height: "30px", backgroundColor: "#E6E6E6" }} />
-              )}
-            </div>
-          ))}
-        </div>
-
+      <div className="hidden lg:flex container items-center justify-between w-full h-full">
+  {stats.map((stat, index) => (
+    <div key={stat.label} className="flex items-center">
+      <div className="flex flex-col items-center gap-2 text-center px-1 md:px-3 xl:px-8">
+        <span className="font-sans text-white text-[36px] xl:text-[48px] font-bold leading-none">
+          {formatIndianNumber(counts[index])}{stat.suffix}
+        </span>
+        <span className="text-white text-md xl:text-md opacity-90 whitespace-nowrap">{stat.label}</span>
       </div>
-
+      {index < stats.length - 1 && (
+        <div className="shrink-0" style={{ width: "1px", height: "30px", backgroundColor: "#E6E6E6" }} />
+      )}
+    </div>
+  ))}
+</div>
+      </div>
     </section>
   );
 }

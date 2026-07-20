@@ -68,14 +68,17 @@ const next = () => setActiveIndex((p) => (p === imgs.length - 1 ? 0 : p + 1));
   return (
     <section className="relative w-full overflow-hidden bg-white py-10">
       {showBlob && (
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none ">
           <Blob style={{ top: 0, left: 0 }} />
           <Blob style={{ bottom: 0, right: 0 }} />
+          <div className="absolute pointer-events-none rounded-full xl:hidden" style={{ width: "180px", height: "180px", top: "10px", right: "-40px", background: "#CFEFED", filter: "blur(50px)", zIndex: 0 }} />
+    <div className="absolute pointer-events-none rounded-full xl:hidden" style={{ width: "171px", height: "229px", bottom: "60px", left: "-40px", background: "#CFEFED", filter: "blur(50px)", zIndex: 0 }} />
+
         </div>
       )}
 
       <div className="relative z-10 mb-10 px-6 text-center">
-        <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-3">{label}</p>
+        <p className="eyebrow-heading text-[#9E2016] text-md font-semibold uppercase mb-3">{label}</p>
         <h3 className="text-[#1A1A1A] font-semibold text-3xl md:text-4xl">{title}</h3>
         {subtitle && <p className="mt-4 text-[#7A7A7A] text-[18px] max-w-7xl md:mx-auto">{subtitle}</p>}
       </div>
@@ -86,7 +89,7 @@ const next = () => setActiveIndex((p) => (p === imgs.length - 1 ? 0 : p + 1));
           <Image src={imgs[activeIndex].src} alt={imgs[activeIndex].alt} fill className="object-cover pointer-events-none" draggable={false} />
           <div className="absolute inset-0 rounded-2xl border-2 border-white/40 pointer-events-none" />
         </div>
-   <div className="flex items-center justify-center gap-8 mt-2">
+   <div className="flex items-center justify-center gap-3 mt-2">
               <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowLeft size={20} /></button>
               <div className={`flex justify-center ${buttonClassName}`}><ExploreBtn /></div>
               <button onClick={next} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowRight size={20} /></button>

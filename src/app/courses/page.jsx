@@ -1,42 +1,24 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DentalPrograms from "@/components/DentalPrograms";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
+import { getPrograms } from "@/lib/getPrograms";
 
 const tabs = ["All Courses", "Under Graduate (U.G)", "Post Graduate (P.G)", "PG Diploma", "Certifications"];
 
-const dentalPrograms = [
-  {
-    slug: "bds",
-    title: "Bachelor of Dental Surgery (BDS)",
-    years: "5 years",
-    image: "/assets/BDS.webp",
-    desc: "Start your professional journey with our comprehensive BDS program, where foundational science meets advanced clinical practice.",
-  },
-  {
-    title: "Master of Dental Surgery (MDS)",
-    years: "3 years",
-    image: "/assets/MDS.webp",
-    desc: "Elevate your expertise with our MDS specialisations, designed for dentists aiming to achieve mastery in complex oral healthcare.",
-  },
-  {
-    title: "PG Diploma Programs",
-    years: "3 years",
-    image: "/assets/PG.webp",
-    desc: "Fast-track your career growth with our intensive PG Diploma programs, focusing on specialized clinical skills and the latest dental technologies.",
-  },
-];
-
 export default function CoursesPage() {
   const [active, setActive] = useState("All Courses");
+  const [programs, setPrograms] = useState([]);
+
+  useEffect(() => {
+    getPrograms().then(setPrograms);
+  }, []);
+
+  const filteredPrograms =
+    active === "All Courses" ? programs : programs.filter((p) => p.category === active);
 
   return (
     <main>
-      {/* <CTABanner
-        label="Academics / Courses Offered"
-        title="A Legacy of Excellence in Education and Social Responsibility"
-        mobileImage="/assets/about-mob.webp"
-      /> */}
       <DentalLegacyCTA
         align="center"
         title="Academics / Courses Offered"
@@ -84,7 +66,7 @@ export default function CoursesPage() {
       </div>
 
       {/* Cards — stacked on mobile, handled inside DentalPrograms */}
-      <DentalPrograms programs={dentalPrograms} showHeading={false} mobileStack={true} />
+      <DentalPrograms programs={filteredPrograms} showHeading={false} mobileStack={true} />
     </main>
   );
 }

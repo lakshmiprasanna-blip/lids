@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-
+import OutlineBtn from "./OutlineBtn";
 const reviews = [
   {
     quote: '"My journey at Lenora laid the foundation for my career in public health dentistry. The focus on community outreach, hands-on training, and research gave me the skills and confidence I needed. The guidance of my teachers and clinical exposure during my student days have been invaluable in my current role."',
@@ -38,7 +38,9 @@ const reviews = [
   },
 ];
 
-export default function AlumniStories() {
+export default function AlumniStories({
+  buttonText = "View all" ,
+}) {
   const trackRef = useRef(null);
   const [paused, setPaused] = useState(false);
   const [mobileSlide, setMobileSlide] = useState(0);
@@ -50,7 +52,7 @@ export default function AlumniStories() {
     <section className="w-full bg-white py-20 overflow-hidden">
       
       <div className="container text-center mb-16">
-        <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">ALUMNI STORIES</p>
+        <p className="eyebrow-heading text-[#9E2016] text-md font-semibold uppercase mb-4">ALUMNI STORIES</p>
         <h3 className="text-[#1A1A1A] font-semibold">Voices That Echo <br /> Through Generations</h3>
       </div>
 
@@ -109,6 +111,9 @@ export default function AlumniStories() {
           ))}
         </div>
       </div>
+  <div className="hidden md:flex items-center justify-center gap-10 p-10">
+  <OutlineBtn href="/facilities" width="159px" height="48px">{buttonText}</OutlineBtn>
+</div>
 
     <div className="md:hidden flex items-center justify-center gap-10 p-5">
             <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowLeft size={20} /></button>

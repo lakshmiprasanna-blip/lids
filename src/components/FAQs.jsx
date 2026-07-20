@@ -34,10 +34,18 @@ const FaqList = ({ faqs, columns, open, setOpen }) => (
   </div>
 );
 
-export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, imageAlt = "FAQ Image", bare = false }) {
-    const [open, setOpen] = useState(null);
- if (bare) return (
-    <div className="max-w-[700px]">
+export default function FAQs({
+  columns = 1,
+  faqs = defaultFaqs,
+  image = null,
+  imageAlt = "FAQ Image",
+  bare = false,
+  fullWidth = false,
+}) {
+  const [open, setOpen] = useState(null);
+
+  if (bare) return (
+    <div className={fullWidth ? "w-full" : "max-w-[700px]"}>
       <FaqList faqs={faqs} columns={columns} open={open} setOpen={setOpen} />
     </div>
   );
@@ -51,7 +59,7 @@ export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, im
         {image ? (
           <>
             <div className="lg:hidden flex flex-col gap-6">
-              <p className="text-[#9E2016] text-[18px] font-semibold uppercase">FAQs</p>
+              <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase">FAQs</p>
               <h3 className="text-[#1A1A1A] font-semibold">Frequently Asked Questions</h3>
               <div className="relative w-full h-[260px] rounded-2xl overflow-hidden">
                 <Image src={image} alt={imageAlt} fill className="object-cover object-center" />
@@ -60,7 +68,7 @@ export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, im
             </div>
             <div className="hidden lg:flex flex-row gap-12 items-start">
               <div className="flex-none" style={{ width: "700px" }}>
-                <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">FAQs</p>
+                <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4">FAQs</p>
                 <h3 className="text-[#1A1A1A] font-semibold mb-10">Frequently Asked Questions</h3>
                 <FaqList faqs={faqs} columns={columns} open={open} setOpen={setOpen} />
               </div>
@@ -74,10 +82,10 @@ export default function FAQs({ columns = 1, faqs = defaultFaqs, image = null, im
         ) : (
           <>
             <div className="text-center mb-12">
-              <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">FAQs</p>
+              <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4">FAQs</p>
               <h3 className="text-[#1A1A1A] font-semibold">Frequently Asked Questions</h3>
             </div>
-            <div className="max-w-[937px] mx-auto">
+            <div className={fullWidth ? "w-full" : "max-w-[937px] mx-auto"}>
               <FaqList faqs={faqs} columns={columns} open={open} setOpen={setOpen} />
             </div>
           </>

@@ -36,10 +36,12 @@ const mvvCards = [
 function StatusBadge({ status }) {
   const isPublished = status.startsWith("Published");
   const isOngoing = status.startsWith("Ongoing");
-  const color = isPublished ? "#20B2AA" : isOngoing ? "#F5A623" : "transparent";
-  const textColor = isPublished ? "white" : isOngoing ? "white" : "#20B2AA";
-  const border = (!isPublished && !isOngoing) ? "1px solid #20B2AA" : "none";
-  return (
+    const isCompleted = status.startsWith("Completed");
+   const color = isPublished ? "#20B2AA" : isOngoing ? "#FFF3CD" : isCompleted ? "#FFFFFF" : "transparent";
+   const textColor = isPublished ? "#FFFFFF" : isOngoing ? "#FEAC13" : isCompleted ? "#107B71" : "#20B2AA";
+ const border = isPublished ? "1px solid #20B2AA" : isOngoing ? "1px solid #FEAC1361" : isCompleted ? "1px solid #20B2AA" : "none";
+
+   return (
     <span className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap" style={{ background: color, color: textColor, border }}>
       {status}
     </span>
@@ -74,7 +76,7 @@ export default function ResearchPage() {
             <input value={search} onChange={e => setSearch(e.target.value)} type="text" placeholder="Search research papers, authors, departments..." className="text-sm text-[#3D3D3D] outline-none w-full bg-transparent placeholder:text-[#9A9A9A]" />
           </div>
           {[["Department", dept, setDept], ["Year", year, setYear], ["Research", type, setType]].map(([label, val, set]) => (
-            <button key={label} className="flex items-center gap-2 border border-white text-white text-sm px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-white hover:text-[#107B71] transition-all">
+            <button key={label} className="flex items-center gap-2 border border-white text-white text-md px-5 py-2.5 rounded-full whitespace-nowrap hover:bg-white hover:text-[#107B71] transition-all">
               {val} <ChevronDown size={14} />
             </button>
           ))}
@@ -104,9 +106,9 @@ export default function ResearchPage() {
             {["#", "Title/Description", "Status", "Department", "View"].map((h, i) => (
               <th
                 key={i}
-                className="text-white font-medium px-5 py-4 text-left text-[15px]"
+                className="text-white font-medium px-5 py-4 text-left text-[24px]"
                 style={{
-                  borderRight: i !== 4 ? "1px solid rgba(255,255,255,0.2)" : "none",
+                  borderRight: i !== 4 ? "1px solid #FFFFFF" : "none",
                   textAlign: i >= 2 ? "center" : "left",
                 }}
               >
@@ -118,20 +120,21 @@ export default function ResearchPage() {
         <tbody>
           {filtered.map((row, j) => (
             <tr key={j} style={{ background: j % 2 !== 0 ? "#E9F8F6E3" : "white", borderBottom: "1px solid #E5F3F2" }}>
-              <td className="px-5 py-4 text-[#3D3D3D] font-medium text-sm" style={{ borderRight: "1px solid #E5F3F2", width: "60px" }}>
+              <td className="px-5 py-4 text-[#3D3D3D] font-medium text-sm
+              " style={{ borderRight: "1px solid #E5F3F2", width: "60px" }}>
                 {row.id}
               </td>
-              <td className="px-5 py-4 text-[#232323] text-sm leading-relaxed" style={{ borderRight: "1px solid #E5F3F2", minWidth: "260px" }}>
+              <td className="px-5 py-4 text-[#333333] text-md leading-relaxed" style={{ borderRight: "1px solid #E5F3F2", minWidth: "260px" }}>
                 {row.title}
               </td>
               <td className="px-5 py-4 text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}>
                 <StatusBadge status={row.status} />
               </td>
-              <td className="px-5 py-4 text-[#3D3D3D] text-sm text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}>
+              <td className="px-5 py-4 text-[#232323] text-md text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}>
                 {row.dept}
               </td>
               <td className="px-5 py-4 text-center" style={{ width: "100px" }}>
-                <button className="px-5 py-1.5 rounded-full text-[#20B2AA] text-sm font-medium hover:bg-[#20B2AA] hover:text-white transition-all" style={{ border: "1.5px solid #20B2AA" }}>
+                <button className="px-5 py-1.5 rounded-full text-[#107B71] cursor-pointer text-sm font-medium hover:bg-[#20B2AA] hover:text-white transition-all" style={{ border: "1.5px solid #20B2AA" }}>
                   VIEW
                 </button>
               </td>

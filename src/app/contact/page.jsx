@@ -43,8 +43,7 @@ export default function ContactPage() {
         </div>
       </div>
     </section>
-  <FAQs columns={2} faqs={contactFaqs} />
-
+<FAQs columns={2} faqs={contactFaqs} fullWidth />
 <DentalLegacyCTA
   align="left"
  title={<>Ready to Shape<br />Your Future in Dentistry?</>}
