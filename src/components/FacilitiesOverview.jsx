@@ -73,7 +73,7 @@ export default function FacilitiesOverview({
         <div className="absolute rounded-full xl:hidden" style={{ width: "154px", height: "204px", top: "20px", left: "206px", background: blobColor, filter: "blur(82px)", zIndex: 0 }} />
   <div className="absolute rounded-full xl:hidden" style={{ width: "154px", height: "204px", bottom: "-100px", left: "-200px", background: blobColor, filter: "blur(120px)", zIndex: 0 }} />
         </div> */}
-        <div className={`${mobileAlignClass} relative z-10 mb-16`}>
+        <div className={`${mobileAlignClass} md:text-center relative z-10 mb-16`}>
   <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">{eyebrow}</p>
   <h3 className="text-[#1A1A1A] font-semibold">{heading}</h3>
   <p className="mt-4 text-[#333333] text-[18px] max-w-[1062px] mx-auto">{description}</p>
