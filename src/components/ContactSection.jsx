@@ -1,26 +1,36 @@
 "use client";
+import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 
 function ContactCard({ icon, title, content }) {
   return (
     <div
       className="flex flex-col gap-3 lg:flex-row lg:items-start lg:text-left lg:gap-5 rounded-3xl"
-      style={{
-        padding: "24px 24px",
-        background: "rgba(158, 255, 238, 0.06)",
-        border: "1px solid rgba(32, 178, 170, 0.3)",
-        boxShadow: "inset 0px 2px 12px 0px rgba(255,255,255,0.25), 0px 13px 8px 0px rgba(158,255,238,0.05)",
-        backdropFilter: "blur(8px)",
+      style={{ padding: "24px 24px", background: "rgba(158, 255, 238, 0.06)",  border: "1px solid #20B2AA30", boxShadow: "inset 0px 2px 12px 0px rgba(255,255,255,0.25), 0px 13px 8px 0px rgba(158,255,238,0.05)", backdropFilter: "blur(8px)",
       }}
     >
       <div
-        className="w-16 h-16 rounded-full flex items-center justify-center shrink-0"
-        style={{ background: "rgba(32, 178, 170, 0.15)", border: "1px solid rgba(32,178,170,0.2)" }}
+        className="w-16 h-16 rounded-full flex items-center justify-center shrink-0 relative"
+        style={{  background: "#9EFFEE1F", boxShadow: ` 0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 0px 10px 0px #1A1A1A00, inset 0px 2px 12px 0px #FFFFFF40
+          `,
+        }}
       >
+        <div
+          className="absolute inset-0 rounded-full pointer-events-none"
+          style={{
+            padding: "1px",
+            background: "linear-gradient(0deg, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.48) 100%)",
+            WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            maskComposite: "exclude",
+          }}
+        />
         {icon}
       </div>
       <div>
         <h4 className="font-semibold !text-[24px] mb-1" style={{ color: "#20B2AA" }}>{title}</h4>
-        <p className="text-[18px] text-[#656C7B] leading-relaxed">{content}</p>
+        <p className="text-[16px] text-[#656C7B] leading-relaxed">{content}</p>
       </div>
     </div>
   );
@@ -53,59 +63,98 @@ function MailIcon() {
   );
 }
 
-export default function ContactSection() {
+function EnquirySelect({ value, onChange }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const options = ["Admissions", "General Enquiry", "Other"];
+
+  useEffect(() => {
+    const close = (e) => {
+      if (!ref.current?.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
+  }, []);
+
   return (
-    <section className="w-full py-20 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 items-start justify-center">
-
-        {/* Heading block — shown first on mobile, sits in right column on desktop */}
-        <div className="w-full lg:w-[580px] order-1 lg:order-2 flex flex-col gap-6">
-          <div className="text-center lg:text-left">
-            <h2 className="text-[32px] lg:text-[40px] font-semibold text-gray-800">Get in touch</h2>
-            <p className="text-[#656C7B] text-[16px] lg:text-[18px] mt-3 leading-relaxed max-w-2xl mx-auto lg:mx-0"> Our admissions team is available Monday to Saturday, 9 AM – 5 PM.
-              Feel free to visit us on campus or reach out through any of the channels below.
-            </p>
-          </div>
-
-          {/* Desktop-only cards, inline with heading column */}
-          <div className="hidden lg:flex flex-col gap-6">
-            <ContactCard icon={<LocationIcon />} title="Address" content={<>NH-16, Rajanagaram, near HP Petrol Pump,<br />Rajamahendravaram, Andhra Pradesh 533294.</>}/>
-            <ContactCard icon={<PhoneIcon />}  title="Call Us" content={<>Admissions: +91 77997 71085<br />Office &amp; Enquiry: 08832484492</>}/>
-            <ContactCard icon={<MailIcon />}title="Mail Us" content={<>lids@lids.ac.in &nbsp;|&nbsp; Admission@lids.ac.in</>} />
-          </div>
+    <div ref={ref} className="relative w-full">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-center justify-between rounded-full px-5 py-3 bg-white text-sm text-left outline-none border-none"
+        style={{ color: value ? "#374151" : "#9CA3AF" }}
+      >
+        {value || "Select"}
+        <ChevronDown size={16} className={`text-gray-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg overflow-hidden z-50">
+          {options.map((opt) => (
+            <button key={opt} type="button" onClick={() => { onChange(opt); setOpen(false);}}
+              className="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-[#F5FFFE]"
+            > {opt} </button>
+          ))}
         </div>
+      )}
+      <input type="hidden" name="enquiry_type" value={value} />
+    </div>
+  );
+}
 
-        {/* Form — shown second on mobile */}
-        <div className="w-full lg:w-[580px] shrink-0 rounded-3xl p-10 flex flex-col gap-5 order-2 lg:order-1" style={{ background: "#107B71", boxShadow: "inset 0px 2px 12px 0px rgba(255,255,255,0.25), 0px 13px 8px 0px rgba(0,154,124,0.35)" }}>
-          <h3 className="!text-white text-5xl font-semibold">Send Us a Message</h3>
-          <form className="flex flex-col gap-5" autoComplete="on" onSubmit={(e) => e.preventDefault()}>
-            <input type="text" name="name" id="contact-name" placeholder="Your Name" autoComplete="name" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
-            <input type="email" name="email" id="contact-email" placeholder="Email address" autoComplete="email" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400"/>
-            <input type="tel" name="phone" id="contact-phone" placeholder="Phone Number" autoComplete="tel" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400"/>
+export default function ContactSection() {
+  const [enquiryType, setEnquiryType] = useState("");
 
-            <div className="relative w-full">
-              <select name="enquiry_type" id="contact-enquiry-type" autoComplete="on" defaultValue="" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-500 outline-none border-none appearance-none">
-                <option value="" disabled>Select</option>
-                <option>Admissions</option>
-                <option>General Enquiry</option>
-                <option>Other</option>
-              </select>
-              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">▾</span>
-            </div>
-            <textarea name="message" id="contact-message" placeholder="Your message" rows={5} className="w-full rounded-2xl px-5 py-4 bg-white text-sm text-gray-700 outline-none border-none resize-none placeholder:text-gray-400"/>
-            <div>
-              <button type="submit" className="px-8 py-3 rounded-full text-white font-semibold text-sm cursor-pointer px-4 xl:px-13 py-3" style={{ backgroundColor: "#9E2016", borderRadius: "65px", border: "1px solid #9E2016", fontFamily: "'Inter', sans-serif", fontSize: "16px", fontWeight: 500, color: "#ffffff", whiteSpace: "nowrap", flexShrink: 0, boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset",}}>Submit</button>
-            </div>
-          </form>
+  return (
+<section className="w-full py-20 overflow-hidden">
+  <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "800px", height: "800px", top: "-80px", right: "300px", background: "#8ddeda59", filter: "blur(120px)", zIndex: 0 }} />
+  <div className="container">
+    <div className="flex flex-col xl:flex-row gap-5 md:gap-5 xl:gap-27 items-start justify-center">
+      <div className="w-full xl:w-[700px] order-1 xl:order-2 flex flex-col gap-6">
+        <div className="text-center xl:text-left">
+          <h2 className="text-[32px] xl:text-[40px] font-semibold text-gray-800">Get in touch</h2>
+          <p className="text-[#656C7B] text-[16px] xl:text-[18px] mt-3 leading-relaxed max-w-2xl mx-auto xl:mx-0">
+            Our admissions team is available Monday to Saturday, 9 AM – 5 PM.
+            Feel free to visit us on campus or reach out through any of the channels below.
+          </p>
         </div>
-
-        {/* Mobile-only cards, shown third after form */}
-        <div className="w-full lg:hidden flex flex-col gap-6 order-3">
+        <div className="hidden xl:flex flex-col gap-6">
           <ContactCard icon={<LocationIcon />} title="Address" content={<>NH-16, Rajanagaram, near HP Petrol Pump,<br />Rajamahendravaram, Andhra Pradesh 533294.</>}/>
-          <ContactCard icon={<PhoneIcon />} title="Call Us" content={<>Admissions: +91 77997 71085<br />Office &amp; Enquiry: 08832484492</>}/>
-          <ContactCard icon={<MailIcon />} title="Mail Us" content={<>lids@lids.ac.in &nbsp;|&nbsp; Admission@lids.ac.in</>} />
+          <ContactCard icon={<PhoneIcon />} title="Call Us" content={ <> <span style={{ color: "#333333" }}>Admissions</span>: +91 77997 71085 <br /> <span style={{ color: "#333333" }}>Office &amp; Enquiry</span>: 08832484492 </> }/>
+          <ContactCard icon={<MailIcon />} title="Mail Us" content={ <> <span style={{ color: "#333333" }}>lids@lids.ac.in</span> &nbsp;|&nbsp; <span style={{ color: "#333333" }}>Admission@lids.ac.in</span> </>} />
         </div>
       </div>
-    </section>
+
+      <div className="w-full xl:w-[580px] shrink-0 rounded-3xl p-10 flex flex-col gap-5 order-2 xl:order-1"
+        style={{
+          background: "#107B71",
+          boxShadow: `inset 0px 2px 12px 0px #FFFFFF40, 0px 6px 6px 0px #E5F3F208, 0px 13px 8px 0px #009A7CAB, 0px 22px 9px 0px #009A7C00, 0px 35px 10px 0px #C9F9FF00`,
+        }}
+      >
+        <h3 className="!text-white text-5xl font-semibold">Send Us a Message</h3>
+        <form className="flex flex-col gap-5" autoComplete="on" onSubmit={(e) => e.preventDefault()}>
+          <input type="text" name="name" id="contact-name" placeholder="Your Name" autoComplete="name" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
+          <input type="email" name="email" id="contact-email" placeholder="Email address" autoComplete="email" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
+          <input type="tel" name="phone" id="contact-phone" placeholder="Phone Number" autoComplete="tel" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
+          <EnquirySelect value={enquiryType} onChange={setEnquiryType} />
+          <textarea name="message" id="contact-message" placeholder="Your message" rows={5} className="w-full rounded-2xl px-5 py-4 bg-white text-sm text-gray-700 outline-none border-none resize-none placeholder:text-gray-400" />
+          <div>
+            <button type="submit" className="px-8 py-3 rounded-full text-white font-semibold text-sm cursor-pointer px-4 xl:px-13 py-3"
+              style={{ backgroundColor: "#9E2016", borderRadius: "65px", border: "1px solid #9E2016", fontFamily: "'Inter', sans-serif", fontSize: "16px", fontWeight: 500, color: "#ffffff", whiteSpace: "nowrap", flexShrink: 0, boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset" }}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {/* Mobile/tablet-only cards, shown third after form (now up to 1280px) */}
+      <div className="w-full xl:hidden flex flex-col gap-6 order-3">
+        <ContactCard icon={<LocationIcon />} title="Address" content={<>NH-16, Rajanagaram, near HP Petrol Pump,<br />Rajamahendravaram, Andhra Pradesh 533294.</>}/>
+        <ContactCard icon={<PhoneIcon />} title="Call Us" content={<>Admissions: +91 77997 71085<br />Office &amp; Enquiry: 08832484492</>}/>
+        <ContactCard icon={<MailIcon />} title="Mail Us" content={<>lids@lids.ac.in &nbsp;|&nbsp; Admission@lids.ac.in</>} />
+      </div>
+    </div>
+  </div>
+</section>
   );
 }

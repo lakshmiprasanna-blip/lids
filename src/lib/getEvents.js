@@ -1,5 +1,4 @@
 export async function getEvents() {
-  // TEMPORARY: replace this with a real fetch() once you have the CMS endpoint
   const placeholderEvents = [
     { id: 1, category: "Events", type: "Conference", date: "12 September 2025", title: "Annual Dental Conference 2026", desc: "Join us for the Annual Dental Conference 2026 where leading experts in the field of oral health will share the latest trends in dental technology...", image: "/assets/newsevent1.webp" },
     { id: 2, category: "Events", type: "Workshop", date: "12 September 2025", title: "Community Dental Camp", desc: "As part of our community outreach program, LIDS students and faculty will be conducting a Dental Health Awareness Camp for local residents...", image: "/assets/newsevent1.webp" },
@@ -13,7 +12,7 @@ export async function getEvents() {
 
 // export async function getEvents() {
 //   try {
-//     const res = await fetch("https://your-real-endpoint.com/api/events", {
+//     const res = await fetch("http://localhost:4010/uploads/media", {
 //       next: { revalidate: 3600 }, // re-fetches at most once per hour
 //     });
 

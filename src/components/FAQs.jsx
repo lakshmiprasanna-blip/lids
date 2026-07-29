@@ -11,14 +11,15 @@ const defaultFaqs = [
 
 const faqItemStyle = {
   background: "#F6FDFE",
-  boxShadow: "0px 1px 3px 0px #1A1A1A00, 0px 6px 6px 0px #1A1A1A00, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, inset 0px -264px 12px 0px #FFFFFF40",
+  boxShadow:
+    "0px 1px 3px 0px #1A1A1A00, 0px 6px 6px 0px #1A1A1A00, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, inset 0px -40px 40px -20px #FFFFFF40",
 };
 
 const FaqList = ({ faqs, columns, open, setOpen }) => (
-  <div className={`grid gap-4 ${columns === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
+  <div className={`grid gap-4 items-stretch ${columns === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
     {faqs.map((faq, i) => (
-      <div key={i} className="rounded-[24px] p-[2px] cursor-pointer" style={{ border: "1px solid #A5E7F080" }} onClick={() => setOpen(open === i ? null : i)}>
-        <div className="rounded-[16px] px-6 py-6" style={faqItemStyle}>
+      <div key={i} className="rounded-[24px] p-[2px] cursor-pointer h-full" style={{ border: "1px solid #A5E7F080" }} onClick={() => setOpen(open === i ? null : i)}>
+        <div className="rounded-[16px] px-6 py-6 h-full" style={faqItemStyle}>
           <div className="flex items-center justify-between gap-4">
             <p className="text-[#1A1A1A] text-md md:text-[24px] font-medium">{faq.question}</p>
             <span className="shrink-0">
@@ -41,8 +42,10 @@ export default function FAQs({
   imageAlt = "FAQ Image",
   bare = false,
   fullWidth = false,
+  align = "center", 
 }) {
   const [open, setOpen] = useState(null);
+  const alignClass = align === "left" ? "text-left" : "text-center";
 
   if (bare) return (
     <div className={fullWidth ? "w-full" : "max-w-[700px]"}>
@@ -51,25 +54,25 @@ export default function FAQs({
   );
 
   return (
-    <section className="relative w-full bg-white py-20">
-      <div className="absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", top: "-147px", left: "183px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" }} />
-      <div className="absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", top: "400px", right: "100px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" }} />
+    <section className="relative w-full bg-white !py-20">
+      <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "344px", height: "460px", top: "-147px", left: "183px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" }} />
+      <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "344px", height: "460px", top: "400px", right: "100px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" }} />
 
       <div className="relative z-10 container">
         {image ? (
           <>
             <div className="lg:hidden flex flex-col gap-6">
-              <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase">FAQs</p>
-              <h3 className="text-[#1A1A1A] font-semibold">Frequently Asked Questions</h3>
-              <div className="relative w-full h-[260px] rounded-2xl overflow-hidden">
+              <p className={`eyebrow-heading text-[#9E2016] font-semibold uppercase ${alignClass}`}>FAQs</p>
+              <h3 className={`text-[#1A1A1A] font-semibold ${alignClass}`}>Frequently Asked Questions</h3>
+              <div className="relative w-full h-[360px] rounded-2xl overflow-hidden">
                 <Image src={image} alt={imageAlt} fill className="object-cover object-center" />
               </div>
               <FaqList faqs={faqs} columns={columns} open={open} setOpen={setOpen} />
             </div>
             <div className="hidden lg:flex flex-row gap-12 items-start">
               <div className="flex-none" style={{ width: "700px" }}>
-                <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4">FAQs</p>
-                <h3 className="text-[#1A1A1A] font-semibold mb-10">Frequently Asked Questions</h3>
+                <p className={`eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4 ${alignClass}`}>FAQs</p>
+                <h3 className={`text-[#1A1A1A] font-semibold mb-10 ${alignClass}`}>Frequently Asked Questions</h3>
                 <FaqList faqs={faqs} columns={columns} open={open} setOpen={setOpen} />
               </div>
               <div className="flex-1 flex items-start" style={{ marginTop: "120px" }}>
@@ -82,7 +85,7 @@ export default function FAQs({
         ) : (
           <>
             <div className="text-center mb-12">
-              <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4">FAQs</p>
+              <p className="eyebrow-heading !text-center text-[#9E2016] font-semibold uppercase mb-4">FAQs</p>
               <h3 className="text-[#1A1A1A] font-semibold">Frequently Asked Questions</h3>
             </div>
             <div className={fullWidth ? "w-full" : "max-w-[937px] mx-auto"}>

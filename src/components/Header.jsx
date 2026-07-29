@@ -41,24 +41,8 @@ export default function Header() {
         </nav>
 
         {/* CTA Button - desktop only */}
-        <Link
-  href="/contact"
-  style={{
-    backgroundColor: "#9E2016",
-    borderRadius: "65px",
-    border: "1px solid #9E2016",
-    fontFamily: "'Inter', sans-serif",
-    fontSize: "16px",
-    fontWeight: 500,
-    color: "#ffffff",
-    whiteSpace: "nowrap",
-    flexShrink: 0,
-    boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset",
-  }}
-  className="hidden lg:flex items-center cursor-pointer justify-center transition-opacity duration-200 hover:opacity-90 px-4 xl:px-8 py-3"
->
-  Get in Touch
-</Link>
+        <Link href="/contact" style={{ backgroundColor: "#9E2016", borderRadius: "65px", border: "1px solid #9E2016", fontFamily: "'Inter', sans-serif", fontSize: "16px", fontWeight: 500, color: "#ffffff", whiteSpace: "nowrap", flexShrink: 0, boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset",}}
+  className="hidden lg:flex items-center cursor-pointer justify-center transition-opacity duration-200 hover:opacity-90 px-4 xl:px-8 py-3">Get in Touch</Link>
         <button
           className="lg:hidden flex flex-col gap-1.5 p-2 ml-auto"
           onClick={() => setMenuOpen(!menuOpen)}

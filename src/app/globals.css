@@ -64,7 +64,13 @@ img {
   display: block;
 }
 .container {
-  @apply max-w-[1420px] mx-auto px-6 w-full;
+  @apply max-w-7xl mx-auto px-6 w-full;
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1440px;
+  }
 }
 .section-label {
   font-family: Inter, sans-serif;

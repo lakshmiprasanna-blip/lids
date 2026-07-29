@@ -103,7 +103,7 @@ export default function AdmissionsPage() {
   descriptionClassName="max-w-5xl"
 />
 <div className="relative">
-  <section className="relative bg-white section-py">
+  <section className="relative bg-white !py-20">
     <div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", top: "106px", left: "17px", transform: "rotate(-90deg)", background: "rgba(207,239,237,0.70)", filter: "blur(126px)", zIndex: 0 }} />
 <div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "900px", height: "600px", top: "-300px", right: "-200px", background: "rgba(207,239,237,0.4)", filter: "blur(120px)", zIndex: 0 }} />
 <div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "851px", height: "1141px", top: "1380px", left: "1100px", transform: "rotate(-90deg)", background: "rgba(207,239,237,0.42)", filter: "blur(186px)", zIndex: 0 }} />
@@ -115,18 +115,13 @@ export default function AdmissionsPage() {
       </div>
       <div style={cardStyle} className="max-w-6xl mx-auto">
         <div className="px-[10px] py-[20px] md:px-[48px] md:py-[40px]" style={innerStyle}>
-          <div className="flex justify-center mb-10">
-            <div className="flex items-center gap-1 rounded-full p-2" style={{ background: "#F5F5F5", border: "1px solid #E0E0E0" }}>
-              {tabs.map((tab) => (
-                <button key={tab} onClick={() => setActive(tab)}
-                  className="whitespace-nowrap px-4 py-2 rounded-full text-[14px] md:text-[16px] font-medium transition-all duration-300"
-                  style={{ background: active === tab ? "#107B71" : "transparent", color: active === tab ? "#fff" : "#107B71" }}>
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </div>
-
+          <div className="flex justify-center mb-10 px-0">
+  <div className="flex items-center gap-1 rounded-full p-1.5 w-full max-w-[400px]" style={{ background: "#F5F5F5", border: "1px solid #E0E0E0" }}>
+    {tabs.map((tab) => (
+      <button key={tab} onClick={() => setActive(tab)} className="flex-1 whitespace-nowrap text-center px-1.5 py-2 rounded-full text-[14px] sm:text-[14px] md:text-[16px] font-medium transition-all duration-300" style={{ background: active === tab ? "#107B71" : "transparent", color: active === tab ? "#fff" : "#107B71",}}>{tab}</button>
+    ))}
+  </div>
+</div>
           <div className="flex flex-col gap-6">
             {content[active].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
@@ -144,7 +139,7 @@ export default function AdmissionsPage() {
   </section>
 </div>
 
-<section className="bg-white pt-10 pb-0">
+<section className="bg-white ">
         <div className="container">
           <div className="text-center mb-6">
             <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4"> Why choose us?</p>
@@ -152,17 +147,18 @@ export default function AdmissionsPage() {
           </div>
         </div>
       </section>
- <CardGrid cards={mvvCards} cols={3} iconSize={64} titleColor="#20B2AA" desktopClassName="-mt-20" mobileClassName="-mt-25" /> 
+ <CardGrid cards={mvvCards} cols={3} iconSize={64} titleColor="#20B2AA" desktopClassName="-mt-20" mobileClassName="-mt-25" cardPaddingTop="40px"  /> 
 
 <OurCampus
   showBlob={true}
+  showMobileBlob={false}
   label="Infrastructure"
   title={<>State-of-the-Art <br /> Facilities for Clinical Excellence</>}
   subtitle="World-class infrastructure that supports an advanced learning environment for dental students. Our campus is equipped with 355+ dental units, modern simulation labs, and cutting-edge technology, ensuring that students gain hands-on experience in a professional setting."
   buttonClassName="mb-1"
   buttonText = "Explore Facilities"
 />
-<FAQs image="/assets/students.webp" imageAlt="Students" faqs={admissionFaqs} />
+<FAQs image="/assets/students.webp" imageAlt="Students" faqs={admissionFaqs} align="left" />
 <DentalLegacyCTA
   align="left"
  title={<>Ready to Shape<br />Your Future in Dentistry?</>}

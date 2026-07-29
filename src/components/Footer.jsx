@@ -12,15 +12,14 @@ const contactItems = [
 
 const socialIcons = [
   { href: "#", icon: "/svg/facebook.svg" },
-  { href: "#", icon: "/svg/instagram.svg" },
+  { href: "#", icon: "/svg/linkedin.svg" },
   { href: "#", icon: "/svg/youtube.svg" },
   { href: "#", icon: "/svg/whatsapp.svg" },
 ];
 
 export default function Footer() {
   return (
-   <footer className="w-full" style={{background: `background: linear-gradient(0deg, #FFFFFF, #FFFFFF),
-linear-gradient(90deg, rgba(32, 178, 170, 0.064) 0%, rgba(16, 123, 113, 0.064) 100%);`}}>
+  <footer className="w-full" style={{ background: `linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(90deg, rgba(32, 178, 170, 0.064) 0%, rgba(16, 123, 113, 0.064) 100%)`, }}>
       <div className="container py-16">
      {/* DESKTOP */}
 <div className="hidden xl:flex items-start justify-between gap-6 xl:gap-12">
@@ -59,12 +58,15 @@ linear-gradient(90deg, rgba(32, 178, 170, 0.064) 0%, rgba(16, 123, 113, 0.064) 1
         </div>
 
         {/* MOBILE */}
-        <div className="xl:hidden flex flex-col gap-8">
-  <Image src="/assets/footer-logo.webp" alt="LIDS Logo" width={327} height={86} quality={100} className="object-contain" />
-  <div className="grid grid-cols-2 gap-7">
+       {/* MOBILE + TABLET */}
+<div className="xl:hidden flex flex-col gap-8 w-full">
+  <Image src="/assets/footer-logo.webp" alt="LIDS Logo" width={327} height={86} quality={100} className="object-contain md:w-[420px] md:h-auto" />
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-7 md:gap-10 w-full">
     <div>
       <h5 className="font-semibold mb-3 text-xl !text-[#8E0019]">Address</h5>
-     <p className="!text-[#3D3D3D] leading-relaxed" style={{ fontSize: "clamp(14px, 2vw, 20px)" }}>NH-16, near HP Petrol Pump, Rajanagaram, Rajamahendravaram, Andhra Pradesh 533294</p>
+      <p className="!text-[#3D3D3D] leading-relaxed max-w-[260px]" style={{ fontSize: "clamp(14px, 2vw, 20px)" }}>
+        NH-16, near HP Petrol Pump, Rajanagaram, Rajamahendravaram, Andhra Pradesh 533294
+      </p>
     </div>
     <div>
       <h5 className="font-semibold mb-3 text-xl !text-[#8E0019]">Contact Us</h5>
@@ -85,7 +87,7 @@ linear-gradient(90deg, rgba(32, 178, 170, 0.064) 0%, rgba(16, 123, 113, 0.064) 1
       </div>
     </div>
   </div>
-  <div className="flex items-center justify-center gap-3">
+  <div className="flex items-center justify-center md:justify-start gap-3">
     {socialIcons.map((s, i) => (
       <Link key={i} href={s.href} className="w-14 h-14 rounded-full flex items-center justify-center hover:opacity-80">
         <Image src={s.icon} alt="social" width={56} height={56} />
@@ -98,12 +100,12 @@ linear-gradient(90deg, rgba(32, 178, 170, 0.064) 0%, rgba(16, 123, 113, 0.064) 1
 <div className="w-full py-5 bg-[#8E0019]">
   <div className="container">
     {/* MOBILE & TABLET */}
-    <div className="xl:hidden flex flex-col items-center gap-4">
+    <div className="max-w-[340px] xl:hidden flex flex-col items-center gap-4">
       <div className="flex items-center gap-6">
-        <Link href="#" className="!text-white text-sm">Terms & Conditions</Link>
-        <Link href="#" className="!text-white text-sm">Cookie Policy</Link>
+        <Link href="#" className="!text-white text-md">Terms & Conditions</Link>
+        <Link href="#" className="!text-white text-md">Cookie Policy</Link>
       </div>
-      <p className="text-white text-sm">Copyright © 2026 LIDS. All rights reserved.</p>
+      <p className="text-white text-md whitespace-nowrap">Copyright © 2026 LIDS. All rights reserved.</p>
     </div>
     {/* DESKTOP */}
     <div className="hidden xl:flex items-center justify-between">

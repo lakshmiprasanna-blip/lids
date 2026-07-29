@@ -50,10 +50,39 @@ const founder = {
   designation: "Founder & Chairman, KLR group",
   image: "/assets/founder.webp"
 };
+function DoctorCard({ doc, imgClass, nameClass, roleClass }) {
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <div className={`${imgClass} rounded-[16px] overflow-hidden relative`}>
+        <Image src={doc.image} alt={doc.name} fill className="object-cover" style={{ objectPosition: "center 30%", transform: "scale(1.5)", transformOrigin: "center 100%" }} />
+        <div className="absolute inset-0 rounded-[16px] border-4 border-white/40 pointer-events-none" />
+      </div>
+      <p className={`text-[#1A1A1A] font-semibold ${nameClass}`}>{doc.name}</p>
+      <p className={`text-[#7A7A7A] ${roleClass}`}>{doc.role}</p>
+    </div>
+  );
+}
+
+function CarouselNav({ onPrev, onNext, dotsCount, activeDot, onDot }) {
+  const navBtn = "shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200";
+  return (
+    <div className="flex items-center justify-center gap-8">
+      <button type="button" onClick={onPrev} className={navBtn}><ArrowLeft size={18} /></button>
+      <div className="flex items-center gap-2">
+        {Array.from({ length: dotsCount }).map((_, i) => (
+          <button key={i} type="button" onClick={() => onDot(i)} className="rounded-full transition-all duration-300" style={{ width: activeDot === i ? "6px" : "4px", height: activeDot === i ? "6px" : "4px", background: activeDot === i ? "#9E2016" : "#9E201666" }} />
+        ))}
+      </div>
+      <button type="button" onClick={onNext} className={navBtn}><ArrowRight size={18} /></button>
+    </div>
+  );
+}
 export default function AboutPage() {
   const [docPage, setDocPage] = useState(0);
   const [tabPage, setTabPage] = useState(0);
    const tabPairs = Math.ceil(doctors.length / 2);
+   const [lgPage, setLgPage] = useState(0);
+   const lgPairs = Math.ceil(doctors.length / 4);
   return (
     <main>
       <CTABanner
@@ -61,10 +90,8 @@ export default function AboutPage() {
         title="A Legacy of Excellence in Education and Social Responsibility"
         mobileImage="/assets/about-mob.webp" />
       <section className="relative bg-white py-10 md:py-14 lg:text-20">
-   
   <div className="relative z-10 container">
-    <div className="relative w-full md:max-w-5xl md:mx-auto h-[280px] md:h-[477px] rounded-2xl overflow-hidden mb-6 md:mb-8"
-      style={{ boxShadow: "inset 0 0 0 4px rgba(255, 255, 255, 0.5)" }}>
+    <div className="relative w-full md:max-w-5xl md:mx-auto h-[280px] md:h-[477px] rounded-2xl overflow-hidden mb-6 md:mb-8" style={{ boxShadow: "inset 0 0 0 4px rgba(255, 255, 255, 0.5)" }}>
       <Image src="/assets/lids-building.webp" alt="LIDS Building" loading="lazy" fill className=" md:object-cover"/>
       <div className="absolute inset-0 rounded-2xl border-5 border-white/40 pointer-events-none" />
     </div>
@@ -75,7 +102,6 @@ export default function AboutPage() {
     <p className="text-[#656C7B] text-[18px] leading-relaxed w-full md:max-w-[100%] lg:w-[1180px] md:mx-auto md:text-center"> Situated in Rajahmundry, Andhra Pradesh, LIDS is more than a dental institution —  it's a vibrant hub for innovation, academic excellence, and patient-centric care. As a premier institution under the KLR Group, we empower the next generation of dental leaders through a dynamic blend of high-tech research, hands-on clinical training, and passionate mentorship. Whether you are a future student or looking for cutting-edge dentistry, LIDS is where expertise meets compassion.</p>
   </div>
 </section>
-
       <CardGrid cards={mvvCards} cols={3} showBlob={true}/>
       <ShapeDental
   label="APPROACH"
@@ -92,7 +118,6 @@ and compassion."
 {/* FOUNDER MESSAGE */}
 <section className="w-full py-15 bg-[#35908D]">
   <div className="container">
-    {/* MOBILE */}
     <div className="md:hidden flex flex-col gap-6 rounded-[24px] p-6"  style={{ border: "1px solid #20B2AA30", boxShadow: "0px 2px 12px 0px #FFFFFF40 inset, 0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #E5F3F208, 0px 13px 8px 0px #9EFFEE05, 0px 22px 9px 0px #9EFFEE03, 0px 35px 10px 0px #C9F9FF00"}}>
       <div className="relative w-full overflow-hidden rounded-2xl" style={{ height: "280px" }}>
         <Image src={founder.image} alt={founder.name} fill className="object-cover" />
@@ -106,7 +131,6 @@ and compassion."
         <p className="text-md" style={{ color: "#A5E7F0" }}>{founder.designation}</p>
       </div>
     </div>
-    {/* DESKTOP */}
     <div className="hidden md:flex items-center gap-6 lg:gap-10 rounded-[24px] p-6 lg:p-[40px]" style={{ border: "1px solid rgba(32, 178, 170, 0.19)", boxShadow: "0px 2px 12px 0px rgba(255,255,255,0.25) inset" }}>
       <div className="relative shrink-0 w-[280px] lg:w-[460px] max-w-full h-[380px] lg:h-[521px] rounded-[12px] overflow-hidden">
         <Image src={founder.image} alt={founder.name} fill className="object-cover" />
@@ -125,7 +149,15 @@ and compassion."
     </div>
   </div>
 </section>
-<CardGrid title="Our Core Values" cards={coreValues} cols={2} minHeight={280} titleFontSize="24px" showBlob={true} blobs={[ { width: "368.38px", height: "470px", top: "-90px", right: 0, background: "rgba(207, 239, 237, 0.63)", filter: "blur(93px)", transform: "rotate(-91.53deg)", zIndex: 0 }, { width: "199px", height: "254px", top: "659px", left: "34px", background: "#CFEFED", filter: "blur(70px)", borderRadius: "50%", zIndex: 10 }, ]}
+<CardGrid 
+  title="Our Core Values" 
+  cards={coreValues} 
+  cols={2} 
+  minHeight={280} 
+  titleFontSize="24px" 
+  showBlob={true} 
+  blobs={[ { width: "368.38px", height: "470px", top: "-90px", right: 0, background: "rgba(207, 239, 237, 0.63)", filter: "blur(93px)", transform: "rotate(-91.53deg)", zIndex: 0 }, { width: "199px", height: "254px", top: "659px", left: "34px", background: "#CFEFED", filter: "blur(70px)", borderRadius: "50%", zIndex: 10 },]}
+  mobileBlobs={[ { width: "180px", height: "180px", top: "10px", right: "-40px", background: "#CFEFED", filter: "blur(50px)", zIndex: 0 }, { width: "171px", height: "229px", bottom: "60px", left: "-40px", background: "#CFEFED", filter: "blur(50px)", zIndex: 0 },]}
 />
 <ShapeDental
    label="LEGACY"
@@ -139,72 +171,50 @@ and compassion."
   imageLeft={false}
   showBlur={false}
 />
- <section className="relative bg-white ">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute rounded-full hidden xl:block" style={{ width: "368.38px", height: "470px", top: "-99px", left: "-126px", background: "#CFEFED", filter: "blur(93px)", transform: "rotate(90.53deg)", zIndex: 0 }} />
+<section className="relative bg-white !pt-8 ">
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute rounded-full hidden xl:block" style={{ width: "368.38px", height: "470px", top: "-99px", left: "-126px", background: "#CFEFED", filter: "blur(93px)", transform: "rotate(90.53deg)", zIndex: 0 }} />
+  </div>
+  <div className="container relative z">
+    <div className="text-center mb-12">
+      <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">OUR CORE TEAM</p>
+      <h3 className="text-[#1A1A1A] font-semibold">Meet Our Professional Doctors</h3>
+    </div>
+    {/* Desktop (lg+) - now a 4-per-page carousel */}
+    <div className="hidden lg:flex flex-col items-center gap-8">
+      <div className="grid grid-cols-4 gap-6 w-full">
+        {[0, 1, 2, 3].map((offset) => (
+          <DoctorCard  key={offset} doc={doctors[(lgPage + offset) % doctors.length]} imgClass="w-[340px] max-w-full h-[440px]" nameClass="text-[24px]" roleClass="text-[18px]"
+          />
+        ))}
       </div>
-      <div className="container relative z">
-        <div className="text-center mb-12">
-          <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">OUR CORE TEAM</p>
-          <h3 className="text-[#1A1A1A] font-semibold">Meet Our Professional Doctors</h3>
-        </div>
-        {/* Desktop (lg+) */}
-        <div className="hidden lg:grid grid-cols-4 gap-6">
-          {doctors.map((doc, i) => (
-            <div key={i} className="flex flex-col items-center gap-3">
-              <div className="w-[340px] max-w-full h-[440px] rounded-[16px] overflow-hidden relative">
-                <Image src={doc.image} alt={doc.name} fill className="object-cover" style={{ objectPosition: "center 30%", transform: "scale(1.5)", transformOrigin: "center 100%" }} />
-                <div className="absolute inset-0 rounded-[16px] border-4 border-white/40 pointer-events-none" />
-              </div>
-              <p className="text-[#1A1A1A] font-semibold text-[24px]">{doc.name}</p>
-              <p className="text-[#7A7A7A] text-[18px]">{doc.role}</p>
-            </div>
-          ))}
-        </div>
-        {/* Tablet (md to lg): 2 cards with carousel */}
-        <div className="hidden md:flex lg:hidden flex-col items-center gap-8">
-          <div className="grid grid-cols-2 gap-6 w-full">
-            {[0, 1].map((offset) => {
-              const doc = doctors[(tabPage + offset) % doctors.length];
-              return (
-                <div key={offset} className="flex flex-col items-center gap-3">
-                  <div className="w-full max-w-[340px] h-[400px] rounded-[16px] overflow-hidden relative">
-                    <Image src={doc.image} alt={doc.name} fill className="object-cover" style={{ objectPosition: "center 30%", transform: "scale(1.5)", transformOrigin: "center 100%" }} />
-                    <div className="absolute inset-0 rounded-[16px] border-4 border-white/40 pointer-events-none" />
-                  </div>
-                  <p className="text-[#1A1A1A] font-semibold text-[22px]">{doc.name}</p>
-                  <p className="text-[#7A7A7A] text-[16px]">{doc.role}</p>
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex items-center justify-center gap-8">
-            <button type="button" onClick={() => setTabPage((p) => (p === 0 ? doctors.length - 2 : p - 2))} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200"><ArrowLeft size={18} /></button>
-            <div className="flex items-center gap-2">
-              {Array.from({ length: tabPairs }).map((_, i) => ( <button key={i} type="button" onClick={() => setTabPage(i * 2)} className="rounded-full transition-all duration-300" style={{ width: tabPage / 2 === i ? "6px" : "4px", height: tabPage / 2 === i ? "6px" : "4px", background: tabPage / 2 === i ? "#9E2016" : "#9E201666"}}/>))}
-            </div>
-            <button type="button" onClick={() => setTabPage((p) => (p + 2) % doctors.length)} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200"> <ArrowRight size={18} /> </button>
-          </div>
-        </div>
-        {/* Mobile */}
-        <div className="md:hidden flex flex-col items-center gap-6">
-          <div className="w-full rounded-[16px] overflow-hidden relative" style={{ height: "360px" }}>
-            <Image src={doctors[docPage].image} alt={doctors[docPage].name} width={400} height={380} className="object-cover w-full h-full scale-165 translate-y-[-25%]" />
-            <div className="absolute inset-0 rounded-[16px] border-4 border-white/40 pointer-events-none" />
-          </div>
-          <p className="text-[#1A1A1A] font-semibold text-[24px] -mb-2">{doctors[docPage].name}</p>
-          <p className="text-[#7A7A7A] text-xl -mb-1">{doctors[docPage].role}</p>
+      {doctors.length > 4 && (
+        <CarouselNav onPrev={() => setLgPage((p) => (p === 0 ? doctors.length - 4 : p - 4))} onNext={() => setLgPage((p) => (p + 4) % doctors.length)} dotsCount={lgPairs} activeDot={lgPage / 4} onDot={(i) => setLgPage(i * 4)} />
+      )}
+    </div>
 
-          <div className="flex items-center justify-center gap-8">
-            <button type="button" onClick={() => setDocPage((p) => (p === 0 ? doctors.length - 1 : p - 1))} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200"><ArrowLeft size={18} /></button>
-            <div className="flex items-center gap-2"> {doctors.map((_, i) => (
-             <button key={i} type="button" onClick={() => setDocPage(i)} className="rounded-full transition-all duration-300" style={{ width: i === docPage ? "6px" : "4px", height: i === docPage ? "6px" : "4px", background: i === docPage ? "#9E2016" : "#9E201666" }} />))}
-            </div>
-            <button type="button" onClick={() => setDocPage((p) => (p === doctors.length - 1 ? 0 : p + 1))} className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200"><ArrowRight size={18} /></button>
-          </div>
-        </div>
+    {/* Tablet (md-lg) */}
+    <div className="hidden md:flex lg:hidden flex-col items-center gap-8">
+      <div className="grid grid-cols-2 gap-6 w-full">
+        {[0, 1].map((offset) => (
+          <DoctorCard key={offset} doc={doctors[(tabPage + offset) % doctors.length]} imgClass="w-full max-w-[340px] h-[400px]" nameClass="text-[22px]" roleClass="text-[16px]" />
+        ))}
       </div>
-    </section>
+      <CarouselNav onPrev={() => setTabPage((p) => (p === 0 ? doctors.length - 2 : p - 2))} onNext={() => setTabPage((p) => (p + 2) % doctors.length)} dotsCount={tabPairs} activeDot={tabPage / 2} onDot={(i) => setTabPage(i * 2)}/>
+    </div>
+    {/* Mobile */}
+    <div className="md:hidden flex flex-col items-center gap-6">
+      <div className="w-full rounded-[16px] overflow-hidden relative" style={{ height: "360px" }}>
+        <Image src={doctors[docPage].image} alt={doctors[docPage].name} width={400} height={380} className="object-cover w-full h-full scale-165 translate-y-[-25%]" />
+        <div className="absolute inset-0 rounded-[16px] border-4 border-white/40 pointer-events-none" />
+      </div>
+      <p className="text-[#1A1A1A] font-semibold text-[24px] -mb-2">{doctors[docPage].name}</p>
+      <p className="text-[#7A7A7A] text-xl -mb-1">{doctors[docPage].role}</p>
+      <CarouselNav onPrev={() => setDocPage((p) => (p === 0 ? doctors.length - 1 : p - 1))} onNext={() => setDocPage((p) => (p === doctors.length - 1 ? 0 : p + 1))} dotsCount={doctors.length} activeDot={docPage} onDot={setDocPage}
+      />
+    </div>
+  </div>
+</section>
 <DentalLegacyCTA
   title="Design Your Dental Legacy at LIDS"
   description="Whether you are pursuing a BDS or MDS, you will cultivate clinical mastery and

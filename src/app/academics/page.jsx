@@ -83,41 +83,35 @@ export default function ContactPage() {
   
   return (
     <main>
- {/* <CTABanner
-  label="Our Academics"
-  title="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
- titleClassName="!text-[18px] w-[930px] font-[family-name:var(--font-inter)]"
-labelClassName="!text-[56px] font-['Plus_Jakarta_Sans']"
-  align="center"
-  desktopImage="/assets/contact-banner.webp"
-  mobileImage="/assets/about-mob.webp"
-  imageStyle={{ zIndex: 0, objectPosition: "center center" }}
-/> */}
 <DentalLegacyCTA
   align="center"
   title="Our Academics"
   description="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
   image="/assets/academics-banner.webp"
   showButton={false}
+  priority={true}
   titleClassName="!text-[40px] md:!text-[56px]"
   descriptionClassName="max-w-5xl"
+  mobileImagePosition="76% 65%"
+  mobileImageStyle={{ transform: "scale(1.01)" }}
 />
    <section className="relative bg-white overflow-hidden">
-      <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "800px", height: "800px", top: "-200px", right: "-300px", background: "rgba(207,239,237,0.4)", filter: "blur(120px)", zIndex: 0 }} />
-      <div className="relative z-10 container">
+      <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "800px", height: "800px", top: "-200px", right: "-300px", background: "#CFEFED", filter: "blur(120px)", zIndex: 0 }} />
+     <div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", top: "200px", left: "19px", background: "#CFEFED", filter: "blur(120px)", zIndex: 0 }} />
+<div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "851px", height: "645px", top: "250px", left: "1100px", transform: "rotate(-90deg)", background: "#CFEFED", filter: "blur(186px)", zIndex: 0 }} />
+     <div className="relative z-10 container">
         <div className="text-center mb-12">
-          <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4">JOIN LIDS</p>
+          <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4 pt-10">JOIN LIDS</p>
           <h3 className="text-[#1A1A1A] font-semibold">Welcome to the <br /> World of Dental Excellence at LIDS!</h3>
           <p className="mt-4 text-[#9A9A9A] md:text-[#656C7B] text-md md:text-[18px] max-w-6xl mx-auto">
             Lenora Institute of Dental Sciences (LIDS) is dedicated to providing high-quality dental education through a balanced approach of academic learning, clinical exposure, and research. With state-of-the-art infrastructure and experienced faculty, we equip our students to be leaders in the field of dentistry.
           </p>
         </div>
-
         {/* MOBILE */}
         <div className="md:hidden flex flex-col rounded-2xl overflow-hidden">
           {mobilePairs.map((pair, i) => (
             <div key={i}>
-              <div className="relative w-full" style={{ height: "260px" }}>
+              <div className="relative w-full" style={{ height: "307px" }}>
                 <Image src={pair.src} alt={pair.alt} fill className="object-cover" />
               </div>
               <div className="flex flex-col gap-4 p-6" style={tealCell}>
@@ -128,7 +122,6 @@ labelClassName="!text-[56px] font-['Plus_Jakarta_Sans']"
             </div>
           ))}
         </div>
-
         {/* DESKTOP */}
         <div className="hidden md:grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden">
           {items.map((item, i) =>
@@ -147,7 +140,7 @@ labelClassName="!text-[56px] font-['Plus_Jakarta_Sans']"
         </div>
       </div>
     </section>
-<DentalPrograms programs={dentalPrograms} />
+<DentalPrograms programs={dentalPrograms} mobileTitle = "Explore Our Comprehensive Dental Programs" />
 
 <section className="bg-white pt-20 pb-0">
         <div className="container">
@@ -160,25 +153,20 @@ labelClassName="!text-[56px] font-['Plus_Jakarta_Sans']"
           <p className="text-[#333333] text-[18px] w-full max-w-6xl mb-10 md:mx-auto text-center md:text-center">
           At LIDS, our educational approach centers on developing well-rounded dental professionals. We integrate academic learning with hands-on clinical experience to ensure our students gain the practical skills required to excel in real-world dental practices.
           </p>
-           <div className="relative w-full md:max-w-6xl md:mx-auto h-[280px] md:h-[500px] rounded-2xl overflow-hidden mb-16 md:mb-8"
-  style={{ boxShadow: "inset 0 0 0 4px rgba(255, 255, 255, 0.5)" }}>
-  <Image src="/assets/academic-approach.webp" alt="LIDS Building" fill className="md:object-cover" />
-</div>
+           <div className="relative w-full md:max-w-6xl md:mx-auto h-[280px] md:h-[500px] rounded-2xl overflow-hidden mb-16 md:mb-8" style={{ boxShadow: "inset 0 0 0 4px rgba(255, 255, 255, 0.5)" }}>
+             <Image src="/assets/academic-approach.webp" alt="LIDS Building" fill className="md:object-cover" />
+             </div>
         </div>
       </section>
- <CardGrid cards={mvvCards} cols={3} iconSize={80} titleColor="#20B2AA" desktopClassName="-mt-10" mobileClassName="-mt-25"/> 
+<CardGrid cards={mvvCards} cols={3} iconSize={80} titleColor="#20B2AA" desktopClassName="-mt-25" mobileClassName="-mt-25" cardStyle={{ background: "#FFFFFF", border: "2px solid #20B2AA66", borderRadius: "16px", padding: "32px", boxShadow: "inset 0 6px 6px 0px rgba(207, 239, 237, 0.6), 0px 6px 6px 0px #EBFDFF33, 0px 13px 8px 0px #C9F9FF33, 0px 22px 9px 0px #E8FCFF33", backdropFilter: "blur(13.3px)",}} cardBorder="1px solid #20B2AA30"/>
 <FacilitiesOverview
       eyebrow="ACADEMIC FACILITIES Overview"
-      heading="Experience World-Class Facilities at LIDS"
-      description="At LIDS, we believe that true excellence grows in a balanced environment. Our
-vibrant campus goes beyond the classroom, offering a dynamic range of
-extracurricular activities and modern amenities designed for your holistic
-development."
+      heading="A Holistic and Mentorship-Led Learning Approach"
+      description="At LIDS, our educational approach centers on developing well-rounded dental professionals. We integrate academic learning with hands-on clinical experience to ensure our students gain the practical skills required to excel in real-world dental practices."
       facilities={facilities}
-      blobColor="false"
+      mobileTextAlign="center"
+    singleBlob
     />
-
-
 <DentalLegacyCTA
   title="Design Your Dental Legacy at LIDS"
   description="Whether you are pursuing a BDS or MDS, you will cultivate clinical mastery and

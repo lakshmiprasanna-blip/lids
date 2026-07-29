@@ -23,6 +23,7 @@ export default function OurCampus({
   buttonClassName = "",
   buttonText = "Explore Campus Life",
   images: imagesProp,
+  showMobileBlob = true, 
 }) {
   const imgs = imagesProp || defaultImages;
   const [activeIndex, setActiveIndex] = useState(1);
@@ -31,7 +32,9 @@ export default function OurCampus({
   const [dragOffset, setDragOffset] = useState(0);
   const [viewportW, setViewportW] = useState(1440);
   const containerRef = useRef(null);
-  const ExploreBtn = () => (    <OutlineBtn href="/facilities" width="200px" height="52px">{buttonText}</OutlineBtn>);
+  const ExploreBtn = () => (   <OutlineBtn href="/facilities" height="56px" className="w-[190px] md:w-[223px]">
+  {buttonText}
+</OutlineBtn>);
 
 const ArrowBtn = ({ onClick, children }) => (
   <button onClick={onClick} className="w-12 h-12 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200">{children}</button>
@@ -71,31 +74,31 @@ const next = () => setActiveIndex((p) => (p === imgs.length - 1 ? 0 : p + 1));
         <div className="absolute inset-0 pointer-events-none ">
           <Blob style={{ top: 0, left: 0 }} />
           <Blob style={{ bottom: 0, right: 0 }} />
-          <div className="absolute pointer-events-none rounded-full xl:hidden" style={{ width: "180px", height: "180px", top: "10px", right: "-40px", background: "#CFEFED", filter: "blur(50px)", zIndex: 0 }} />
-    <div className="absolute pointer-events-none rounded-full xl:hidden" style={{ width: "171px", height: "229px", bottom: "60px", left: "-40px", background: "#CFEFED", filter: "blur(50px)", zIndex: 0 }} />
-
+         {showMobileBlob && (
+          <>
+            <div className="absolute pointer-events-none rounded-full xl:hidden" style={{ width: "180px", height: "180px", top: "10px", right: "-40px", background: "#CFEFED", filter: "blur(50px)", zIndex: 0 }} />
+            <div className="absolute pointer-events-none rounded-full xl:hidden" style={{ width: "171px", height: "229px", bottom: "60px", left: "-40px", background: "#CFEFED", filter: "blur(50px)", zIndex: 0 }} />
+          </>
+         )}
         </div>
       )}
-
       <div className="relative z-10 mb-10 px-6 text-center">
         <p className="eyebrow-heading text-[#9E2016] text-md font-semibold uppercase mb-3">{label}</p>
         <h3 className="text-[#1A1A1A] font-semibold text-3xl md:text-4xl">{title}</h3>
         {subtitle && <p className="mt-4 text-[#7A7A7A] text-[18px] max-w-7xl md:mx-auto">{subtitle}</p>}
       </div>
-
       {/* MOBILE + TABLET up to 1280px */}
       <div className="relative z-10 xl:hidden flex flex-col gap-5 px-5">
         <div className="relative w-full rounded-2xl overflow-hidden select-none h-[240px] md:h-[420px]" style={{ cursor: isDragging ? "grabbing" : "grab" }} {...dragHandlers}>
           <Image src={imgs[activeIndex].src} alt={imgs[activeIndex].alt} fill className="object-cover pointer-events-none" draggable={false} />
           <div className="absolute inset-0 rounded-2xl border-2 border-white/40 pointer-events-none" />
         </div>
-   <div className="flex items-center justify-center gap-3 mt-2">
+   <div className="flex items-center justify-center gap-2 min-[375px]:gap-6 mt-2">
               <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowLeft size={20} /></button>
               <div className={`flex justify-center ${buttonClassName}`}><ExploreBtn /></div>
               <button onClick={next} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowRight size={20} /></button>
       </div>
       </div>
-
       {/* DESKTOP 1280px+ */}
       <div ref={containerRef} className="relative z-10 hidden xl:block w-full select-none" style={{ height: `${TRACK_H}px`, cursor: isDragging ? "grabbing" : "grab" }} {...dragHandlers}>
         {imgs.map((img, i) => {

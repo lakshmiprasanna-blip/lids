@@ -35,7 +35,7 @@ export default function CTABanner({
           className="object-cover"
           style={imageStyle}
         />
-        <div
+        <div 
           className="absolute inset-0"
           style={{
             background: "linear-gradient(90deg, rgba(32, 178, 170, 0.608) 0%, rgba(16, 123, 113, 0.608) 100%)",
@@ -43,7 +43,7 @@ export default function CTABanner({
           }}
         />
         <div
-          className={`relative flex flex-col px-6 w-full max-w-7xl mx-auto gap-2 ${isLeft ? "items-start" : "items-center text-center"}`}
+          className={`container relative flex flex-col px-6 w-full max-w-7xl mx-auto gap-2 ${isLeft ? "items-start" : "items-center text-center"}`}
           style={{ zIndex: 2 }}
         >
          <p className={`!text-white font-semibold mb-1 font-[var(--font-sans)] ${labelClassName || "!text-[16px]"}`}>{label}</p>

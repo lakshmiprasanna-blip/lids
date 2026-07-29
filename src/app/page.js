@@ -13,12 +13,12 @@ import { getEvents } from "@/lib/getEvents";
 const events = await getEvents();
 
 const left = [
-  { icon: "/assets/infrastructure.png", title: "State-of-the-Art Infrastructure", desc: "Master with advanced tools such as digital radiography, CBCT & intraoral scanners, 3D technology, microsurgical endodontics and surgical units etc." },
-  { icon: "/assets/care.png", title: "Compassionate & Expert Care", desc: "Benefit from a holistic learning environment that combines rigorous medical standards with a genuine commitment to public service." },
+  { icon: "/svg/tooth-icon1.svg", title: "State-of-the-Art Infrastructure", desc: "Master with advanced tools such as digital radiography, CBCT & intraoral scanners, 3D technology, microsurgical endodontics and surgical units etc." },
+  { icon: "/svg/tooth-icon2.svg", title: "Compassionate & Expert Care", desc: "Benefit from a holistic learning environment that combines rigorous medical standards with a genuine commitment to public service." },
 ];
 const right = [
-  { icon: "/assets/clinical.png", title: "Strong Clinical Exposure", desc: "Gain hands-on experience through a high volume of diverse patient interactions, with an average monthly turnout of 15,000+ patients." },
-  { icon: "/assets/faculty.png", title: "Experienced Faculty", desc: "Receive personalized mentorship designed to bridge the gap between classroom theory and real-world clinical practice." },
+  { icon: "/svg/tooth-icon3.svg", title: "Strong Clinical Exposure", desc: "Gain hands-on experience through a high volume of diverse patient interactions, with an average monthly turnout of 15,000+ patients." },
+  { icon: "/svg/tooth-icon4.svg", title: "Experienced Faculty", desc: "Receive personalized mentorship designed to bridge the gap between classroom theory and real-world clinical practice." },
 ];
 const facilities = [
   { icon: "/svg/clinical.svg",     label: "Clinical Infrastructure" },
@@ -136,7 +136,7 @@ development."
       <div className="xl:hidden flex flex-col px-5 gap-6">
         <p className="text-[#9E2016] text-[18px] font-semibold uppercase text-left">{label}</p>
         <h3 className="text-[#1A1A1A] font-semibold text-left">{heading}</h3>
-        <ul className="flex flex-col gap-5 text-md">
+        <ul className="flex flex-col gap-2 text-md">
           {commitmentPoints.map((item, i) => (
             <li key={i} className="flex items-start gap-3">
               <span className="mt-1 shrink-0">{checkIcon}</span>
@@ -144,37 +144,41 @@ development."
             </li>
           ))}
         </ul>
-        <div className="relative w-full mb-0 h-[420px] md:h-[600px]">
+        <div className="relative w-full mb-0 h-[350px] md:h-[690px]">
           <div className="absolute pointer-events-none" style={{ width: "320px", height: "320px", top: "0%", right: "-10%", background: "#CFEFED", filter: "blur(80px)", borderRadius: "50%", zIndex: 0 }}/>
           <Image src="/assets/research-excellence.webp" alt="Research Excellence" fill className="object-cover pointer-events-none" style={{ zIndex: 1, objectPosition: "65% bottom" }}/>
         </div>
       </div>
 
       {/* DESKTOP (xl+) */}
-      <div className="hidden xl:flex container items-stretch">
-        <div className="flex flex-col justify-center gap-6 w-[47%] shrink-0 py-16">
-          <p className="text-[#9E2016] text-[18px] font-semibold uppercase">{label}</p>
-          <h3 className="text-[#1A1A1A] font-semibold">To Research Excellence <br /> of Oral Healthcare</h3>
-          <ul className="flex flex-col gap-5 mt-2 text-md">
-            {commitmentPoints.map((item, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <span className="mt-1 shrink-0">{checkIcon}</span>
-                <p className="text-[#7A7A7A] text-md leading-relaxed">{item}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="relative flex-1 self-stretch">
-          <Image src="/assets/research-excellence.webp" alt="Research Excellence" fill className="object-cover object-right pointer-events-none"/>
-        </div>
-      </div>
+      <div className="hidden xl:flex container items-stretch min-h-[690px]">
+  <div className="flex flex-col justify-center gap-4 w-[45%] shrink-0 py-16">
+    <p className="text-[#9E2016] text-[18px] font-semibold uppercase">{label}</p>
+    <h3 className="text-[#1A1A1A] font-semibold">To Research Excellence <br /> of Oral Healthcare</h3>
+    <ul className="flex flex-col gap-5 mt-2 text-md">
+      {commitmentPoints.map((item, i) => (
+        <li key={i} className="flex items-start gap-3">
+          <span className="mt-1 shrink-0">{checkIcon}</span>
+          <p className="text-[#7A7A7A] text-md leading-relaxed">{item}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div className="relative flex-1 self-stretch min-h-[600px]">
+    <Image
+      src="/assets/research-excellence.webp"
+      alt="Research Excellence"
+      fill
+      className="object-cover pointer-events-none"
+      style={{ objectPosition: "center top" }}
+    />
+  </div>
+</div>
     </section>
-<section
-  className="relative w-full bg-cover bg-center h-[80vh] md:h-screen py-20"
-  style={{ backgroundImage: "url('/assets/transform-banner.webp')", backgroundAttachment: "fixed", }}> 
- <div className="absolute inset-0 pointer-events-none" style={{background: "#37A89E66", zIndex: 1 }} />
+<section className="relative w-full bg-cover bg-center py-20" style={{ backgroundImage: "url('/assets/transform-banner.webp')", backgroundAttachment: "fixed", height: "640px",}}>
+  <div className="absolute inset-0 pointer-events-none" style={{ background: "#37A89E66", zIndex: 1 }} />
   <div className="relative z-10 w-full h-full flex items-center justify-center px-6">
-    <p className="max-w-6xl text-center !text-white font-semibold leading-snug text-xl md:!text-[40px] italic !font-inter">"Transform your passion for dentistry into expertise at LIDS – where innovation, education, and patient care come together to shape the future of dental healthcare." </p>
+    <p className="max-w-6xl text-center !text-white font-medium leading-snug text-xl md:!text-[40px] italic !font-inter">"Transform your passion for dentistry into expertise at LIDS – where innovation, education, and patient care come together to shape the future of dental healthcare."</p>
   </div>
 </section>
 <AlumniStories/>
@@ -187,6 +191,8 @@ professional independence in a tech-forward environment. Master the art of
 dentistry at your own pace, supported by experts dedicated to your success."
   buttonText="Apply Now"
   buttonHref="/admissions"
+  imageStyle={{ transform: "scale(1.05)", objectPosition: "center" }}
+  mobileImageStyle={{ transform: "scale(1.02)", objectPosition: "50% 20%" }}
 />
     </main>
   );
