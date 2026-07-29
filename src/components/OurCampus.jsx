@@ -73,7 +73,7 @@ const next = () => setActiveIndex((p) => (p === imgs.length - 1 ? 0 : p + 1));
       {showBlob && (
         <div className="absolute inset-0 pointer-events-none ">
           <Blob style={{ top: 0, left: 0 }} />
-          <Blob style={{ bottom: 0, right: 0 }} />
+          <Blob style={{ bottom: 20, right: 250 }} />
          {showMobileBlob && (
           <>
             <div className="absolute pointer-events-none rounded-full xl:hidden" style={{ width: "180px", height: "180px", top: "10px", right: "-40px", background: "#CFEFED", filter: "blur(50px)", zIndex: 0 }} />
