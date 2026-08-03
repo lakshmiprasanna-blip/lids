@@ -9,23 +9,28 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
-  images: {
-    qualities: [75, 100],
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "4010",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "https",
-        hostname: "lids-cms-backend.onrender.com",
-        pathname: "/uploads/**",
-      },
-    ],
-    unoptimized: process.env.NODE_ENV === "development",
-  },
+images: {
+  qualities: [75, 100],
+  remotePatterns: [
+    {
+      protocol: "http",
+      hostname: "localhost",
+      port: "4010",
+      pathname: "/uploads/**",
+    },
+    {
+      protocol: "https",
+      hostname: "lids-cms-backend.onrender.com",
+      pathname: "/uploads/**",
+    },
+    {
+      protocol: "https",
+      hostname: "11views.com",
+      pathname: "/LIDS-Images/**",
+    },
+  ],
+  unoptimized: process.env.NODE_ENV === "development",
+},
 };
 
 export default nextConfig;
