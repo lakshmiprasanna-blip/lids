@@ -18,6 +18,11 @@ const nextConfig = {
         port: "4010",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "lids-cms-backend.onrender.com",
+        pathname: "/uploads/**",
+      },
     ],
     unoptimized: process.env.NODE_ENV === "development",
   },
