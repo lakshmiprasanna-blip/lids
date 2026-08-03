@@ -80,7 +80,7 @@ export default function ShapeDental({
       {/* DESKTOP */}
       <section className="hidden md:block relative w-full bg-white section-py overflow-hidden">
         {showBlur && (
-          <div className="absolute pointer-events-none rounded-full" style={{ width: "831px", height: "836px", top: "-475px", right: "-200px", background: "rgba(163, 224, 220, 0.54)", filter: "blur(186px)", zIndex: 0 }} />
+          <div className="absolute pointer-events-none rounded-full" style={{ width: "831px", height: "836px", top: "-375px", right: "-200px", background: "#A3E0DC8A", filter: "blur(150px)", zIndex: 0 }} />
         )}
         <div className="container flex flex-row items-center gap-12 relative z-10">
           {imageLeft ? <>{imageBlock}{textBlock}</> : <>{textBlock}{imageBlock}</>}

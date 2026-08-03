@@ -14,10 +14,10 @@ const events = await getEvents();
 
 const left = [
   { icon: "/svg/tooth-icon1.svg", title: "State-of-the-Art Infrastructure", desc: "Master with advanced tools such as digital radiography, CBCT & intraoral scanners, 3D technology, microsurgical endodontics and surgical units etc." },
-  { icon: "/svg/tooth-icon2.svg", title: "Compassionate & Expert Care", desc: "Benefit from a holistic learning environment that combines rigorous medical standards with a genuine commitment to public service." },
+  { icon: "/svg/tooth-icon3.svg", title: "Compassionate & Expert Care", desc: "Benefit from a holistic learning environment that combines rigorous medical standards with a genuine commitment to public service." },
 ];
 const right = [
-  { icon: "/svg/tooth-icon3.svg", title: "Strong Clinical Exposure", desc: "Gain hands-on experience through a high volume of diverse patient interactions, with an average monthly turnout of 15,000+ patients." },
+  { icon: "/svg/tooth-icon2.svg", title: "Strong Clinical Exposure", desc: "Gain hands-on experience through a high volume of diverse patient interactions, with an average monthly turnout of 15,000+ patients." },
   { icon: "/svg/tooth-icon4.svg", title: "Experienced Faculty", desc: "Receive personalized mentorship designed to bridge the gap between classroom theory and real-world clinical practice." },
 ];
 const facilities = [
@@ -108,7 +108,7 @@ desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative d
    <div className="hidden xl:flex items-center justify-center">
   <FeatureList items={left} />
   <div className="relative flex items-center justify-center shrink-0" style={{ width: "520px", height: "380px", margin: "0 -80px", zIndex: 0 }}>
-    <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(ellipse at center, #ddefee 0%, #CFEFED60 50%, transparent 70%)", transform: "scale(1.4)" }} />
+    <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(ellipse at center, #ddefee 0%, #CFEFED60 50%, transparent 70%)", transform: "scale(1.1)" }} />
     <div className="relative z-10 w-full h-full" style={{ mixBlendMode: "overlay" }}>
       <Image src="/assets/tooth.gif" alt="Tooth" fill className="object-contain" />
     </div>

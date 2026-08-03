@@ -5,7 +5,7 @@ import CardGrid from "@/components/CardGrid";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 import OurCampus from "@/components/OurCampus";
 import { getApplicationContent } from "@/lib/admissions";
-
+import ApplyModal from "@/components/ApplyModal";
 const tabs = ["Application Steps", "BDS", "MDS"];
 
 const cardStyle = {
@@ -72,7 +72,7 @@ const mvvCards = [
 export default function AdmissionsPage() {
   const [content, setContent] = useState(null);
   const [active, setActive] = useState(null);
-
+  const [showApply, setShowApply] = useState(false);
   useEffect(() => {
     async function loadContent() {
       try {
@@ -122,16 +122,30 @@ export default function AdmissionsPage() {
     ))}
   </div>
 </div>
-          <div className="flex flex-col gap-6">
-            {content[active].map((item, i) => (
+         <h3 className="text-[#1A1A1A] font-semibold text-2xl md:text-[32px] mb-4">
+            {content[active].title}
+          </h3>
+          <p className="text-[#3D3D3D] text-[16px] md:text-[18px] leading-relaxed mb-8 whitespace-pre-line">
+            {content[active].description}
+          </p>
+          <div className="flex flex-col gap-6 mb-10">
+            {content[active].items.map((item, i) => (
               <div key={i} className="flex items-start gap-3">
                 <svg className="shrink-0 mt-0.5" width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="11" fill="#20B2AA" />
                   <path d="M6.5 11l3.5 3.5 5.5-5.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <p className="text-[#3D3D3D] text-md md:text-[18px] leading-relaxed text-left">
+                <p className="text-[#656C7B] text-md md:text-[18px] leading-relaxed text-left">
                   <span className="text-[#20B2AA] font-semibold">{item.label}</span>{" : "}{item.desc}</p>
               </div>
             ))}
+          </div>
+          <div className="flex flex-wrap gap-4">
+            <button className="px-8 py-3 rounded-full cursor-pointer text-sm font-medium text-[#9E2016] bg-white hover:bg-[#9E2016] hover:!text-white transition-all duration-300" style={{ border: "1.5px solid #9E2016" }}>
+              Learn More
+            </button>
+          <button onClick={() => setShowApply(true)} className="px-8 py-3 rounded-full cursor-pointer text-sm font-medium text-white bg-[#9E2016] hover:bg-white hover:!text-[#9E2016] transition-all duration-300" style={{ border: "1.5px solid #9E2016" }}>
+  Apply Now
+</button>
           </div>
         </div>
       </div>
@@ -169,6 +183,8 @@ export default function AdmissionsPage() {
    imageStyle={{ transform: "scale(1.05)", objectPosition: "center" }}
   mobileImageStyle={{ transform: "scale(1.0)", objectPosition: "80% 20%" }}
 />
+<ApplyModal open={showApply} onClose={() => setShowApply(false)} />
     </main>
+    
   );
 }
