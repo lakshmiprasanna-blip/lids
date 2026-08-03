@@ -52,11 +52,7 @@ function DataTable({ data, withViewBtn }) {
         <thead>
           <tr style={{ background: "#20B2AA" }}>
             {data.headers.map((h, i) => (
-              <th
-                key={i}
-                className="text-white font-medium px-4 py-3 text-left whitespace-nowrap"
-                style={{ borderRight: i !== data.headers.length - 1 ? "1px solid #FAFBFD" : "none" }}
-              >
+              <th  key={i} className="text-white font-medium px-6 py-6 text-left whitespace-nowrap" style={{ borderRight: i !== data.headers.length - 1 ? "1px solid #FAFBFD" : "none" }}>
                 {h}
               </th>
             ))}
@@ -73,27 +69,22 @@ function DataTable({ data, withViewBtn }) {
             return (
               <tr key={j} style={{ background: j % 2 !== 0 ? "#E0F4F3" : "white" }}>
                 {cells.map((cell, k) => (
-                  <td
-                    key={k}
-                    className="px-4 py-3 border-b border-[#E5F3F2]"
-                    style={{
-                      color: k === 0 ? "#232323" : "#3D3D3D",
-                      fontWeight: k === 0 ? "600" : "400",
-                      borderRight: k !== cells.length - 1 ? "1px solid #FAFBFD" : "none",
-                    }}
-                  >
-                    {withViewBtn && k === cells.length - 1 ? (
-                      <button
-                        className="px-3 py-1 rounded-full text-[#20B2AA] text-sm font-medium hover:bg-[#20B2AA] hover:text-white transition"
-                        style={{ border: "1.5px solid #20B2AA" }}
-                      >
-                        View
-                      </button>
-                    ) : (
-                      typeof cell === "object" && cell !== null
-                        ? cell.value ?? JSON.stringify(cell)
-                        : cell
-                    )}
+                  <td key={k} className="px-6 py-2 md:px-8 md:py-5 border-b border-[#E5F3F2]" style={{ color: k === 0 ? "#232323" : "#3D3D3D", fontWeight: k === 0 ? "600" : "400", borderRight: k !== cells.length - 1 ? "1px solid #FAFBFD" : "none", }} >
+                    {withViewBtn && k === cells.length - 1 ? (() => {
+  const fileUrl =
+    typeof cell === "string"
+      ? cell
+      : cell?.pdfUrl ?? cell?.url ?? cell?.fileUrl ?? cell?.file?.url ?? cell?.attachmentUrl ?? null;
+
+  return fileUrl ? (
+    <a href={fileUrl} target="_blank" rel="noopener noreferrer" className="px-10 py-3.5 rounded-full !text-[#107B71] no-underline cursor-pointer text-sm font-medium border-[1.5px] border-[#20B2AA] hover:bg-[#9E2016] hover:!text-white hover:border-transparent transition-all" style={{ border: "1.5px solid #20B2AA", width: "98px", height: "37px" }}>View</a>
+  ) : (
+    <button className="px-10 py-3.5 rounded-full text-[#107B71] cursor-pointer text-sm font-medium border-[1.5px] border-[#20B2AA] hover:bg-[#9E2016] hover:text-white hover:border-transparent transition-all" style={{ border: "1.5px solid #9E2016", width: "98px", height: "37px" }}>View
+    </button>
+  );
+})() : (
+  typeof cell === "object" && cell !== null ? cell.value ?? JSON.stringify(cell) : cell
+)}     
                   </td>
                 ))}
               </tr>
@@ -132,7 +123,6 @@ function CardGrid({ items, current, cols = 3, h = "280px" }) {
     </>
   );
 }
-
 function StatsCarousel({ stats }) {
   const [cur, setCur] = useState(0);
   useEffect(() => {
@@ -217,9 +207,17 @@ export default function CoursePage({ course, allCourses = [] }) {
 
   const getIdx = (i) => indexes[i] ?? 0;
   const setIdx = (i, val) => setIndexes(p => ({ ...p, [i]: val }));
-  const getStep = (s) => s.gallery ? 6 : s.achievements ? 3 : 1;
-  const getMax = (s) => (s.gallery?.length ?? s.achievements?.length ?? s.carousel?.length ?? 1) - getStep(s);
-  const getMobileMax = (s) => (s.gallery?.length ?? s.achievements?.length ?? s.carousel?.length ?? 1) - 1;
+ const getStep = (s) => (s.gallery ? 6 : s.achievements ? 3 : 1);
+ const getMax = (s) => {
+  const len = s.gallery?.length ?? s.achievements?.length ?? s.carousel?.length ?? 1;
+  const step = getStep(s);
+  const totalPages = Math.max(1, Math.ceil(len / step));
+  return (totalPages - 1) * step;
+};
+  const getMobileMax = (s) => {
+  const len = s.gallery?.length ?? s.achievements?.length ?? s.carousel?.length ?? 1;
+  return Math.max(0, len - 1);
+};
   const hasArrows = (s) => s.carousel || s.achievements || s.gallery;
   const scrollToTarget = (target) => {
     setActiveLink(target);
@@ -242,6 +240,8 @@ export default function CoursePage({ course, allCourses = [] }) {
         showButton={false}
         titleClassName="!text-[16px] md:!text-[16px] [font-family:'Inter',sans-serif]! !font-medium"
         descriptionClassName="max-w-5xl !text-[32px] md:!text-[48px] [font-family:'Plus_Jakarta_Sans',sans-serif] font-semibold "
+         mobileImagePosition="55% 65%"
+        mobileImageStyle={{ transform: "scale(1.01)" }}
       />
 
       {/* SEARCH BAR */}
@@ -289,10 +289,7 @@ export default function CoursePage({ course, allCourses = [] }) {
           </div>
           <div className="flex flex-col bg-white" style={{ borderRadius: "0 0 18px 18px" }}>
             {course.sidebarLinks.map((link, i) => (
-              <button
-                key={link.label}
-                onClick={() => scrollToTarget(link.target)}
-                className={`w-full text-left px-5 py-8 text-[18px] flex items-center justify-between transition-all duration-200 ${
+              <button key={link.label} onClick={() => scrollToTarget(link.target)} className={`w-full text-left px-5 py-8 text-[18px] flex items-center justify-between transition-all duration-200 ${
                   i !== course.sidebarLinks.length - 1 ? "border-b border-[#F0F0F0]" : ""
                 } ${
                   activeLink === link.target
@@ -366,7 +363,7 @@ export default function CoursePage({ course, allCourses = [] }) {
                 </div>
               )}
 
-              {section.table && <DataTable data={section.table} withViewBtn={false} />}
+              {section.table && ( <DataTable data={section.table} withViewBtn={section.title === "Research & Academic Development"}/>)}
               {section.carousel && <ImageCarousel images={section.carousel} current={getIdx(i)} setCurrent={val => setIdx(i, val)} />}
               {section.hod && <HODCard hod={section.hod} />}
               {section.faculty && <DataTable data={section.faculty} withViewBtn={false} />}

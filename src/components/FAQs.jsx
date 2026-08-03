@@ -62,8 +62,8 @@ export default function FAQs({
         {image ? (
           <>
             <div className="lg:hidden flex flex-col gap-6">
-              <p className={`eyebrow-heading text-[#9E2016] font-semibold uppercase ${alignClass}`}>FAQs</p>
-              <h3 className={`text-[#1A1A1A] font-semibold ${alignClass}`}>Frequently Asked Questions</h3>
+              <p className={`eyebrow-heading !text-center md:text-left text-[#9E2016] font-semibold uppercase ${alignClass}`}>FAQs</p>
+              <h3 className={`text-[#1A1A1A] !text-center font-semibold ${alignClass}`}>Frequently Asked Questions</h3>
               <div className="relative w-full h-[360px] rounded-2xl overflow-hidden">
                 <Image src={image} alt={imageAlt} fill className="object-cover object-center" />
               </div>

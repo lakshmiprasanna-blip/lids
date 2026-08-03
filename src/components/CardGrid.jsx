@@ -1,5 +1,6 @@
 import Image from "next/image";
 import OutlineBtn from "@/components/OutlineBtn"
+
 const defaultCardStyle = {
   background: "#FFFFFF",
   border: "2px solid #20B2AA66",
@@ -24,10 +25,11 @@ export default function CardGrid({
   cardStyle = defaultCardStyle,        
   cardBorder = "1px solid #20B2AA30", 
    mobileButtonText,        
-  mobileButtonHref,     
+  mobileButtonHref,  
+  className="",   
 }) {
   return (
-    <section className="relative bg-white !py-15 !md:py-14 !lg:py-24" style={{ backgroundColor: bgColor }}>
+    <section className={`relative bg-white !py-15 md:!py-14 lg:!py-24 ${className}`} style={{ backgroundColor: bgColor }}>
       {showBlob && (
         <div className="absolute inset-0 pointer-events-none">
           {blobs.map((blobStyle, i) => (

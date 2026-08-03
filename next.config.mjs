@@ -18,12 +18,7 @@ const nextConfig = {
         port: "4010",
         pathname: "/uploads/**",
       },
-      // add your production CMS host here when you deploy, e.g.:
-      // { protocol: "https", hostname: "cms.lids.example.com", pathname: "/uploads/**" },
     ],
-    // Next's optimizer blocks fetches that resolve to private/loopback IPs (SSRF
-    // protection), which localhost always does — so skip optimization in dev.
-    // Production CMS_API_BASE_URL will be a real host, so this won't apply there.
     unoptimized: process.env.NODE_ENV === "development",
   },
 };

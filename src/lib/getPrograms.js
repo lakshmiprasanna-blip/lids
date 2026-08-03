@@ -9,7 +9,7 @@ const categoryMap = {
 export async function getPrograms() {
   console.log("TOKEN BEING USED:", process.env.CMS_API_TOKEN);
   try {
-    const res = await fetch("http://localhost:4010/api/courses", {
+    const res = await fetch("https://lids-cms-backend.onrender.com/api/courses", {
       headers: {
         Authorization: `Bearer ${process.env.CMS_API_TOKEN}`,
       },

@@ -2,29 +2,17 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 function ContactCard({ icon, title, content }) {
   return (
-    <div
-      className="flex flex-col gap-3 lg:flex-row lg:items-start lg:text-left lg:gap-5 rounded-3xl"
-      style={{ padding: "24px 24px", background: "rgba(158, 255, 238, 0.06)",  border: "1px solid #20B2AA30", boxShadow: "inset 0px 2px 12px 0px rgba(255,255,255,0.25), 0px 13px 8px 0px rgba(158,255,238,0.05)", backdropFilter: "blur(8px)",
+    <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:text-left lg:gap-5 rounded-3xl" style={{ padding: "24px 24px", background: "rgba(158, 255, 238, 0.06)",  border: "1px solid #20B2AA30", boxShadow: "inset 0px 2px 12px 0px rgba(255,255,255,0.25), 0px 13px 8px 0px rgba(158,255,238,0.05)", backdropFilter: "blur(8px)",
       }}
     >
-      <div
-        className="w-16 h-16 rounded-full flex items-center justify-center shrink-0 relative"
-        style={{  background: "#9EFFEE1F", boxShadow: ` 0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 0px 10px 0px #1A1A1A00, inset 0px 2px 12px 0px #FFFFFF40
-          `,
+      <div className="w-16 h-16 rounded-full flex items-center justify-center shrink-0 relative" style={{  background: "#9EFFEE1F", boxShadow: ` 0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 0px 10px 0px #1A1A1A00, inset 0px 2px 12px 0px #FFFFFF40`,
         }}
       >
         <div
-          className="absolute inset-0 rounded-full pointer-events-none"
-          style={{
-            padding: "1px",
-            background: "linear-gradient(0deg, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.48) 100%)",
-            WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-            WebkitMaskComposite: "xor",
-            maskComposite: "exclude",
-          }}
+          className="absolute inset-0 rounded-full pointer-events-none" style={{ padding: "1px", background: "linear-gradient(0deg, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.48) 100%)", WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)", WebkitMaskComposite: "xor", maskComposite: "exclude",}}
         />
         {icon}
       </div>
@@ -78,20 +66,14 @@ function EnquirySelect({ value, onChange }) {
 
   return (
     <div ref={ref} className="relative w-full">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        className="w-full flex items-center justify-between rounded-full px-5 py-3 bg-white text-sm text-left outline-none border-none"
-        style={{ color: value ? "#374151" : "#9CA3AF" }}
-      >
-        {value || "Select"}
+      <button type="button" onClick={() => setOpen((o) => !o)} className="w-full flex items-center justify-between rounded-full px-5 py-3 bg-white text-sm text-left outline-none border-none" style={{ color: value ? "#374151" : "#9CA3AF" }}
+      >{value || "Select"}
         <ChevronDown size={16} className={`text-gray-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg overflow-hidden z-50">
           {options.map((opt) => (
-            <button key={opt} type="button" onClick={() => { onChange(opt); setOpen(false);}}
-              className="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-[#F5FFFE]"
+            <button key={opt} type="button" onClick={() => { onChange(opt); setOpen(false);}}  className="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-[#F5FFFE]"
             > {opt} </button>
           ))}
         </div>
@@ -102,7 +84,28 @@ function EnquirySelect({ value, onChange }) {
 }
 
 export default function ContactSection() {
+  const router = useRouter();
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [enquiryType, setEnquiryType] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, enquiry_type: enquiryType }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      router.push("/thank-you");
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
 <section className="w-full py-20 overflow-hidden">
@@ -112,7 +115,7 @@ export default function ContactSection() {
       <div className="w-full xl:w-[700px] order-1 xl:order-2 flex flex-col gap-6">
         <div className="text-center xl:text-left">
           <h2 className="text-[32px] xl:text-[40px] font-semibold text-gray-800">Get in touch</h2>
-          <p className="text-[#656C7B] text-[16px] xl:text-[18px] mt-3 leading-relaxed max-w-2xl mx-auto xl:mx-0">
+          <p className="text-[#9A9A9A] md:text-[#656C7B] text-[16px] xl:text-[18px] mt-3 leading-relaxed max-w-2xl mx-auto xl:mx-0">
             Our admissions team is available Monday to Saturday, 9 AM – 5 PM.
             Feel free to visit us on campus or reach out through any of the channels below.
           </p>
@@ -124,29 +127,23 @@ export default function ContactSection() {
         </div>
       </div>
 
-      <div className="w-full xl:w-[580px] shrink-0 rounded-3xl p-10 flex flex-col gap-5 order-2 xl:order-1"
-        style={{
-          background: "#107B71",
-          boxShadow: `inset 0px 2px 12px 0px #FFFFFF40, 0px 6px 6px 0px #E5F3F208, 0px 13px 8px 0px #009A7CAB, 0px 22px 9px 0px #009A7C00, 0px 35px 10px 0px #C9F9FF00`,
-        }}
-      >
-        <h3 className="!text-white text-5xl font-semibold">Send Us a Message</h3>
-        <form className="flex flex-col gap-5" autoComplete="on" onSubmit={(e) => e.preventDefault()}>
-          <input type="text" name="name" id="contact-name" placeholder="Your Name" autoComplete="name" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
-          <input type="email" name="email" id="contact-email" placeholder="Email address" autoComplete="email" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
-          <input type="tel" name="phone" id="contact-phone" placeholder="Phone Number" autoComplete="tel" className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
+      <div className="w-full xl:w-[580px] shrink-0 rounded-3xl p-10 flex flex-col gap-5 order-2 xl:order-1" style={{ background: "#107B71",  boxShadow: `inset 0px 2px 12px 0px #FFFFFF40, 0px 6px 6px 0px #E5F3F208, 0px 13px 8px 0px #009A7CAB, 0px 22px 9px 0px #009A7C00, 0px 35px 10px 0px #C9F9FF00`,}}>
+        <h3 className="!text-white !text-[24px] md:text-5xl font-semibold">Send Us a Message</h3>
+        <form className="flex flex-col gap-5" autoComplete="on" onSubmit={handleSubmit}>
+          <input type="text" name="name" id="contact-name" placeholder="Your Name" autoComplete="name" value={form.name} onChange={handleChange} required className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
+          <input type="email" name="email" id="contact-email" placeholder="Email address" autoComplete="email" value={form.email} onChange={handleChange} required className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
+          <input type="tel" name="phone" id="contact-phone" placeholder="Phone Number" autoComplete="tel" value={form.phone} onChange={handleChange} required className="w-full rounded-full px-5 py-3 bg-white text-sm text-gray-700 outline-none border-none placeholder:text-gray-400" />
           <EnquirySelect value={enquiryType} onChange={setEnquiryType} />
-          <textarea name="message" id="contact-message" placeholder="Your message" rows={5} className="w-full rounded-2xl px-5 py-4 bg-white text-sm text-gray-700 outline-none border-none resize-none placeholder:text-gray-400" />
+          <textarea name="message" id="contact-message" placeholder="Your message" rows={5} value={form.message} onChange={handleChange} className="w-full rounded-2xl px-5 py-4 bg-white text-sm text-gray-700 outline-none border-none resize-none placeholder:text-gray-400" />
           <div>
-            <button type="submit" className="px-8 py-3 rounded-full text-white font-semibold text-sm cursor-pointer px-4 xl:px-13 py-3"
-              style={{ backgroundColor: "#9E2016", borderRadius: "65px", border: "1px solid #9E2016", fontFamily: "'Inter', sans-serif", fontSize: "16px", fontWeight: 500, color: "#ffffff", whiteSpace: "nowrap", flexShrink: 0, boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset" }}
-            >
-              Submit
+            <button type="submit" disabled={status === "submitting"} className="px-8 py-3 rounded-full text-white font-semibold text-sm cursor-pointer px-4 xl:px-13 py-3 mx-auto block md:mx-0 md:inline-block disabled:opacity-60" style={{ backgroundColor: "#9E2016", borderRadius: "65px", border: "1px solid #9E2016", fontFamily: "'Inter', sans-serif", fontSize: "16px", fontWeight: 500, color: "#ffffff", whiteSpace: "nowrap", flexShrink: 0, boxShadow: "0px 4px 4px 0px #0000001A, 0px 6px 6px 0px #1A1A1A08, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, 0px 2px 12px 0px #FFFFFF40 inset" }}>
+              {status === "submitting" ? "Sending..." : "Submit"}
             </button>
+            {status === "success" && <p className="text-white text-sm mt-2">Thanks! We'll get back to you soon.</p>}
+            {status === "error" && <p className="text-red-200 text-sm mt-2">Something went wrong. Please try again.</p>}
           </div>
         </form>
       </div>
-
       {/* Mobile/tablet-only cards, shown third after form (now up to 1280px) */}
       <div className="w-full xl:hidden flex flex-col gap-6 order-3">
         <ContactCard icon={<LocationIcon />} title="Address" content={<>NH-16, Rajanagaram, near HP Petrol Pump,<br />Rajamahendravaram, Andhra Pradesh 533294.</>}/>

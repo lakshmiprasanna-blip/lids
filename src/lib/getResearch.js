@@ -1,4 +1,4 @@
-const BASE_URL = process.env.CMS_API_BASE_URL || "http://localhost:4010";
+const BASE_URL = process.env.CMS_API_BASE_URL || "https://lids-cms-backend.onrender.com";
 
 const firstTruthy = (...vals) => vals.find((v) => typeof v === "string" && v.trim() !== "") ?? null;
 
@@ -46,6 +46,7 @@ export async function getResearch() {
             ? `${statusLabel} - ${year}`
             : statusLabel ?? "",
           dept: firstTruthy(r.department, r.dept) ?? "",
+          year: year ? String(year) : "",
           pdfUrl: resolveFileUrl(firstTruthy(r.pdf, r.pdfUrl, r.file, r.fileUrl)),
         };
       });

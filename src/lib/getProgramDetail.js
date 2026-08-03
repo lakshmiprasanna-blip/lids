@@ -1,4 +1,4 @@
-const BASE_URL = process.env.CMS_API_BASE_URL || "http://localhost:4010";
+const BASE_URL = process.env.CMS_API_BASE_URL || "https://lids-cms-backend.onrender.com";
 
 function normalizeSlug(raw) {
   if (!raw) return raw;
@@ -59,6 +59,12 @@ export async function getProgramDetail(slug) {
     );
     console.log("INTRO WIDGET BODY:", JSON.stringify(allWidgetsRaw[0]?.body));
 
+    const tableWidget =
+      allWidgetsRaw.find((w) => w.title === "Research & Academic Development") ??
+      allWidgetsRaw.find((w) => w.type === "table");
+    console.log("RESEARCH TABLE COLUMNS:", JSON.stringify(tableWidget?.columns, null, 2));
+    console.log("RESEARCH TABLE ROW 0:", JSON.stringify(tableWidget?.rows?.[0], null, 2));
+
     const introWidget = allWidgetsRaw[0]?.type === "rich-text" ? allWidgetsRaw[0] : null;
 
     const allWidgets = introWidget ? allWidgetsRaw.slice(1) : allWidgetsRaw;
@@ -77,22 +83,7 @@ export async function getProgramDetail(slug) {
       if (widget.type === "key-value-grid") continue;
       const hasTitle = widget.title && widget.title.trim() !== "";
       const fields = widgetToFields(widget);
-const groups = raw.sections ?? [];
-const allWidgetsRaw = groups.flatMap((g) => g.widgets ?? []);
 
-// DIAGNOSTIC — check your terminal (server logs), not the browser console
-console.log(
-  "WIDGET TYPES:",
-  allWidgetsRaw.map((w) => ({ type: w.type, title: w.title, keys: Object.keys(w) }))
-);
-console.log("INTRO WIDGET BODY:", JSON.stringify(allWidgetsRaw[0]?.body));
-
-// ADD THESE TWO LINES HERE:
-const tableWidget = allWidgetsRaw.find((w) => w.type === "table");
-console.log("TABLE COLUMNS:", JSON.stringify(tableWidget?.columns, null, 2));
-console.log("TABLE ROW 0:", JSON.stringify(tableWidget?.rows?.[0], null, 2));
-
-const introWidget = allWidgetsRaw[0]?.type === "rich-text" ? allWidgetsRaw[0] : null;
       // "card-grid" is reused for both achievements and gallery — split by title.
       if (fields.achievements && /gallery|infrastructure/i.test(widget.title ?? "")) {
         fields.gallery = fields.achievements;
@@ -135,29 +126,33 @@ function widgetToFields(widget) {
 
     case "card-grid":
       return {
-        achievements: (widget.items ?? []).map((item) => ({
-          image: resolveImageUrl(firstTruthy(item.imageUrl, item.image)),
-          name: item.name ?? "",
-          dept: item.subtitle ?? item.dept ?? "",
-        })),
+        achievements: (widget.items ?? [])
+          .map((item) => ({
+            image: resolveImageUrl(firstTruthy(item.imageUrl, item.image)),
+            name: item.name ?? "",
+            dept: item.subtitle ?? item.dept ?? "",
+          }))
+          .filter((item) => item.image),
       };
-
     case "table":
       return {
         table: {
           headers: (widget.columns ?? []).map((c) => c.label ?? c.title ?? c),
-          rows: (widget.rows ?? []).map((row) => (Array.isArray(row) ? row : row.cells ?? Object.values(row))),
+          rows: (widget.rows ?? []).map((row) => {
+            const cellMap = row.cells ?? row; 
+            return (widget.columns ?? []).map((col) => cellMap[col.id] ?? "");
+          }),
         },
       };
 
     case "profile":
-  return {
-    hod: {
-      image: resolveImageUrl(firstTruthy(widget.imageUrl, widget.image, widget.photo, widget.avatar)),
-      name: widget.name ?? "",
-      message: firstTruthy(widget.body, widget.message, widget.bio, widget.text) ?? "",
-    },
-  };
+      return {
+        hod: {
+          image: resolveImageUrl(firstTruthy(widget.imageUrl, widget.image, widget.photo, widget.avatar)),
+          name: widget.name ?? "",
+          message: firstTruthy(widget.body, widget.message, widget.bio, widget.text) ?? "",
+        },
+      };
 
     case "faq":
       return {

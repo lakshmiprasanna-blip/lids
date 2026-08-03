@@ -1,4 +1,4 @@
-const BASE_URL = process.env.CMS_API_BASE_URL || "http://localhost:4010";
+const BASE_URL = process.env.CMS_API_BASE_URL || "https://lids-cms-backend.onrender.com";
 
 function resolveImageUrl(url) {
   if (!url) return null;

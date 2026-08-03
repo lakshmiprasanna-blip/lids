@@ -1,0 +1,5 @@
+{"timestamp":"2026-07-29T11:47:18.814Z","status":"failed","name":"testhbaa","email":"testqab@gmail.com","phone":"8562300202","message":"hi","enquiry_type":"Admissions","error":"Error: Sheet script returned 401"}
+{"timestamp":"2026-07-29T11:47:55.394Z","status":"failed","name":"testhbaa","email":"testqab@gmail.com","phone":"8562300202","message":"hi","enquiry_type":"Admissions","error":"Error: Sheet script returned 401"}
+{"timestamp":"2026-07-29T12:22:04.680Z","status":"success","name":"testnew","email":"testnew@gmail.com","phone":"956458458","message":"hi","enquiry_type":"General Enquiry"}
+{"timestamp":"2026-07-29T12:23:07.981Z","status":"success","name":"testnew","email":"testnew@gmail.com","phone":"956458458","message":"hi","enquiry_type":"General Enquiry"}
+{"timestamp":"2026-07-29T12:23:47.539Z","status":"success","name":"testess","email":"testqab@gmail.com","phone":"8521020123","message":"hi","enquiry_type":"General Enquiry"}

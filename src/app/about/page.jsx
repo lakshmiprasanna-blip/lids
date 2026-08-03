@@ -102,7 +102,7 @@ export default function AboutPage() {
     <p className="text-[#656C7B] text-[18px] leading-relaxed w-full md:max-w-[100%] lg:w-[1180px] md:mx-auto md:text-center"> Situated in Rajahmundry, Andhra Pradesh, LIDS is more than a dental institution —  it's a vibrant hub for innovation, academic excellence, and patient-centric care. As a premier institution under the KLR Group, we empower the next generation of dental leaders through a dynamic blend of high-tech research, hands-on clinical training, and passionate mentorship. Whether you are a future student or looking for cutting-edge dentistry, LIDS is where expertise meets compassion.</p>
   </div>
 </section>
-      <CardGrid cards={mvvCards} cols={3} showBlob={true}/>
+      <CardGrid cards={mvvCards} cols={3} showBlob={true} className="!py-15 md:!py-20 lg:!py-20"/>
       <ShapeDental
   label="APPROACH"
   title="Our Philosophy"
