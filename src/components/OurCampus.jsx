@@ -72,7 +72,7 @@ const next = () => setActiveIndex((p) => (p === imgs.length - 1 ? 0 : p + 1));
     <section className="relative w-full overflow-hidden bg-white py-10">
       {showBlob && (
         <div className="absolute inset-0 pointer-events-none ">
-          <Blob style={{ top: 0, left: 0 }} />
+          <Blob style={{ top: 0, left: 112 }} />
           <Blob style={{ bottom: 20, right: 250 }} />
          {showMobileBlob && (
           <>

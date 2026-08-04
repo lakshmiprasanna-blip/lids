@@ -52,7 +52,7 @@ export default function AlumniStories({
         <section className="relative w-full bg-white py-20 overflow-hidden">
       {/* Decorative blobs */}
       <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "344px", height: "460px", background: "rgb(142 206 203 / 63%)", filter: "blur(186px)", transform: "rotate(-90deg)", zIndex: 0, top: 0, left: 0 }} />
-      <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "344px", height: "360px", background: "rgb(142 206 203 / 63%)", filter: "blur(186px)", transform: "rotate(-90deg)", zIndex: 0, top: "250px", left: "760px" }} />
+      <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "344px", height: "360px", background: "rgb(142 206 203 / 63%)", filter: "blur(135px)", transform: "rotate(-90deg)", zIndex: 0, top: "350px", left: "1105px" }} />
       <div className="container text-center mb-16">
         <p className="eyebrow-heading text-[#9E2016] text-md font-semibold uppercase mb-4">ALUMNI STORIES</p>
         <h3 className="text-[#1A1A1A] font-semibold">Voices That Echo <br /> Through Generations</h3>
