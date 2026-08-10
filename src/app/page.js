@@ -9,43 +9,25 @@ import FAQs from "@/components/FAQs";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 import FacilitiesOverview from "@/components/FacilitiesOverview";
 import { getEvents } from "@/lib/getEvents";
+import homeData from "@/app/data/home.json";
 
 const events = await getEvents();
 
-const left = [
-  { icon: "/svg/tooth-icon1.svg", title: "State-of-the-Art Infrastructure", desc: "Master with advanced tools such as digital radiography, CBCT & intraoral scanners, 3D technology, microsurgical endodontics and surgical units etc." },
-  { icon: "/svg/tooth-icon3.svg", title: "Compassionate & Expert Care", desc: "Benefit from a holistic learning environment that combines rigorous medical standards with a genuine commitment to public service." },
-];
-const right = [
-  { icon: "/svg/tooth-icon2.svg", title: "Strong Clinical Exposure", desc: "Gain hands-on experience through a high volume of diverse patient interactions, with an average monthly turnout of 15,000+ patients." },
-  { icon: "/svg/tooth-icon4.svg", title: "Experienced Faculty", desc: "Receive personalized mentorship designed to bridge the gap between classroom theory and real-world clinical practice." },
-];
-const facilities = [
-  { icon: "/svg/clinical.svg",     label: "Clinical Infrastructure" },
-  { icon: "/svg/camp.svg",     label: "Our Campus" },
-        { icon: "/svg/lib.svg",   label: "Library" },
-        { icon: "/svg/sport.svg",    label: "Sports" },
-        { icon: "/svg/research.svg",   label: "Research Facilities" },
-        { icon: "/svg/cafe.svg",   label: "Cafeteria" },
-        { icon: "/svg/hostell.svg",   label: "Hostel" },
-        { icon: "/svg/transport.svg",   label: "Transportation" },
-        { icon: "/svg/camp.svg", label: "IT & Digital Infrastructure" },
-        { icon: "/svg/cctv.svg", label: "24/7 Surveillance" },
-];
-const dentalPrograms = [
-  { title: "Bachelor of Dental Surgery (BDS)", years: "5 years", image: "/assets/BDS.webp", desc: "Start your professional journey with our comprehensive BDS program, where foundational science meets advanced clinical practice." },
-  { title: "Master of Dental Surgery (MDS)", years: "3 years", image: "/assets/MDS.webp", desc: "Elevate your expertise with our MDS specialisations, designed for dentists aiming to achieve mastery in complex oral healthcare." },
-  { title: "PG Diploma Programs", years: "3 years", image: "/assets/PG.webp", desc: "Fast-track your career growth with our intensive PG Diploma programs, focusing on specialized clinical skills and the latest dental technologies." },
-];
-const label = "OUR COMMITMENT";
-const heading = "To Research Excellence of Oral Healthcare";
+const { left, right } = homeData.features;
+const { facilities, dentalPrograms, commitment } = homeData;
+const { label, heading, points: commitmentPoints } = commitment;
 
-const commitmentPoints = [
-  <>Join a legacy of innovation with over <span className="text-[#8E0019] font-semibold">1,700+ published research papers,</span> contributing high-impact findings to the global dental community.</>,
-  <>Engage in a collective ecosystem where students and expert faculty unite to solve the most pressing challenges in <span className="text-[#8E0019] font-semibold">preventative and restorative dentistry.</span></>,
-  <>Benefit from an environment that encourages critical thinking, from exploring disease prevention to developing cutting-edge treatment protocols.</>,
-  <>Work alongside seasoned specialists to refine your investigative skills, preparing you for a career at the forefront of <span className="text-[#8E0019] font-semibold">dental science and technology.</span></>,
-];
+function renderHighlighted(text, highlight) {
+  const idx = highlight ? text.indexOf(highlight) : -1;
+  if (idx === -1) return text;
+  return (
+    <>
+      {text.slice(0, idx)}
+      <span className="text-[#8E0019] font-semibold">{highlight}</span>
+      {text.slice(idx + highlight.length)}
+    </>
+  );
+}
 
 const checkIcon = (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -84,7 +66,6 @@ desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative d
       <DentalPrograms programs={dentalPrograms} />
      <section className="relative w-full overflow-hidden bg-white py-20">
   <div className="container">
-
     {/* HEADING */}
     <div className="mb-10 md:mb-16">
       <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4 text-left lg:text-center">Why choose LIDS</p>
@@ -92,13 +73,13 @@ desc="At Lenora Institute of Dental Sciences (LIDS), we offer a transformative d
     </div>
     <div className="xl:hidden flex flex-col gap-8">
       <div className="relative flex items-center justify-center w-full h-[260px]" style={{ background: "radial-gradient(ellipse at center, #CFEFED 0%, transparent 70%)" }}>
-        <div className="relative z-10 w-[380px] h-[220px]">
+        <div className="relative z-10 !w-[380px] h-[220px]">
           <Image src="/assets/tooth.gif" alt="Tooth" fill className="object-contain opacity-30" />
         </div>
       </div>
       {[...left, ...right].map((item, i) => (
         <div key={i} className="flex flex-col gap-3">
-          <Image src={item.icon} alt={item.title} width={92} height={92} />
+          <Image src={item.icon} alt={item.title} width={92} height={92} style={{ width: "92px", height: "92px" }} />
           <h4 className="font-inter text-[#1A1A1A] !text-xl font-semibold">{item.title}</h4>
           <p className="text-[#7A7A7A] text-sm">{item.desc}</p>
         </div>
@@ -128,7 +109,7 @@ extracurricular activities and modern amenities designed for your holistic
 development."
       facilities={facilities}
     />
- <section className="relative w-full overflow-hidden bg-white !py-0">
+ <section className="relative w-full overflow-hidden bg-white !py-10 md:!py-0">
       <div className="container absolute inset-0 pointer-events-none overflow-visible">
         <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "950px", height: "500px", top: "215px", right: "-200px", background: "#CFEFED", filter: "blur(100px)", mixBlendMode: "multiply", zIndex: 0 }}/>
       </div>
@@ -140,11 +121,11 @@ development."
           {commitmentPoints.map((item, i) => (
             <li key={i} className="flex items-start gap-3">
               <span className="mt-1 shrink-0">{checkIcon}</span>
-              <p className="text-[#7A7A7A] text-md leading-relaxed">{item}</p>
+              <p className="text-[#7A7A7A] text-md leading-relaxed">{renderHighlighted(item.text, item.highlight)}</p>
             </li>
           ))}
         </ul>
-        <div className="relative w-full mb-0 h-[350px] md:h-[690px]">
+        <div className="relative w-full -mb-10 h-[350px] md:h-[690px]">
           <div className="absolute pointer-events-none" style={{ width: "320px", height: "320px", top: "0%", right: "-10%", background: "#CFEFED", filter: "blur(80px)", borderRadius: "50%", zIndex: 0 }}/>
           <Image src="/assets/research-excellence.webp" alt="Research Excellence" fill className="object-cover pointer-events-none" style={{ zIndex: 1, objectPosition: "65% bottom" }}/>
         </div>
@@ -159,7 +140,7 @@ development."
       {commitmentPoints.map((item, i) => (
         <li key={i} className="flex items-start gap-3">
           <span className="mt-1 shrink-0">{checkIcon}</span>
-          <p className="text-[#7A7A7A] text-md leading-relaxed">{item}</p>
+          <p className="text-[#7A7A7A] text-md leading-relaxed">{renderHighlighted(item.text, item.highlight)}</p>
         </li>
       ))}
     </ul>

@@ -1,14 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-
-const stats = [
-  { number: "355+",      label: "Dental Unit Chairs",     target: 355,    suffix: "+" },
-  { number: "18+",       label: "Academic Experience",     target: 18,     suffix: "+" },
-  { number: "1,00,000+", label: "Patients per annum",      target: 100000, suffix: "+" },
-  { number: "1700+",     label: "Research Publications",   target: 1700,   suffix: "+" },
-  { number: "98+",       label: "Yearly Surgeries",        target: 98,     suffix: "+" },
-];
+import stats from "@/app/data/stats.json";
 
 function formatIndianNumber(num) {
   return num.toLocaleString("en-IN");

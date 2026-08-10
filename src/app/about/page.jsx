@@ -7,49 +7,10 @@ import CTABanner from "@/components/CTABanner";
 import CardGrid from "@/components/CardGrid";
 import ShapeDental from "@/components/ShapeDental";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
+import aboutData from "@/app/data/about.json";
 
-const mvvCards = [
-  { 
-    icon: "/svg/about-mission.svg", 
-    title: "Our Mission", 
-    desc: "To empower the next generation of dental professionals by bridging the gap between classroom theory and real-world practice." 
-  },
-  { 
-    icon: "/svg/about-mission.svg", 
-    title: "Our Purpose", 
-    desc: "Inspired by the vision of Dr. K. Lakshma Reddy (KLR Garu), our purpose remains clear: to make quality dental care accessible to all, while developing dentists who create meaningful impact in every life they touch." 
-  },
-  { 
-    icon: "/svg/about-mission.svg", 
-    title: "Our Vision", 
-    desc: "To transform society through exceptional dental education, dedicated community service, and proactive oral health advocacy." 
-  },
-];
+const { mvvCards, coreValues, doctors, founder } = aboutData;
 
-const coreValues = [
-  { icon: "/svg/corevalues1.svg",   title: "Entrepreneurial Growth",  desc: "Guided to grow with confidence and independence. With close mentorship and personal support, they learn at their own pace while developing the skills and mindset to lead, manage, and build their own dental careers." },
-  { icon: "/svg/corevalues2.svg",title: "Service to Community",    desc: "Dentistry goes beyond the classroom. Through regular outreach camps and public health initiatives, students actively serve communities while gaining meaningful real-world experience." },
-  { icon: "/svg/corevalues3.svg", title: "Practice First Learning", desc: "We believe confidence comes from doing. From early clinical exposure to direct patient care, students learn through real-world practice under supervision preparing them for independent clinical work from day one." },
-  { icon: "/svg/corevalues4.svg",  title: "Continuous Improvement",  desc: "We encourage curiosity and growth. Through ongoing research, skill development programs, and clinical learning, students and faculty stay updated and keep evolving together." },
-];
-
-const doctors = [
-  { image: "/assets/doctor1.webp", name: "Mrs. K. Nagamani", role: "Founder & Director" },
-  { image: "/assets/doctor1.webp", name: "Mrs. K. Nagamani", role: "Founder & Director" },
-  { image: "/assets/doctor1.webp", name: "Mrs. K. Nagamani", role: "Founder & Director" },
-  { image: "/assets/doctor1.webp", name: "Mrs. K. Nagamani", role: "Founder & Director" },
-];
-const founder = {
-  label: "MESSAGE",
-  title: "A Message from Our Founder",
-  paragraphs: [
-    "For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.",
-    "KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth."
-  ],
-  name: "Dr. Katireddy Lakshma Reddy",
-  designation: "Founder & Chairman, KLR group",
-  image: "/assets/founder.webp"
-};
 function DoctorCard({ doc, imgClass, nameClass, roleClass }) {
   return (
     <div className="flex flex-col items-center gap-3">
@@ -89,34 +50,34 @@ export default function AboutPage() {
        label="About us"
         title="A Legacy of Excellence in Education and Social Responsibility"
         mobileImage="/assets/about-mob.webp" />
-      <section className="relative bg-white py-10 md:py-14 lg:text-20">
+        
+    <section className="relative bg-white py-10 md:py-14 lg:text-20">
   <div className="relative z-10 container">
-    <div className="relative w-full md:max-w-5xl md:mx-auto h-[280px] md:h-[477px] rounded-2xl overflow-hidden mb-6 md:mb-8" style={{ boxShadow: "inset 0 0 0 4px rgba(255, 255, 255, 0.5)" }}>
-      <Image src="/assets/lids-building.webp" alt="LIDS Building" loading="lazy" fill className=" md:object-cover"/>
-      <div className="absolute inset-0 rounded-2xl border-5 border-white/40 pointer-events-none" />
-    </div>
-    <div className=" text-center mb-6">
+    <div className="relative w-full md:max-w-5xl md:mx-auto h-[280px] md:h-[477px] rounded-2xl overflow-hidden mb-6 md:mb-8 bg-[#F2F2F2] md:shadow-[inset_0_0_0_4px_rgba(255,255,255,0.5)]">
+  <Image src="/assets/lids-building.webp" alt="LIDS Building" loading="lazy" fill sizes="(max-width: 768px) 100vw, 1024px" className="object-cover" />
+  <div className="absolute inset-0 rounded-2xl border-5 border-white/40 pointer-events-none hidden md:block" />
+</div>
+    <div className="text-center mb-6">
       <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">Lenora Institute of Dental Sciences (LIDS)</p>
       <h3 className="text-[#1A1A1A] font-semibold">Shaping the Future of Oral Healthcare</h3>
     </div>
-    <p className="text-[#656C7B] text-[18px] leading-relaxed w-full md:max-w-[100%] lg:w-[1180px] md:mx-auto md:text-center"> Situated in Rajahmundry, Andhra Pradesh, LIDS is more than a dental institution —  it's a vibrant hub for innovation, academic excellence, and patient-centric care. As a premier institution under the KLR Group, we empower the next generation of dental leaders through a dynamic blend of high-tech research, hands-on clinical training, and passionate mentorship. Whether you are a future student or looking for cutting-edge dentistry, LIDS is where expertise meets compassion.</p>
+    <p className="text-[#9A9A9A] text-[16px] md:text-[18px] leading-relaxed w-full md:max-w-[100%] lg:w-[1180px] md:mx-auto text-center">
+      Situated in Rajahmundry, Andhra Pradesh, LIDS is more than a dental institution — it's a vibrant hub for innovation, academic excellence, and patient-centric care. As a premier institution under the KLR Group, we empower the next generation of dental leaders through a dynamic blend of high-tech research, hands-on clinical training, and passionate mentorship. Whether you are a future student or looking for cutting-edge dentistry, LIDS is where expertise meets compassion.
+    </p>
   </div>
 </section>
       <CardGrid cards={mvvCards} cols={3} showBlob={true} className="!py-15 md:!py-20 lg:!py-20"/>
       <ShapeDental
-  label="APPROACH"
-  title="Our Philosophy"
-  desc="At LIDS, we believe dental education must go beyond knowledge shaping professionals with skill, ethics,
-and a deep sense of responsibility. Every student learns not just to treat, but to serve. Through real patient
-exposure and guided clinical practice, learning extends far beyond the classroom, building both competence
-and compassion."
-  imageSrc="/assets/philosophy.webp"
-  imageAlt="Our Philosophy"
-  showBlur={false}
-  descClassName="text-[24px] text-[#333333]"
-/>
+      label="APPROACH"
+      title="Our Philosophy"
+      desc="At LIDS, we believe dental education must go beyond knowledge shaping professionals with skill, ethics, and a deep sense of responsibility. Every student learns not just to treat, but to serve. Through real patient exposure and guided clinical practice, learning extends far beyond the classroom, building both competence and compassion."
+      imageSrc="/assets/philosophy.webp"
+      imageAlt="Our Philosophy"
+      showBlur={false}
+      descClassName="text-[24px] text-[#333333]"
+     />
 {/* FOUNDER MESSAGE */}
-<section className="w-full py-15 bg-[#35908D]">
+<section className="w-full !py-15 bg-[#35908D]">
   <div className="container">
     <div className="md:hidden flex flex-col gap-6 rounded-[24px] p-6"  style={{ border: "1px solid #20B2AA30", boxShadow: "0px 2px 12px 0px #FFFFFF40 inset, 0px 1px 3px 0px #1A1A1A0A, 0px 6px 6px 0px #E5F3F208, 0px 13px 8px 0px #9EFFEE05, 0px 22px 9px 0px #9EFFEE03, 0px 35px 10px 0px #C9F9FF00"}}>
       <div className="relative w-full overflow-hidden rounded-2xl" style={{ height: "280px" }}>
@@ -171,10 +132,12 @@ and compassion."
   imageLeft={false}
   showBlur={false}
 />
-<section className="relative bg-white !pt-8 ">
+<section className="relative bg-white !pt-8 !pb-12">
   <div className="absolute inset-0 pointer-events-none">
-    <div className="absolute rounded-full hidden xl:block" style={{ width: "368.38px", height: "470px", top: "-99px", left: "-126px", background: "#CFEFED", filter: "blur(93px)", transform: "rotate(90.53deg)", zIndex: 0 }} />
-  </div>
+  <div className="absolute rounded-full block xl:hidden" style={{ width: "187px", height: "239px", top: "-60px", left: "0px", background: "#b9e9e6", filter: "blur(94px)", zIndex: 0 }} />
+  <div className="absolute rounded-full hidden xl:block" style={{ width: "368.38px", height: "470px", top: "-99px", left: "-126px", background: "#CFEFED", filter: "blur(93px)", transform: "rotate(90.53deg)", zIndex: 0 }} />
+</div>
+  
   <div className="container relative z">
     <div className="text-center mb-12">
       <p className="text-[#9E2016] text-[18px] font-semibold uppercase mb-4">OUR CORE TEAM</p>
@@ -222,6 +185,8 @@ professional independence in a tech-forward environment. Master the art of
 dentistry at your own pace, supported by experts dedicated to your success."
   buttonText="Apply Now"
   buttonHref="/admissions"
+   imageStyle={{ transform: "scale(1.05)", objectPosition: "center" }}
+  mobileImageStyle={{ transform: "scale(1.02)", objectPosition: "50% 20%" }}
 />
     </main>
   );

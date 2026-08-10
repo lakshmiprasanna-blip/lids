@@ -1,0 +1,39 @@
+{
+  "features": {
+    "left": [
+      { "icon": "/svg/tooth-icon1.svg", "title": "State-of-the-Art Infrastructure", "desc": "Master with advanced tools such as digital radiography, CBCT & intraoral scanners, 3D technology, microsurgical endodontics and surgical units etc." },
+      { "icon": "/svg/tooth-icon3.svg", "title": "Compassionate & Expert Care", "desc": "Benefit from a holistic learning environment that combines rigorous medical standards with a genuine commitment to public service." }
+    ],
+    "right": [
+      { "icon": "/svg/tooth-icon2.svg", "title": "Strong Clinical Exposure", "desc": "Gain hands-on experience through a high volume of diverse patient interactions, with an average monthly turnout of 15,000+ patients." },
+      { "icon": "/svg/tooth-icon4.svg", "title": "Experienced Faculty", "desc": "Receive personalized mentorship designed to bridge the gap between classroom theory and real-world clinical practice." }
+    ]
+  },
+  "facilities": [
+    { "icon": "/svg/clinical.svg", "label": "Clinical Infrastructure" },
+    { "icon": "/svg/camp.svg", "label": "Our Campus" },
+    { "icon": "/svg/lib.svg", "label": "Library" },
+    { "icon": "/svg/sport.svg", "label": "Sports" },
+    { "icon": "/svg/research.svg", "label": "Research Facilities" },
+    { "icon": "/svg/cafe.svg", "label": "Cafeteria" },
+    { "icon": "/svg/hostell.svg", "label": "Hostel" },
+    { "icon": "/svg/transport.svg", "label": "Transportation" },
+    { "icon": "/svg/camp.svg", "label": "IT & Digital Infrastructure" },
+    { "icon": "/svg/cctv.svg", "label": "24/7 Surveillance" }
+  ],
+  "dentalPrograms": [
+    { "title": "Bachelor of Dental Surgery (BDS)", "years": "5 years", "image": "/assets/BDS.webp", "desc": "Start your professional journey with our comprehensive BDS program, where foundational science meets advanced clinical practice.", "href": "/coursedetail/bds" },
+    { "title": "Master of Dental Surgery (MDS)", "years": "3 years", "image": "/assets/MDS.webp", "desc": "Elevate your expertise with our MDS specialisations, designed for dentists aiming to achieve mastery in complex oral healthcare.", "href": "/coursedetail/mds" },
+    { "title": "PG Diploma Programs", "years": "3 years", "image": "/assets/PG.webp", "desc": "Fast-track your career growth with our intensive PG Diploma programs, focusing on specialized clinical skills and the latest dental technologies.", "href": "/coursedetail/pg" }
+  ],
+  "commitment": {
+    "label": "OUR COMMITMENT",
+    "heading": "To Research Excellence of Oral Healthcare",
+    "points": [
+      { "text": "Join a legacy of innovation with over 1,700+ published research papers, contributing high-impact findings to the global dental community.", "highlight": "1,700+ published research papers," },
+      { "text": "Engage in a collective ecosystem where students and expert faculty unite to solve the most pressing challenges in preventative and restorative dentistry.", "highlight": "preventative and restorative dentistry." },
+      { "text": "Benefit from an environment that encourages critical thinking, from exploring disease prevention to developing cutting-edge treatment protocols." },
+      { "text": "Work alongside seasoned specialists to refine your investigative skills, preparing you for a career at the forefront of dental science and technology.", "highlight": "dental science and technology." }
+    ]
+  }
+}

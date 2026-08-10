@@ -52,26 +52,11 @@ export async function getProgramDetail(slug) {
     const groups = raw.sections ?? [];
     const allWidgetsRaw = groups.flatMap((g) => g.widgets ?? []);
 
-    // DIAGNOSTIC — check your terminal (server logs), not the browser console
-    console.log(
-      "WIDGET TYPES:",
-      allWidgetsRaw.map((w) => ({ type: w.type, title: w.title, keys: Object.keys(w) }))
-    );
-    console.log("INTRO WIDGET BODY:", JSON.stringify(allWidgetsRaw[0]?.body));
-
-    const tableWidget =
-      allWidgetsRaw.find((w) => w.title === "Research & Academic Development") ??
-      allWidgetsRaw.find((w) => w.type === "table");
-    console.log("RESEARCH TABLE COLUMNS:", JSON.stringify(tableWidget?.columns, null, 2));
-    console.log("RESEARCH TABLE ROW 0:", JSON.stringify(tableWidget?.rows?.[0], null, 2));
-
     const introWidget = allWidgetsRaw[0]?.type === "rich-text" ? allWidgetsRaw[0] : null;
 
     const allWidgets = introWidget ? allWidgetsRaw.slice(1) : allWidgetsRaw;
 
     const intro = introWidget ? extractIntro(introWidget.body) : { tagline: "", desc: "" };
-
-    console.log("EXTRACTED INTRO:", intro);
 
     const statsWidget = allWidgets.find((w) => w.type === "key-value-grid");
     const stats = statsWidget

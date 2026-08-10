@@ -1,0 +1,30 @@
+{
+  "dentalPrograms": [
+    { "title": "Bachelor of Dental Surgery (BDS)", "years": "5 years", "image": "/assets/BDS.webp", "desc": "Start your professional journey with our comprehensive BDS program, where foundational science meets advanced clinical practice.", "href": "/coursedetail/bds" },
+    { "title": "Master of Dental Surgery (MDS)", "years": "3 years", "image": "/assets/MDS.webp", "desc": "Elevate your expertise with our MDS specialisations, designed for dentists aiming to achieve mastery in complex oral healthcare.", "href": "/coursedetail/mds" },
+    { "title": "PG Diploma Programs", "years": "3 years", "image": "/assets/PG.webp", "desc": "Fast-track your career growth with our intensive PG Diploma programs, focusing on specialized clinical skills and the latest dental technologies.", "href": "/coursedetail/pg" }
+  ],
+  "mvvCards": [
+    { "icon": "/assets/mentor.gif", "mobileImage": "/assets/about-mission-mob.webp", "title": "Mentorship-Led Learning", "mobileDesc": "To empower students by combining strong theoretical knowledge with meaningful practical training. We provide extensive hands-on learning and regular access to patient care so students gain sufficient clinical experience and become well-rounded professionals.", "desc": "Our students benefit from personalized mentorship throughout their academic journey, where faculty members provide guidance on clinical procedures, research, and career." },
+    { "icon": "/assets/hands.gif", "title": "Hands-On Training", "desc": "From the very first year, students are immersed in clinical environments, treating patients under the supervision of experienced faculty, ensuring that theoretical knowledge is applied in practice." },
+    { "icon": "/assets/learning.gif", "title": "Interdisciplinary Learning", "mobileDesc": "To create a positive impact on society through quality dental education, community service, and oral health awareness. We aim to be recognised for academic excellence, research, and responsible practice, while nurturing future dental professionals.", "desc": "Our students have the opportunity to engage in interdisciplinary learning, collaborating with peers from different specialties, ensuring a broader understanding of dental sciences." }
+  ],
+  "items": [
+    { "type": "text", "title": "Academics at LIDS", "desc": "Our BDS and MDS programs are designed to create dental professionals who excel in clinical practice, research, and community service. Through rigorous academic training, hands-on clinical experience, and mentorship from world-class faculty.", "href": "/courses" },
+    { "type": "image", "src": "/assets/joinlids-1.webp", "alt": "Academics" },
+    { "type": "image", "src": "/assets/joinlids-2.webp", "alt": "Students" },
+    { "type": "text", "title": "Research Opportunities", "desc": "At LIDS, both BDS and MDS students are encouraged to explore their academic interests through research. Students have access to:", "href": "/research" }
+  ],
+  "facilities": [
+    { "icon": "/svg/clinical.svg", "label": "Clinical Infrastructure" },
+    { "icon": "/svg/camp.svg", "label": "Our Campus" },
+    { "icon": "/svg/lib.svg", "label": "Library" },
+    { "icon": "/svg/sport.svg", "label": "Sports" },
+    { "icon": "/svg/research.svg", "label": "Research Facilities" },
+    { "icon": "/svg/cafe.svg", "label": "Cafeteria" },
+    { "icon": "/svg/hostell.svg", "label": "Hostel" },
+    { "icon": "/svg/transport.svg", "label": "Transportation" },
+    { "icon": "/svg/camp.svg", "label": "IT & Digital Infrastructure" },
+    { "icon": "/svg/cctv.svg", "label": "24/7 Surveillance" }
+  ]
+}

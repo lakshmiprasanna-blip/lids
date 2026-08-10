@@ -1,16 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import CTABanner from "@/components/CTABanner";
 import ContactSection from "@/components/ContactSection";
 import FAQs from "@/components/FAQs";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
+import contactData from "@/app/data/contact.json";
 
-const contactFaqs = [
-  { question: "What is the eligibility for BDS admission?", answer: "..." },
-  { question: "Is LIDS recognized by the Dental Council of India?", answer: "..." },
-  { question: "What is the eligibility for BDS admission?", answer: "..." },
-  { question: "Is LIDS recognized by the Dental Council of India?", answer: "..." },
-];
+const { faqs: contactFaqs } = contactData;
 
 export default function ContactPage() {
   return (
@@ -22,16 +17,16 @@ export default function ContactPage() {
   image="/assets/contact-banner.webp"
   showButton={false}
   priority={true}
-  titleClassName="!text-[40px] md:!text-[56px]"
-  descriptionClassName="max-w-5xl"
+  titleClassName="!text-[16px] md:!text-[16px] ![font-family:'Inter',sans-serif]"
+  descriptionClassName="max-w-5xl !text-[32px] md:!text-[56px] [font-family:'Plus_Jakarta_Sans',sans-serif] font-semibold"
   mobileImagePosition="46% 65%"
   mobileImageStyle={{ transform: "scale(1.01)" }}
 />
 
 <ContactSection/>
-<section className="container w-full py-16 px-6 ">
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-8 container">
-        <h3 className="!text-2xl md:!text-5xl font-semibold text-gray-800">Find Us on the Map</h3>
+<section className=" w-full !py-5 px-6 ">
+      <div className="container mx-auto flex flex-col items-center gap-8">
+      <h3 className="!text-[32px] md:!text-5xl font-semibold text-gray-800 whitespace-nowrap">Find Us on the Map</h3>
       <p className="md:hidden text-[#9A9A9A] text-[16px] text-center max-w-2xl mx-auto xl:mx-0">
             Our admissions team is available Monday to Saturday, 9 AM – 5 PM.
             Feel free to visit us on campus or reach out through any of the channels below.
@@ -49,6 +44,7 @@ export default function ContactPage() {
   buttonText="Apply Now"
   buttonHref="/academics"
   image="/assets/transparent-banner.webp"
+  priority={true}
   mobileImagePosition="70% 95%"
   mobileImageStyle={{ transform: "scale(1.01)" }}
 />

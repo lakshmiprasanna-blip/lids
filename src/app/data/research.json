@@ -1,0 +1,7 @@
+{
+  "mvvCards": [
+    { "icon": "/svg/ethic.svg", "title": "Ethical Research Standards", "desc": "All research publications follows strict ethical guidelines approved by our Institutional Ethics Committee (IEC), ensuring patient safety, data privacy, and scientific integrity." },
+    { "icon": "/svg/collab.svg", "title": "Collaborative Research", "desc": "LIDS encourages inter-departmental and inter-institutional collaboration, with active partnerships with hospitals, universities, and research bodies across India." },
+    { "icon": "/svg/recognize.svg", "title": "Publication & Recognition", "desc": "Faculty and students are encouraged to publish in peer-reviewed journals. LIDS supports research grants, conference attendance, and recognizes outstanding contributions annually." }
+  ]
+}

@@ -2,18 +2,81 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { ChevronDown } from "lucide-react";
+import navData from "@/app/data/nav.json";
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About us", href: "/about" },
-  { label: "Academics", href: "/courses" },
-  { label: "Admissions", href: "/admissions" },
-  { label: "Facilities", href: "/facilities" },
-  { label: "Research", href: "/research" },
-  { label: "Quick links", href: "/quick-links" },
-];
+const navLinks = navData.headerLinks;
+const quickLinks = navData.quickLinks;
+
+function QuickLinksDropdown({ label, isActive }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const close = (e) => {
+      if (!ref.current?.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        style={{ fontFamily: "Inter", fontSize: "16px", fontWeight: 500, lineHeight: "100%", color: isActive ? "#9E2016" : "#3D3D3D" }}
+        className="flex items-center gap-1 transition-colors duration-200 hover:text-[#9E2016] whitespace-nowrap cursor-pointer"
+      >
+        {label}
+        <ChevronDown size={16} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute top-full left-0 mt-3 bg-white rounded-2xl shadow-lg overflow-hidden z-50 min-w-[160px]" style={{ border: "1px solid #E6E6E6" }}>
+          {quickLinks.map((link) => (
+            <Link key={link.label} href={link.href} onClick={() => setOpen(false)} className="block px-5 py-3 text-sm text-[#3D3D3D] hover:bg-[#F5FFFE] hover:text-[#9E2016] whitespace-nowrap">
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MobileQuickLinks({ label, onNavigate }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        style={{ fontFamily: "'Inter', sans-serif", fontSize: "16px", fontWeight: 500, color: "#3D3D3D" }}
+        className="flex items-center gap-1 transition-colors duration-200 hover:text-[#9E2016] cursor-pointer"
+      >
+        {label}
+        <ChevronDown size={16} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="flex flex-col gap-3 mt-3 pl-4">
+          {quickLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              onClick={onNavigate}
+              style={{ fontFamily: "'Inter', sans-serif", fontSize: "15px", fontWeight: 500, color: "#3D3D3D" }}
+              className="transition-colors duration-200 hover:text-[#9E2016]"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Header() {
   const pathname = usePathname();
@@ -26,6 +89,7 @@ export default function Header() {
         </Link>
         <nav className="hidden lg:flex items-center gap-4 xl:gap-10">
           {navLinks.map((link) => {
+            if (link.dropdown) return <QuickLinksDropdown key={link.label} label={link.label} isActive={quickLinks.some((q) => q.href === pathname)} />;
             const isActive = pathname === link.href;
             return (
               <Link
@@ -57,6 +121,7 @@ export default function Header() {
       {menuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => {
+            if (link.dropdown) return <MobileQuickLinks key={link.label} label={link.label} onNavigate={() => setMenuOpen(false)} />;
             const isActive = pathname === link.href;
             return (
               <Link

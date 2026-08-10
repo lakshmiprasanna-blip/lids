@@ -1,0 +1,31 @@
+{
+  "headerLinks": [
+    { "label": "Home", "href": "/" },
+    { "label": "About us", "href": "/about" },
+    { "label": "Academics", "href": "/academics" },
+    { "label": "Admissions", "href": "/admissions" },
+    { "label": "Facilities", "href": "/facilities" },
+    { "label": "Research", "href": "/research" },
+    { "label": "Quick links", "dropdown": true }
+  ],
+  "quickLinks": [
+    { "label": "Courses", "href": "/courses" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "footer": {
+    "exploreLinks": ["About us", "Academics", "Admissions", "Facilities", "Careers"],
+    "importantLinks": ["Research Policy", "DCI Data", "NAAC", "NIRF"],
+    "addressLines": ["NH-16, near HP Petrol Pump,", "Rajanagaram,", "Rajamahendravaram, Andhra", "Pradesh 533294"],
+    "contactItems": [
+      { "icon": "📞", "text": "+91-88 324 84492", "filterIcon": true, "href": "tel:+918832484492" },
+      { "icon": "✉️", "text": "mailus@lids.com", "href": "mailto:mailus@lids.com" },
+      { "icon": "📍", "text": "Location", "href": "https://www.google.com/maps/search/?api=1&query=NH-16+Rajanagaram+near+HP+Petrol+Pump+Rajamahendravaram+Andhra+Pradesh+533294" }
+    ],
+    "socialIcons": [
+      { "href": "#", "icon": "/svg/facebook.svg" },
+      { "href": "#", "icon": "/svg/linkedin.svg" },
+      { "href": "#", "icon": "/svg/youtube.svg" },
+      { "href": "#", "icon": "/svg/whatsapp.svg" }
+    ]
+  }
+}

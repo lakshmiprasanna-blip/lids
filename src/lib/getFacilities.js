@@ -8,8 +8,6 @@ function resolveImageUrl(url) {
 
 export async function getFacilities() {
   try {
-    console.log("TOKEN BEING SENT:", process.env.CMS_API_TOKEN);
-
     const res = await fetch(`${BASE_URL}/api/facilities`, {
       headers: { Authorization: `Bearer ${process.env.CMS_API_TOKEN}` },
       cache: "no-store",
@@ -23,12 +21,6 @@ export async function getFacilities() {
 
     const raw = await res.json();
     const list = raw.data ?? raw ?? [];
-
-    // DIAGNOSTIC — check your terminal (server logs), not the browser console
-    console.log(
-      "FACILITY ITEMS:",
-      list.map((f) => ({ id: f.id, keys: Object.keys(f) }))
-    );
 
     return list
       .filter((f) => f.label && f.label.trim() !== "") // skip empty/placeholder rows like the two blank ones in your CMS screenshot

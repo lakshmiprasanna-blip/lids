@@ -1,0 +1,30 @@
+{
+  "mvvCards": [
+    { "icon": "/svg/about-mission.svg", "title": "Our Mission", "desc": "To empower the next generation of dental professionals by bridging the gap between classroom theory and real-world practice." },
+    { "icon": "/svg/about-mission.svg", "title": "Our Purpose", "desc": "Inspired by the vision of Dr. K. Lakshma Reddy (KLR Garu), our purpose remains clear: to make quality dental care accessible to all, while developing dentists who create meaningful impact in every life they touch." },
+    { "icon": "/svg/about-mission.svg", "title": "Our Vision", "desc": "To transform society through exceptional dental education, dedicated community service, and proactive oral health advocacy." }
+  ],
+  "coreValues": [
+    { "icon": "/svg/corevalues1.svg", "title": "Entrepreneurial Growth", "desc": "Guided to grow with confidence and independence. With close mentorship and personal support, they learn at their own pace while developing the skills and mindset to lead, manage, and build their own dental careers." },
+    { "icon": "/svg/corevalues2.svg", "title": "Service to Community", "desc": "Dentistry goes beyond the classroom. Through regular outreach camps and public health initiatives, students actively serve communities while gaining meaningful real-world experience." },
+    { "icon": "/svg/corevalues3.svg", "title": "Practice First Learning", "desc": "We believe confidence comes from doing. From early clinical exposure to direct patient care, students learn through real-world practice under supervision preparing them for independent clinical work from day one." },
+    { "icon": "/svg/corevalues4.svg", "title": "Continuous Improvement", "desc": "We encourage curiosity and growth. Through ongoing research, skill development programs, and clinical learning, students and faculty stay updated and keep evolving together." }
+  ],
+  "doctors": [
+    { "image": "/assets/doctor1.webp", "name": "Mrs. K. Nagamani", "role": "Founder & Director" },
+    { "image": "/assets/doctor1.webp", "name": "Mrs. K. Nagamani", "role": "Founder & Director" },
+    { "image": "/assets/doctor1.webp", "name": "Mrs. K. Nagamani", "role": "Founder & Director" },
+    { "image": "/assets/doctor1.webp", "name": "Mrs. K. Nagamani", "role": "Founder & Director" }
+  ],
+  "founder": {
+    "label": "MESSAGE",
+    "title": "A Message from Our Founder",
+    "paragraphs": [
+      "For 37 remarkable years, the KLR Group of Institutions has been a beacon of knowledge, shaping futures with unwavering dedication. At its heart lies the visionary spirit of Dr. Katireddy Lakshma Reddy Garu, whose belief in the transformative power of education has inspired generations. His vision is not just a dream it is a living legacy that continues to uplift and empower.",
+      "KLR envisioned an institution where students grow not just academically, but as confident, innovative & socially responsible individuals. His mission extended beyond classrooms, aiming to create a better society. Over the years, we've embraced challenges as Stepping stones, turning them into opportunities for growth."
+    ],
+    "name": "Dr. Katireddy Lakshma Reddy",
+    "designation": "Founder & Chairman, KLR group",
+    "image": "/assets/founder.webp"
+  }
+}

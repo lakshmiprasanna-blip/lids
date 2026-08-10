@@ -24,12 +24,16 @@ export default function CardGrid({
   mobileBlobs = [], cardPaddingTop = "60px",
   cardStyle = defaultCardStyle,        
   cardBorder = "1px solid #20B2AA30", 
-   mobileButtonText,        
+  mobileButtonText,        
   mobileButtonHref,  
-  className="",   
+  className = "",
+  allowBlobBleed = false,
 }) {
   return (
-    <section className={`relative bg-white !py-15 md:!py-14 lg:!py-24 ${className}`} style={{ backgroundColor: bgColor }}>
+    <section
+      className={`relative bg-white ${allowBlobBleed ? "z-[1]" : ""} ${className}`}
+      style={{ backgroundColor: bgColor }}
+    >
       {showBlob && (
         <div className="absolute inset-0 pointer-events-none">
           {blobs.map((blobStyle, i) => (

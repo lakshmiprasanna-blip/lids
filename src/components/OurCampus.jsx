@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import OutlineBtn from "@/components/OutlineBtn";
+import CarouselArrowButton from "@/components/CarouselArrowButton";
 
 const defaultImages = [
   { src: "/assets/ourcampus-1.webp", alt: "Campus 1" },
@@ -36,10 +36,6 @@ export default function OurCampus({
   {buttonText}
 </OutlineBtn>);
 
-const ArrowBtn = ({ onClick, children }) => (
-  <button onClick={onClick} className="w-12 h-12 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200">{children}</button>
-);
-
   useEffect(() => {
     const update = () => setViewportW(window.innerWidth);
     update();
@@ -69,7 +65,7 @@ const ArrowBtn = ({ onClick, children }) => (
 const prev = () => setActiveIndex((p) => (p === 0 ? imgs.length - 1 : p - 1));
 const next = () => setActiveIndex((p) => (p === imgs.length - 1 ? 0 : p + 1));
   return (
-    <section className="relative w-full overflow-hidden bg-white py-10">
+    <section className="relative w-full bg-white py-10">
       {showBlob && (
         <div className="absolute inset-0 pointer-events-none ">
           <Blob style={{ top: 0, left: 112 }} />
@@ -90,14 +86,14 @@ const next = () => setActiveIndex((p) => (p === imgs.length - 1 ? 0 : p + 1));
       {/* MOBILE + TABLET up to 1280px */}
       <div className="relative z-10 xl:hidden flex flex-col gap-5 px-5">
         <div className="relative w-full rounded-2xl overflow-hidden select-none h-[240px] md:h-[420px]" style={{ cursor: isDragging ? "grabbing" : "grab" }} {...dragHandlers}>
-          <Image src={imgs[activeIndex].src} alt={imgs[activeIndex].alt} fill className="object-cover pointer-events-none" draggable={false} />
+          <Image src={imgs[activeIndex].src} alt={imgs[activeIndex].alt} fill sizes="100vw" className="object-cover pointer-events-none" draggable={false} />
           <div className="absolute inset-0 rounded-2xl border-2 border-white/40 pointer-events-none" />
         </div>
-   <div className="flex items-center justify-center gap-2 min-[375px]:gap-6 mt-2">
-              <button onClick={prev} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowLeft size={20} /></button>
-              <div className={`flex justify-center ${buttonClassName}`}><ExploreBtn /></div>
-              <button onClick={next} className="shrink-0 flex items-center justify-center rounded-full border border-[#9E2016] text-[#9E2016] bg-white active:bg-[#9E2016] active:text-white transition-all duration-200" style={{ width: "48px", height: "48px" }}><ArrowRight size={20} /></button>
-      </div>
+      <div className="flex items-center justify-center gap-2 md:gap-10 mt-2">
+                <CarouselArrowButton direction="prev" onClick={prev} />
+                 <div className={`flex justify-center ${buttonClassName}`}><ExploreBtn /></div>
+                <CarouselArrowButton direction="next" onClick={next} />
+              </div>
       </div>
       {/* DESKTOP 1280px+ */}
       <div ref={containerRef} className="relative z-10 hidden xl:block w-full select-none" style={{ height: `${TRACK_H}px`, cursor: isDragging ? "grabbing" : "grab" }} {...dragHandlers}>
@@ -110,7 +106,7 @@ const next = () => setActiveIndex((p) => (p === imgs.length - 1 ? 0 : p + 1));
           return (
             <div key={i} onClick={() => !isDragging && !isActive && setActiveIndex(i)} className="absolute overflow-hidden"
               style={{ width: w, height: h, left: getLeft(diff, isDragging ? dragOffset : 0), top: TRACK_H / 2 - h / 2, zIndex: isActive ? 20 : 10 - Math.abs(diff), opacity: Math.abs(diff) >= 2 ? 0 : 1, borderRadius: radius, transition: isDragging ? "none" : "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)", border: isActive ? "4px solid rgba(243,255,254,0.36)" : "none", boxShadow: isActive ? "0px 13px 7.3px 0px rgba(158,255,238,0.12)" : "none", cursor: isActive ? (isDragging ? "grabbing" : "grab") : "pointer" }}>
-              <Image src={img.src} alt={img.alt} fill draggable={false} className="object-cover pointer-events-none" style={{ filter: isActive ? "none" : "brightness(0.75)" }} />
+              <Image src={img.src} alt={img.alt} fill sizes="1000px" draggable={false} className="object-cover pointer-events-none" style={{ filter: isActive ? "none" : "brightness(0.75)" }} />
               <div className="absolute inset-0 pointer-events-none" style={{ borderRadius: radius, border: "5px solid rgba(255,255,255,0.4)" }} />
             </div>
           );

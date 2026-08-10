@@ -1,21 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
+import navData from "@/app/data/nav.json";
 
-const exploreLinks = ["About us", "Academics", "Admissions", "Facilities", "Careers"];
-const importantLinks = ["Research Policy", "DCI Data", "NAAC", "NIRF"];
+const { exploreLinks, importantLinks, addressLines, contactItems, socialIcons } = navData.footer;
 
-const contactItems = [
- { text: <><span style={{ filter: "grayscale(1) brightness(0)" }}>📞</span>  +91-88 324 84492</> },
-  { text: "✉️   mailus@lids.com" },
-  { text: "📍   Location" },
-];
+function ContactItem({ icon, text, filterIcon, href }) {
+  const content = (
+    <>
+      <span style={filterIcon ? { filter: "grayscale(1) brightness(0)" } : undefined}>{icon}</span> {text}
+    </>
+  );
+  if (!href) return content;
+  return (
+    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className="!text-[#3D3D3D] hover:!text-[#8E0019] transition-colors duration-200">
+      {content}
+    </a>
+  );
+}
 
-const socialIcons = [
-  { href: "#", icon: "/svg/facebook.svg" },
-  { href: "#", icon: "/svg/linkedin.svg" },
-  { href: "#", icon: "/svg/youtube.svg" },
-  { href: "#", icon: "/svg/whatsapp.svg" },
-];
+function Address({ lines, joiner }) {
+  return lines.map((line, i) => (
+    <span key={i}>
+      {line}
+      {i < lines.length - 1 && joiner}
+    </span>
+  ));
+}
 
 export default function Footer() {
   return (
@@ -23,16 +33,16 @@ export default function Footer() {
       <div className="container py-16">
      {/* DESKTOP */}
 <div className="hidden xl:flex items-start justify-between gap-6 xl:gap-12">
-          <Image src="/assets/footer-logo.webp" alt="LIDS Logo" width={463} height={121} quality={100} className="object-contain shrink-0" />
+          <Image src="/assets/footer-logo.webp" alt="LIDS Logo" width={463} height={121} quality={100} className="object-contain shrink-0 w-[463px] h-[121px]" />
           <div className="flex flex-col gap-8">
             <div>
   <h5 className="font-semibold mb-5 text-[24px]" style={{ color: "#8E0019" }}>Address</h5>
-  <p className="text-[#3D3D3D] text-md leading-relaxed" style={{ width: "220px" }}>NH-16, near HP Petrol Pump,<br />Rajanagaram,<br />Rajamahendravaram, Andhra<br />Pradesh 533294</p>
+  <p className="text-[#3D3D3D] text-md leading-relaxed" style={{ width: "220px" }}><Address lines={addressLines} joiner={<br />} /></p>
 </div>
             <div>
               <h5 className="font-semibold mb-3 text-[24px]" style={{ color: "#8E0019" }}>Contact Us</h5>
               <div className="flex flex-col gap-3">
-                {contactItems.map((item, i) => <span key={i} className="text-md !text-[#000000]">{item.text}</span>)}
+                {contactItems.map((item, i) => <span key={i} className="text-md !text-[#3D3D3D]"><ContactItem {...item} /></span>)}
               </div>
             </div>
           </div>
@@ -51,7 +61,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2 shrink-0">
     {socialIcons.map((s, i) => (
       <Link key={i} href={s.href} className="w-10 h-10 xl:w-[84px] xl:h-[84px] rounded-full flex items-center justify-center hover:opacity-80">
-        <Image src={s.icon} alt="social" width={40} height={40} className="xl:w-[84px] xl:h-[84px]" />
+        <Image src={s.icon} alt="social" width={40} height={40} className="w-10 h-10 xl:w-[84px] xl:h-[84px]" />
       </Link>
     ))}
   </div>
@@ -60,18 +70,18 @@ export default function Footer() {
         {/* MOBILE */}
        {/* MOBILE + TABLET */}
 <div className="xl:hidden flex flex-col gap-8 w-full">
-  <Image src="/assets/footer-logo.webp" alt="LIDS Logo" width={327} height={86} quality={100} className="object-contain md:w-[420px] md:h-auto" />
+  <Image src="/assets/footer-logo.webp" alt="LIDS Logo" width={327} height={86} quality={100} className="object-contain self-start w-[327px] h-[86px] md:w-[420px] md:h-auto" />
   <div className="grid grid-cols-2 md:grid-cols-4 gap-7 md:gap-10 w-full">
     <div>
       <h5 className="font-semibold mb-3 text-xl !text-[#8E0019]">Address</h5>
       <p className="!text-[#3D3D3D] leading-relaxed max-w-[260px]" style={{ fontSize: "clamp(14px, 2vw, 20px)" }}>
-        NH-16, near HP Petrol Pump, Rajanagaram, Rajamahendravaram, Andhra Pradesh 533294
+        <Address lines={addressLines} joiner=" " />
       </p>
     </div>
     <div>
       <h5 className="font-semibold mb-3 text-xl !text-[#8E0019]">Contact Us</h5>
       <div className="flex flex-col gap-3">
-        {contactItems.map((item, i) => <span key={i} className="text-sm !text-[#3D3D3D]">{item.text}</span>)}
+        {contactItems.map((item, i) => <span key={i} className="text-sm !text-[#3D3D3D]"><ContactItem {...item} /></span>)}
       </div>
     </div>
     <div>
@@ -90,7 +100,7 @@ export default function Footer() {
   <div className="flex items-center justify-center md:justify-start gap-3">
     {socialIcons.map((s, i) => (
       <Link key={i} href={s.href} className="w-14 h-14 rounded-full flex items-center justify-center hover:opacity-80">
-        <Image src={s.icon} alt="social" width={56} height={56} />
+        <Image src={s.icon} alt="social" width={56} height={56} className="w-14 h-14" />
       </Link>
     ))}
   </div>

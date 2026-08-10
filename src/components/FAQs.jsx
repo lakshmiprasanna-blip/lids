@@ -15,6 +15,13 @@ const faqItemStyle = {
     "0px 1px 3px 0px #1A1A1A00, 0px 6px 6px 0px #1A1A1A00, 0px 13px 8px 0px #1A1A1A05, 0px 22px 9px 0px #1A1A1A03, 0px 35px 10px 0px #1A1A1A00, inset 0px -40px 40px -20px #FFFFFF40",
 };
 
+// Default blobs used when no `blobs` prop is passed
+const defaultFaqBlobs = [
+  { width: "344px", height: "460px", top: "-147px", left: "183px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" },
+  { width: "344px", height: "460px", top: "400px", right: "100px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" },
+  { width: "344px", height: "460px", top: "-320px", right: "100px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" },
+];
+
 const FaqList = ({ faqs, columns, open, setOpen }) => (
   <div className={`grid gap-4 items-stretch ${columns === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
     {faqs.map((faq, i) => (
@@ -42,7 +49,10 @@ export default function FAQs({
   imageAlt = "FAQ Image",
   bare = false,
   fullWidth = false,
-  align = "center", 
+  align = "center",
+  showBlob = true,
+  blobs = defaultFaqBlobs,
+  className = "",
 }) {
   const [open, setOpen] = useState(null);
   const alignClass = align === "left" ? "text-left" : "text-center";
@@ -54,10 +64,10 @@ export default function FAQs({
   );
 
   return (
-    <section className="relative w-full bg-white !py-20">
-      <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "344px", height: "460px", top: "-147px", left: "183px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" }} />
-      <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "344px", height: "460px", top: "400px", right: "100px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)" }} />
-
+    <section className={`relative w-full bg-white !py-15 md:!mb-10 ${className}`}>
+      {showBlob && blobs.map((blobStyle, i) => (
+        <div key={i} className="absolute pointer-events-none rounded-full hidden xl:block" style={blobStyle} />
+      ))}
       <div className="relative z-10 container">
         {image ? (
           <>
@@ -65,7 +75,7 @@ export default function FAQs({
               <p className={`eyebrow-heading !text-center md:text-left text-[#9E2016] font-semibold uppercase ${alignClass}`}>FAQs</p>
               <h3 className={`text-[#1A1A1A] !text-center font-semibold ${alignClass}`}>Frequently Asked Questions</h3>
               <div className="relative w-full h-[360px] rounded-2xl overflow-hidden">
-                <Image src={image} alt={imageAlt} fill className="object-cover object-center" />
+                <Image src={image} alt={imageAlt} fill sizes="100vw" className="object-cover object-center" />
               </div>
               <FaqList faqs={faqs} columns={columns} open={open} setOpen={setOpen} />
             </div>
@@ -77,7 +87,7 @@ export default function FAQs({
               </div>
               <div className="flex-1 flex items-start" style={{ marginTop: "120px" }}>
                 <div className="relative w-full rounded-2xl overflow-hidden" style={{ minHeight: "520px" }}>
-                  <Image src={image} alt={imageAlt} fill className="object-cover object-center" />
+                  <Image src={image} alt={imageAlt} fill sizes="(max-width: 1024px) 100vw, 700px" className="object-cover object-center" />
                 </div>
               </div>
             </div>

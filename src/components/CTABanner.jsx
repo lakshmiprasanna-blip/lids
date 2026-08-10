@@ -9,7 +9,7 @@ export default function CTABanner({
   titleClassName,
   labelClassName,
   titleWidth,
-  imageStyle = { filter: "blur(0px)", transform: "scale(1.8)", zIndex: 0, objectPosition: "center 130%" },
+  imageStyle = { filter: "blur(0px)", transform: "scale(1.8)", zIndex: 0, objectPosition: "center 126%" },
   mobileImageStyle = { objectFit: "cover", objectPosition: "center 120%", filter: "brightness(1.05)" }
 }) {
   
@@ -18,10 +18,13 @@ export default function CTABanner({
   return (
     <>
       <section className="md:hidden !py-0 relative w-full overflow-hidden" style={{ height: "440px" }}>
-  <img
+  <Image
     src={mobileImage}
     alt={title}
-    className="w-full h-full"
+    fill
+    sizes="100vw"
+    priority
+    className="object-cover"
     style={mobileImageStyle}
   />
 </section>

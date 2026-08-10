@@ -1,6 +1,5 @@
 import Image from "next/image";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
-import CTABanner from "@/components/CTABanner";
 import { getFacilities } from "@/lib/getFacilities";
 
 const cardStyle = {
@@ -22,17 +21,21 @@ export default async function FacilitiesPage() {
         description="A Legacy of Excellence in Education and Social Responsibility"
         image="/assets/facilities-banner.webp"
         showButton={false}
+        priority={true}
         titleClassName="!text-[16px] md:!text-[16px] [font-family:'Inter',sans-serif]! font-bold"
         descriptionClassName="max-w-5xl !text-[32px] md:!text-[48px] [font-family:'Plus_Jakarta_Sans',sans-serif] font-semibold "
+        imagePosition="center 20%"
+        imageStyle={{ transform: "scale(1.05)", objectPosition: "center 32%" }}
+        mobileImageStyle={{ transform: "scale(1.0)", objectPosition: "50% 50%" }}
       />
       <section className="relative w-full bg-white !py-20 overflow-hidden">
-        <div className="absolute pointer-events-none rounded-full" style={{ width: "1358px", height: "1819px", top: "792px", left: "730px", background: "rgba(207, 239, 237, 0.25)", filter: "blur(186px)", transform: "rotate(-90deg)", zIndex: 0 }} />
+        <div className="absolute pointer-events-none rounded-full" style={{ width: "1389px", height: "1819px", top: "0px", left: "938px", background: "#CFEFED40", filter: "blur(186px)", transform: "rotate(-90deg)", zIndex: 0 }} />
         <div className="absolute pointer-events-none rounded-full hidden xl:block" style={{ width: "344px", height: "460px", top: "1428px", left: "30px", background: "#CFEFED", opacity: 0.56, filter: "blur(186px)", transform: "rotate(-90deg)", zIndex: 0 }} />
         <div className="relative z-10 container !px-2 md:px-0">
           <div className="text-center mb-16">
             <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4">FACILITIES</p>
             <h3 className="text-[#1A1A1A] font-semibold">Welcome to the <br /> World of Dental Excellence at LIDS!</h3>
-            <p className="mt-4 text-[#9A9A9A] md:text-[#333333] text-[18px] max-w-6xl mx-auto">
+            <p className="mt-4 text-[#9A9A9A] md:text-[#333333] text-[18px] max-w-[1110px] mx-auto">
               Lenora Institute of Dental Sciences (LIDS) is dedicated to providing high-quality dental education through a balanced approach of academic learning, clinical exposure, and research. With state-of-the-art infrastructure and experienced faculty, we equip our students to be leaders in the field of dentistry.
             </p>
           </div>
@@ -76,11 +79,11 @@ export default async function FacilitiesPage() {
       </section>
       <DentalLegacyCTA
         title="Design Your Dental Legacy at LIDS"
-        description="Whether you are pursuing a BDS or MDS, you will cultivate clinical mastery and
-      professional independence in a tech-forward environment. Master the art of
-      dentistry at your own pace, supported by experts dedicated to your success."
+        description="Whether you are pursuing a BDS or MDS, you will cultivate clinical mastery and professional independence in a tech-forward environment. Master the art of dentistry at your own pace, supported by experts dedicated to your success."
         buttonText="Apply Now"
         buttonHref="/admissions"
+        imageStyle={{ transform: "scale(1.05)", objectPosition: "center" }}
+        mobileImageStyle={{ transform: "scale(1.0)", objectPosition: "50% 0%" }}
       />
     </main>
   );

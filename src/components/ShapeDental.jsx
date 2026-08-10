@@ -34,12 +34,12 @@ export default function ShapeDental({
   }, [carouselImages.length, autoPlayInterval]);
 
   const textBlock = (
-    <div className="flex-1 flex flex-col gap-5 py-10">
+    <div className="flex-1 flex flex-col gap-5 !py-15">
       {label && <p className="text-[#9E2016] text-[18px] font-semibold uppercase">{label}</p>}
       <h3 className="text-[#1A1A2E] font-semibold leading-tight" dangerouslySetInnerHTML={{ __html: title }} />
       <p className={`text-[18px] ${descClassName || "text-[#656C7B]"}`} style={descStyle} dangerouslySetInnerHTML={{ __html: desc }} />
       {buttonText && buttonHref && (
-        <OutlineBtn href={buttonHref} width="196px" height="56px"> {buttonText}</OutlineBtn>
+        <OutlineBtn href={buttonHref} width="160px" height="56px"> {buttonText}</OutlineBtn>
       )}
     </div>
   );
@@ -58,7 +58,7 @@ export default function ShapeDental({
   return (
     <>
       {/* MOBILE */}
-      <section className="md:hidden w-full bg-white px-5 py-8">
+      <section className="md:hidden w-full bg-white px-5 !py-8">
         <div className="relative w-full h-[220px] rounded-2xl overflow-hidden mb-6">
           {carouselImages.map((src, i) => (
             <Image key={src + i} src={src} alt={imageAlt} fill sizes="100vw" className="object-cover transition-opacity duration-700 ease-in-out"  style={{ opacity: i === activeIndex ? 1 : 0 }} />
@@ -72,13 +72,13 @@ export default function ShapeDental({
           <h3 className="text-[#1A1A2E] text-2xl font-semibold leading-tight" dangerouslySetInnerHTML={{ __html: mobileTitle || title }} />
           <p className="text-[#9A9A9A] text-md leading-relaxed">{mobileDesc || desc}</p>
           {buttonText && buttonHref && (
-            <OutlineBtn href={buttonHref} width="196px" height="56px"> {buttonText}</OutlineBtn>
+            <OutlineBtn href={buttonHref} width="160px" height="56px"> {buttonText}</OutlineBtn>
           )}
         </div>
       </section>
 
       {/* DESKTOP */}
-      <section className="hidden md:block relative w-full bg-white section-py overflow-hidden">
+      <section className="hidden md:block relative w-full bg-white !py-12 overflow-hidden">
         {showBlur && (
           <div className="absolute pointer-events-none rounded-full" style={{ width: "831px", height: "836px", top: "-375px", right: "-200px", background: "#A3E0DC8A", filter: "blur(150px)", zIndex: 0 }} />
         )}

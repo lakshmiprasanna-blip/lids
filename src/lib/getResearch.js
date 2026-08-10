@@ -24,12 +24,6 @@ export async function getResearch() {
     const raw = await res.json();
     const list = raw.data ?? raw ?? [];
 
-    // DIAGNOSTIC — check your terminal (server logs), not the browser console
-    console.log(
-      "RESEARCH ITEMS:",
-      list.map((r) => ({ id: r.id, keys: Object.keys(r) }))
-    );
-
     return list
       .filter((r) => firstTruthy(r.title))
       .map((r, i) => {

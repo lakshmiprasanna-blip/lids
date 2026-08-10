@@ -1,91 +1,46 @@
-import Link from "next/link";
-import { Search, ChevronDown } from "lucide-react";
 import CardGrid from "@/components/CardGrid";
 import DentalLegacyCTA from "@/components/DentalLegacyCTA";
+import ResearchFilterBar from "@/components/ResearchFilterBar";
 import { getResearch } from "@/lib/getResearch";
+import researchData from "@/app/data/research.json";
 
-const mvvCards = [
-  { icon: "/svg/ethic.svg", title: "Ethical Research Standards", desc: "All research publications follows strict ethical guidelines approved by our Institutional Ethics Committee (IEC), ensuring patient safety, data privacy, and scientific integrity." },
-  { icon: "/svg/collab.svg", title: "Collaborative Research", desc: "LIDS encourages inter-departmental and inter-institutional collaboration, with active partnerships with hospitals, universities, and research bodies across India." },
-  { icon: "/svg/recognize.svg", title: "Publication & Recognition", desc: "Faculty and students are encouraged to publish in peer-reviewed journals. LIDS supports research grants, conference attendance, and recognizes outstanding contributions annually." },
-];
+const { mvvCards } = researchData;
 
 function StatusBadge({ status }) {
-  const isPublished = status.startsWith("Published");
-  const isOngoing = status.startsWith("Ongoing");
-  const isCompleted = status.startsWith("Completed");
-  const color = isPublished ? "#20B2AA" : isOngoing ? "#FFF3CD" : isCompleted ? "#FFFFFF" : "transparent";
-  const textColor = isPublished ? "#FFFFFF" : isOngoing ? "#FEAC13" : isCompleted ? "#107B71" : "#20B2AA";
-  const border = isPublished ? "1px solid #20B2AA" : isOngoing ? "1px solid #FEAC1361" : isCompleted ? "1px solid #20B2AA" : "none";
+  const styles = {
+    Published: { bg: "#20B2AA", text: "#FFFFFF", border: "#20B2AA" },
+    Ongoing: { bg: "#FFF3CD", text: "#FEAC13", border: "#FEAC1361" },
+    Completed: { bg: "#FFFFFF", text: "#107B71", border: "#20B2AA" },
+  };
+  const key = Object.keys(styles).find((k) => status.startsWith(k));
+  const s = styles[key] || { bg: "transparent", text: "#20B2AA", border: null };
 
   return (
-    <span className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap" style={{ background: color, color: textColor, border }}>
+    <span className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap" style={{ background: s.bg, color: s.text, border: s.border ? `1px solid ${s.border}` : "none" }}>
       {status}
     </span>
   );
 }
 
-// Builds a query string preserving existing params, overriding/removing one key
-function buildHref(params, key, value) {
-  const usp = new URLSearchParams();
-  Object.entries(params || {}).forEach(([k, v]) => {
-    if (v) usp.set(k, v);
-  });
-  if (value) {
-    usp.set(key, value);
-  } else {
-    usp.delete(key);
-  }
-  const qs = usp.toString();
-  return qs ? `?${qs}` : "?";
-}
-
-function FilterDropdown({ label, options, paramKey, params }) {
-  const current = params?.[paramKey] ?? "";
-  return (
-    <details className="relative group">
-      <summary className="list-none flex items-center gap-2 border border-white text-white text-md px-8 py-3 rounded-full whitespace-nowrap hover:bg-white hover:text-[#107B71] transition-all cursor-pointer [&::-webkit-details-marker]:hidden">
-        {current || label}
-        <ChevronDown size={14} className="transition-transform group-open:rotate-180" />
-      </summary>
-      <div className="absolute top-full mt-2 left-0 bg-white rounded-xl shadow-lg py-2 min-w-[180px] max-h-64 overflow-y-auto z-20">
-        <Link href={buildHref(params, paramKey, "")} className="block px-4 py-2 text-sm text-[#3D3D3D] hover:bg-[#EAF8F7] no-underline">
-          All {label}s
-        </Link>
-        {options.map((opt) => (
-          <Link
-            key={opt}
-            href={buildHref(params, paramKey, String(opt))}
-            className={`block px-4 py-2 text-sm hover:bg-[#EAF8F7] no-underline ${current === String(opt) ? "text-[#107B71] font-medium" : "text-[#3D3D3D]"}`}
-          >
-            {opt}
-          </Link>
-        ))}
-      </div>
-    </details>
-  );
-}
+const uniq = (arr, key) => [...new Set(arr.map((r) => r[key]))].filter(Boolean);
 
 export default async function ResearchPage({ searchParams }) {
-  const params = await searchParams; // safe on both Next 14 and 15+
+  const params = await searchParams;
   const research = await getResearch();
 
-  const q = (params?.q ?? "").toLowerCase();
-  const department = params?.department ?? "";
-  const year = params?.year ?? "";
-  const type = params?.type ?? ""; // <-- guessed field for the "Research" button, confirm/rename
+  const { q = "", department = "", year = "", type = "" } = params || {};
+  const query = q.toLowerCase();
 
-  const departments = [...new Set(research.map((r) => r.dept))].filter(Boolean);
-  const years = [...new Set(research.map((r) => r.year))].filter(Boolean).sort((a, b) => b - a);
-  const types = [...new Set(research.map((r) => r.type))].filter(Boolean); // <-- guessed field
+  const departments = uniq(research, "dept");
+  const years = uniq(research, "year").sort((a, b) => b - a);
+  const types = uniq(research, "type");
 
-  const filtered = research.filter((r) => {
-    const matchesQ = r.title.toLowerCase().includes(q);
-    const matchesDept = department ? r.dept === department : true;
-    const matchesYear = year ? String(r.year) === year : true;
-    const matchesType = type ? r.type === type : true;
-    return matchesQ && matchesDept && matchesYear && matchesType;
-  });
+  const filtered = research.filter((r) =>
+    r.title.toLowerCase().includes(query) &&
+    (!department || r.dept === department) &&
+    (!year || String(r.year) === year) &&
+    (!type || r.type === type)
+  );
 
   return (
     <main className="bg-white min-h-screen">
@@ -95,26 +50,15 @@ export default async function ResearchPage({ searchParams }) {
         description="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
         image="/assets/research-banner.webp"
         showButton={false}
+        priority={true}
         titleClassName="!text-[40px] md:!text-[56px]"
         descriptionClassName="max-w-5xl"
         mobileImagePosition="55% 65%"
         mobileImageStyle={{ transform: "scale(1.01)" }}
       />
-      <div className="w-full py-4 px-6" style={{ background: "#107B71" }}>
-        <form action="" method="get" className="container mx-auto flex items-center gap-4 flex-wrap justify-center px-4 md:px-6">
-          <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2.5 flex-1 min-w-[280px] max-w-7xl">
-            <Search size={24} className="text-[#20B2AA] shrink-0" />
-            <input name="q" defaultValue={params?.q ?? ""} type="text" placeholder="Search research papers, authors, departments..." className="text-sm text-[#3D3D3D] outline-none w-full bg-transparent placeholder:text-[#9A9A9A]" />
-          </div>
-          {department && <input type="hidden" name="department" value={department} />}
-          {year && <input type="hidden" name="year" value={year} />}
-          {type && <input type="hidden" name="type" value={type} />}
 
-          <FilterDropdown label="Department" options={departments} paramKey="department" params={params} />
-          <FilterDropdown label="Year" options={years} paramKey="year" params={params} />
-          <FilterDropdown label="Research" options={types} paramKey="type" params={params} />
-        </form>
-      </div>
+      <ResearchFilterBar params={params} departments={departments} years={years} types={types} />
+
       <div className="relative">
         <div className="absolute pointer-events-none" style={{ width: "1400px", height: "1400px", borderRadius: "50%", background: "#CFEFED", opacity: 0.25, filter: "blur(80px)", top: "0px", right: "-500px", zIndex: 0 }} />
         <div className="container mx-auto px-6 py-12">
@@ -133,23 +77,15 @@ export default async function ResearchPage({ searchParams }) {
                 <tbody>
                   {filtered.map((row, j) => (
                     <tr key={row.id} style={{ background: j % 2 !== 0 ? "#D2F0EE99" : "white", borderBottom: "1px solid #E5F3F2" }}>
-                      <td className="px-5 py-4 text-[#3D3D3D] font-medium text-sm" style={{ borderRight: "1px solid #E5F3F2", width: "60px" }}>
-                        {j + 1}
-                      </td>
-                      <td className="px-10 py-4 text-[#333333] text-md leading-relaxed" style={{ borderRight: "1px solid #E5F3F2", minWidth: "260px" }}>
-                        {row.title}
-                      </td>
-                      <td className="px-5 py-4 text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}>
-                        <StatusBadge status={row.status} />
-                      </td>
-                      <td className="px-7 py-4 text-[#232323] text-md text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}>
-                        {row.dept}
-                      </td>
+                      <td className="px-5 py-4 text-[#3D3D3D] font-medium text-sm" style={{ borderRight: "1px solid #E5F3F2", width: "60px" }}>{j + 1}</td>
+                      <td className="px-10 py-4 text-[#333333] text-md leading-relaxed" style={{ borderRight: "1px solid #E5F3F2", minWidth: "260px" }}>{row.title}</td>
+                      <td className="px-5 py-4 text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}><StatusBadge status={row.status} /></td>
+                      <td className="px-7 py-4 text-[#232323] text-md text-center" style={{ borderRight: "1px solid #E5F3F2", width: "160px" }}>{row.dept}</td>
                       <td className="px-5 py-4 text-center" style={{ width: "100px" }}>
                         {row.pdfUrl ? (
-                          <a href={row.pdfUrl} target="_blank" rel="noopener noreferrer" className="px-10 py-3.5 rounded-full !text-[#107B71] no-underline cursor-pointer text-sm font-medium border-[1.5px] border-[#20B2AA] hover:bg-[#9E2016] hover:!text-white hover:border-transparent transition-all"> VIEW</a>
+                          <a href={row.pdfUrl} target="_blank" rel="noopener noreferrer" className="px-10 py-3.5 rounded-full !text-[#107B71] no-underline cursor-pointer text-sm font-medium border-[1.5px] border-[#20B2AA] hover:bg-[#9E2016] hover:!text-white hover:border-transparent transition-all">VIEW</a>
                         ) : (
-                          <button className="px-10 py-3.5 rounded-full text-[#107B71] cursor-pointer text-sm font-medium border-[1.5px] border-[#20B2AA] hover:bg-[#9E2016] hover:text-white hover:border-transparent transition-all"> VIEW</button>
+                          <button className="px-10 py-3.5 rounded-full text-[#107B71] cursor-pointer text-sm font-medium border-[1.5px] border-[#20B2AA] hover:bg-[#9E2016] hover:text-white hover:border-transparent transition-all">VIEW</button>
                         )}
                       </td>
                     </tr>
@@ -160,7 +96,9 @@ export default async function ResearchPage({ searchParams }) {
           </div>
         </div>
       </div>
-      <CardGrid cards={mvvCards} cols={3} showBlob={false} label="RESEARCH POLICY" title="Our Research Policy" bgColor="#EAF8F7" headingAlign="center" titleColor="#107B71" mobileButtonText="Explore More" mobileButtonHref="/facilities" className="!py-15 md:!py-20 lg:!py-20"/>
+
+      <CardGrid cards={mvvCards} cols={3} showBlob={false} label="RESEARCH POLICY" title="Our Research Policy" bgColor="#EAF8F7" headingAlign="center" titleColor="#107B71" mobileButtonText="Explore More" mobileButtonHref="/facilities" className="!py-15 md:!py-20 lg:!py-30" />
+
       <DentalLegacyCTA
         align="left"
         title={<>Ready to Shape<br />Your Future in Dentistry?</>}
@@ -168,6 +106,7 @@ export default async function ResearchPage({ searchParams }) {
         buttonText="Apply Now"
         buttonHref="/academics"
         image="/assets/transparent-banner.webp"
+        priority={true}
         imageStyle={{ transform: "scale(1.05)", objectPosition: "center" }}
         mobileImageStyle={{ transform: "scale(1.0)", objectPosition: "80% 20%" }}
       />

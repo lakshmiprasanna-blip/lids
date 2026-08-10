@@ -1,0 +1,13 @@
+{
+  "cards": [
+    { "icon": "location", "title": "Address", "separator": "br", "lines": [{ "value": "NH-16, Rajanagaram, near HP Petrol Pump," }, { "value": "Rajamahendravaram, Andhra Pradesh 533294." }] },
+    { "icon": "phone", "title": "Call Us", "separator": "br", "lines": [{ "label": "Admissions", "value": "+91 77997 71085" }, { "label": "Office & Enquiry", "value": "08832484492" }] },
+    { "icon": "mail", "title": "Mail Us", "separator": " | ", "lines": [{ "value": "lids@lids.ac.in", "colored": true }, { "value": "Admission@lids.ac.in", "colored": true }] }
+  ],
+  "faqs": [
+    { "question": "What is the eligibility for BDS admission?", "answer": "..." },
+    { "question": "Is LIDS recognized by the Dental Council of India?", "answer": "..." },
+    { "question": "What is the eligibility for BDS admission?", "answer": "..." },
+    { "question": "Is LIDS recognized by the Dental Council of India?", "answer": "..." }
+  ]
+}

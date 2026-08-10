@@ -6,7 +6,7 @@ import DentalLegacyCTA from "@/components/DentalLegacyCTA";
 import OurCampus from "@/components/OurCampus";
 import { getApplicationContent } from "@/lib/admissions";
 import ApplyModal from "@/components/ApplyModal";
-const tabs = ["Application Steps", "BDS", "MDS"];
+import admissionsData from "@/app/data/admissions.json";
 
 const cardStyle = {
   background: "#9EFFEE1F",
@@ -15,59 +15,13 @@ const cardStyle = {
   padding: "12px",
   boxShadow: "inset 0px 2px 12px 0px #FFFFFF40, 0px 6px 6px 0px #E5F3F208, 0px 13px 8px 0px #9EFFEE05, 0px 22px 9px 0px #9EFFEE03, 0px 35px 10px 0px #C9F9FF00",
 };
-const admissionFaqs = [
-  { question: "How do I apply for BDS at LIDS?", answer: "Apply online through the admissions portal by filling out the application form and submitting required documents." },
-  { question: "What is the eligibility for BDS admission?", answer: "Candidates must have completed 10+2 with Physics, Chemistry, and Biology with a minimum of 50% marks and a valid NEET score." },
-  { question: "What is the eligibility for BDS admission?", answer: "Candidates must have completed 10+2 with Physics, Chemistry, and Biology with a minimum of 50% marks and a valid NEET score." },
-  { question: "What is the eligibility for BDS admission?", answer: "Candidates must have completed 10+2 with Physics, Chemistry, and Biology with a minimum of 50% marks and a valid NEET score." },
-  { question: "What is the eligibility for BDS admission?", answer: "Candidates must have completed 10+2 with Physics, Chemistry, and Biology with a minimum of 50% marks and a valid NEET score." },
-];
+const { faqs: admissionFaqs, mvvCards } = admissionsData;
 const innerStyle = {
   background: "#FFFFFF",
   borderRadius: "16px",
-  // padding: "40px 48px",
   minHeight: "520px",
 };
 const ExploreBtn = () => <button className="px-8 py-3 rounded-full cursor-pointer text-sm font-medium text-[#9E2016] bg-white  hover:bg-[#9E2016] hover:!text-white transition-all duration-300" style={{ border: "1.5px solid #9E2016" }}>Explore Campus Life</button>;
-
-const mvvCards = [
-  { 
-    icon: "/svg/admission-1.svg", 
-    mobileImage: "/assets/about-mission-mob.webp", 
-    title: "Extensive Clinical Exposure", 
-    desc: "LIDS offers 355+ dental units with high OPD patient flow, providing students hands-on experience from day one. Real patient exposure ensures graduates are confident and practice-ready." 
-  },
-  { 
-    icon: "/svg/admission-2.svg", 
-    title: "Mentorship-Driven Faculty", 
-    desc: "Our faculty are highly qualified dental professionals who provide personalized mentorship. Students receive guidance in clinical practice, research, and career development." 
-  },
-  { 
-    icon: "/svg/admission-3.svg", 
-    title: "Research & Innovation Focus", 
-    mobileDesc: "To create a positive impact on society through quality dental education, community service, and oral health awareness. We aim to be recognised for academic excellence, research, and responsible practice, while nurturing future dental professionals.",
-    desc: "With over 1,700 published research papers, LIDS integrates research opportunities into both BDS and MDS programs. Students gain practical experience contributing to advancements in dental science." 
-  },
-  { 
-    icon: "/svg/admission-4.svg", 
-    title: "State-of-the-Art Infrastructure", 
-    mobileDesc: "To create a positive impact on society through quality dental education, community service, and oral health awareness. We aim to be recognised for academic excellence, research, and responsible practice, while nurturing future dental professionals.",
-    desc: "From modern dental labs to advanced diagnostic tools like CBCT and intraoral scanners, LIDS provides cutting-edge technology. Students train with industry-standard equipment for clinical excellence." 
-  },
-  { 
-    icon: "/svg/admission-5.svg", 
-    title: "Holistic Development & Well-Being", 
-    mobileDesc: "To create a positive impact on society through quality dental education, community service, and oral health awareness. We aim to be recognised for academic excellence, research, and responsible practice, while nurturing future dental professionals.",
-    desc: "LIDS emphasizes overall student growth through wellness programs, counseling, sports, and cultural activities. We ensure a balanced environment for both academic and personal development." 
-  },
-  { 
-    icon: "/svg/admission-6.svg", 
-    title: "Inclusivity & Community ", 
-    mobileDesc: "To create a positive impact on society through quality dental education, community service, and oral health awareness. We aim to be recognised for academic excellence, research, and responsible practice, while nurturing future dental professionals.",
-    desc: "We provide equal opportunities for all students and actively participate in community outreach programs. LIDS fosters empathy, social responsibility, and ethical dental practice." 
-  },
-];
-
 
 export default function AdmissionsPage() {
   const [content, setContent] = useState(null);
@@ -99,15 +53,18 @@ export default function AdmissionsPage() {
   description="Discover a wide range of medical courses tailored to meet your diverse educational needs.Discover a wide range of medical courses tailored to meet your diverse educational needs."
   image="/assets/admission-banner.webp"
   showButton={false}
+  priority={true}
   titleClassName="!text-[40px] md:!text-[56px]"
   descriptionClassName="max-w-5xl"
+  imageStyle={{ transform: "scale(1.05)", objectPosition: "center" }}
+  mobileImageStyle={{ transform: "scale(1.0)", objectPosition: "50% 50%" }}
 />
 <div className="relative">
-  <section className="relative bg-white !py-20">
-    <div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", top: "106px", left: "17px", transform: "rotate(-90deg)", background: "rgba(207,239,237,0.70)", filter: "blur(126px)", zIndex: 0 }} />
-<div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "900px", height: "600px", top: "-300px", right: "-200px", background: "rgba(207,239,237,0.4)", filter: "blur(120px)", zIndex: 0 }} />
-<div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "851px", height: "1141px", top: "1380px", left: "1100px", transform: "rotate(-90deg)", background: "rgba(207,239,237,0.42)", filter: "blur(186px)", zIndex: 0 }} />
-<div className="relative z-10 container">
+  <section className="relative bg-white lg:!py-25">
+    <div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "344px", height: "460px", top: "206px", left: "117px", transform: "rotate(-90deg)", background: "#CFEFEDB2", filter: "blur(106px)", zIndex: 0 }} />
+<div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "900px", height: "600px", top: "-300px", right: "-200px", background: "#CFEFEDB2", filter: "blur(120px)", zIndex: 0 }} />
+<div className="hidden md:block absolute pointer-events-none rounded-full" style={{ width: "540px", height: "550px", top: "695px", left: "1327px", transform: "rotate(-90deg)", background: "#CFEFEDB2", filter: "blur(186px)", zIndex: 0 }} />
+<div className="relative z-10 container"> 
       <div className="text-center mb-12">
         <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4">LEARNING BY DOING</p>
         <h3 className="text-[#1A1A1A] font-semibold">Welcome to the <br /> World of Dental Excellence at LIDS!</h3>
@@ -118,17 +75,17 @@ export default function AdmissionsPage() {
           <div className="flex justify-center mb-10 px-0">
   <div className="flex items-center gap-1 rounded-full p-1.5 w-full max-w-[400px]" style={{ background: "#F5F5F5", border: "1px solid #E0E0E0" }}>
     {tabs.map((tab) => (
-      <button key={tab} onClick={() => setActive(tab)} className="flex-1 whitespace-nowrap text-center px-1.5 py-2 rounded-full text-[14px] sm:text-[14px] md:text-[16px] font-medium transition-all duration-300" style={{ background: active === tab ? "#107B71" : "transparent", color: active === tab ? "#fff" : "#107B71",}}>{tab}</button>
+      <button key={tab} onClick={() => setActive(tab)} className="flex-1 whitespace-nowrap text-center px-1.5 py-2 rounded-full text-[14px] sm:text-[14px] md:text-[16px] font-medium transition-all duration-300 cursor-pointer" style={{ background: active === tab ? "#107B71" : "transparent", color: active === tab ? "#fff" : "#107B71",}}>{tab}</button>
     ))}
   </div>
 </div>
          <h3 className="text-[#1A1A1A] font-semibold text-2xl md:text-[32px] mb-4">
             {content[active].title}
           </h3>
-          <p className="text-[#3D3D3D] text-[16px] md:text-[18px] leading-relaxed mb-8 whitespace-pre-line">
+          <p className="text-[#3D3D3D] text-[16px] md:text-[18px] leading-[20px] md:!leading-[24px] mb-8 whitespace-pre-line">
             {content[active].description}
           </p>
-          <div className="flex flex-col gap-6 mb-10">
+         <div className="flex flex-col gap-2 md:gap-6 mb-10">
             {content[active].items.map((item, i) => (
               <div key={i} className="flex items-start gap-3">
                 <svg className="shrink-0 mt-0.5" width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="11" fill="#20B2AA" />
@@ -139,21 +96,23 @@ export default function AdmissionsPage() {
               </div>
             ))}
           </div>
-          <div className="flex flex-wrap gap-4">
-            <button className="px-8 py-3 rounded-full cursor-pointer text-sm font-medium text-[#9E2016] bg-white hover:bg-[#9E2016] hover:!text-white transition-all duration-300" style={{ border: "1.5px solid #9E2016" }}>
-              Learn More
-            </button>
-          <button onClick={() => setShowApply(true)} className="px-8 py-3 rounded-full cursor-pointer text-sm font-medium text-white bg-[#9E2016] hover:bg-white hover:!text-[#9E2016] transition-all duration-300" style={{ border: "1.5px solid #9E2016" }}>
-  Apply Now
-</button>
-          </div>
+          {active !== "Application Steps" && (
+            <div className="flex flex-wrap gap-4">
+              <button className="px-8 py-3 rounded-full cursor-pointer text-sm font-medium text-[#9E2016] bg-white hover:bg-[#9E2016] hover:!text-white transition-all duration-300" style={{ border: "1.5px solid #9E2016" }}>
+                Learn More
+              </button>
+              <button onClick={() => setShowApply(true)} className="px-8 py-3 rounded-full cursor-pointer text-sm font-medium text-white bg-[#9E2016] hover:bg-white hover:!text-[#9E2016] transition-all duration-300" style={{ border: "1.5px solid #9E2016" }}>
+                Apply Now
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
   </section>
 </div>
 
-<section className="bg-white ">
+<section className="bg-white md:!py-10 ">
         <div className="container">
           <div className="text-center mb-6">
             <p className="eyebrow-heading text-[#9E2016] font-semibold uppercase mb-4"> Why choose us?</p>
@@ -161,10 +120,15 @@ export default function AdmissionsPage() {
           </div>
         </div>
       </section>
- <CardGrid cards={mvvCards} cols={3} iconSize={64} titleColor="#20B2AA" desktopClassName="-mt-20" mobileClassName="-mt-25" cardPaddingTop="40px"  /> 
-
+<CardGrid cards={mvvCards} cols={3} iconSize={64} titleColor="#20B2AA" desktopClassName="-mt-25 min-[1285px]:-mt-30" mobileClassName="-mt-25" cardPaddingTop="40px" showBlob allowBlobBleed blobs={[{ width: "613px", height: "900px", top: "300px", left: "-370px", background: "rgba(207, 239, 237, 0.55)",
+      filter: "blur(90px)",
+      transform: "rotate(-90deg)",
+      zIndex: 0,
+    },
+  ]}
+/>
 <OurCampus
-  showBlob={true}
+  showBlob={false}
   showMobileBlob={false}
   label="Infrastructure"
   title={<>State-of-the-Art <br /> Facilities for Clinical Excellence</>}
@@ -172,7 +136,9 @@ export default function AdmissionsPage() {
   buttonClassName="mb-1"
   buttonText = "Explore Facilities"
 />
-<FAQs image="/assets/students.webp" imageAlt="Students" faqs={admissionFaqs} align="left" />
+<FAQs image="/assets/students.webp" imageAlt="Students"
+  faqs={admissionFaqs}
+  align="left" blobs={[ { width: "613px", height: "922px", top: "200px", left: "-299px", background: "#CFEFED", filter: "blur(186px)", transform: "rotate(-90deg)", },]}/>
 <DentalLegacyCTA
   align="left"
  title={<>Ready to Shape<br />Your Future in Dentistry?</>}
@@ -180,8 +146,10 @@ export default function AdmissionsPage() {
   buttonText="Apply Now"
   buttonHref="/academics"
   image="/assets/transparent-banner.webp"
-   imageStyle={{ transform: "scale(1.05)", objectPosition: "center" }}
-  mobileImageStyle={{ transform: "scale(1.0)", objectPosition: "80% 20%" }}
+  priority={true}
+  imageStyle={{ transform: "scale(1.05)", objectPosition: "center" }}
+  mobileImageStyle={{ transform: "scale(1.0)", objectPosition: "70% 50%" }}
+  overlayGradient = "linear-gradient(90deg, rgba(32, 178, 170, 0.64) 0%, rgba(16, 123, 113, 0.64) 100%)"
 />
 <ApplyModal open={showApply} onClose={() => setShowApply(false)} />
     </main>
